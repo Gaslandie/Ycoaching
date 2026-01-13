@@ -118,3 +118,26 @@ body {
         opacity: 0.9;
     }
 }
+
+.custom-switch {
+    .form-check-input {
+        width: 3.5em;
+        height: 1.75em;
+        cursor: pointer;
+        background-color: $secondary;
+        border-color: transparent;
+        &:checked {
+            background-color: $primary;
+            border-color: $primary;
+        }
+        &:focus {
+            box-shadow: none;
+            border-color: rgba($primary, 0.5);
+        }
+    }
+}
+
+#label-monthly.active, #label-yearly.active {
+    color: white !important;
+    font-weight: bold;
+}
