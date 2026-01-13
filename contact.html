@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacte Y Coaching pour débuter ta transformation. Coach sportif à Paris et en ligne.">
+    <title>Contact | Y Coaching - Paris</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/style.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        
+        <!-- HERO -->
+        <section class="hero-section-sm d-flex align-items-center" style="min-height: 35vh; background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('dist/img/hero-bg.jpg') center/cover;">
+            <div class="container text-center">
+                <h1 class="display-4 fw-bold text-white mb-3" data-aos="fade-down">
+                    Prêt à passer au <span class="text-primary">niveau supérieur</span> ?
+                </h1>
+                <p class="lead text-secondary" data-aos="fade-up">
+                    Contacte-moi et parlons de ton projet
+                </p>
+            </div>
+        </section>
+
+        <!-- CONTACT + INFOS -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="row g-5">
+                    
+                    <!-- Formulaire de contact -->
+                    <div class="col-lg-7" data-aos="fade-right">
+                        <h3 class="fw-bold text-white mb-4">Envoie-moi un message</h3>
+                        <p class="text-secondary mb-4">
+                            Remplis ce formulaire et je te réponds sous 24h. Si c'est urgent, appelle-moi directement sur WhatsApp !
+                        </p>
+
+                        <div class="card bg-dark border-secondary p-4">
+                            <form id="contactForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label text-secondary">Nom complet *</label>
+                                        <input type="text" class="form-control bg-transparent border-secondary text-white py-2" placeholder="Jean Dupont" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-secondary">Email *</label>
+                                        <input type="email" class="form-control bg-transparent border-secondary text-white py-2" placeholder="jean@email.com" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-secondary">Téléphone</label>
+                                        <input type="tel" class="form-control bg-transparent border-secondary text-white py-2" placeholder="+33 6 00 00 00 00">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-secondary">Ton objectif *</label>
+                                        <select class="form-select bg-transparent border-secondary text-white py-2" required>
+                                            <option value="" class="bg-dark">Choisis...</option>
+                                            <option value="perte-poids" class="bg-dark">Perte de poids</option>
+                                            <option value="prise-masse" class="bg-dark">Prise de masse</option>
+                                            <option value="remise-forme" class="bg-dark">Remise en forme</option>
+                                            <option value="performance" class="bg-dark">Performance sportive</option>
+                                            <option value="autre" class="bg-dark">Autre</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label text-secondary">Type de coaching souhaité *</label>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="coachingType" id="presentiel" value="presentiel" checked>
+                                                <label class="form-check-label text-white" for="presentiel">
+                                                    Présentiel (Paris)
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="coachingType" id="online" value="online">
+                                                <label class="form-check-label text-white" for="online">
+                                                    Online
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="coachingType" id="hybride" value="hybride">
+                                                <label class="form-check-label text-white" for="hybride">
+                                                    Les deux
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label text-secondary">Ton message *</label>
+                                        <textarea class="form-control bg-transparent border-secondary text-white" rows="5" placeholder="Parle-moi de ton projet, tes objectifs, tes contraintes..." required></textarea>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill">
+                                            <i class="bi bi-send me-2"></i>Envoyer ma demande
+                                        </button>
+                                        <small class="text-secondary d-block mt-2 text-center">
+                                            <i class="bi bi-shield-check me-1"></i>Réponse garantie sous 24h
+                                        </small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Infos de contact -->
+                    <div class="col-lg-5" data-aos="fade-left">
+                        <h3 class="fw-bold text-white mb-4">Mes coordonnées</h3>
+
+                        <!-- WhatsApp -->
+                        <div class="card bg-dark border-primary border-2 p-4 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                                    <i class="bi bi-whatsapp text-primary fs-2"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white mb-1">WhatsApp</h5>
+                                    <a href="https://wa.me/33613578119" class="text-primary text-decoration-none fw-bold">06 13 57 81 19</a>
+                                    <p class="text-secondary small mb-0">Disponible 7j/7</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="card bg-dark border-secondary p-4 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                                    <i class="bi bi-envelope text-primary fs-2"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white mb-1">Email</h5>
+                                    <a href="mailto:contact.ycoaching@gmail.com" class="text-primary text-decoration-none">contact.ycoaching@gmail.com</a>
+                                    <p class="text-secondary small mb-0">Réponse sous 24h</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Instagram -->
+                        <div class="card bg-dark border-secondary p-4 mb-4">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                                    <i class="bi bi-instagram text-primary fs-2"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-white mb-1">Instagram</h5>
+                                    <a href="https://instagram.com/ycoaching" target="_blank" class="text-primary text-decoration-none">@ycoaching</a>
+                                    <p class="text-secondary small mb-0">Tips & motivation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Horaires -->
+                        <div class="bg-dark border-start border-primary border-3 p-4 rounded">
+                            <h6 class="text-white fw-bold mb-3"><i class="bi bi-clock me-2"></i>Horaires de disponibilité</h6>
+                            <div class="text-secondary small">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Lundi - Vendredi</span>
+                                    <span class="text-white">7h - 21h</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Samedi</span>
+                                    <span class="text-white">8h - 18h</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Dimanche</span>
+                                    <span class="text-white">Sur rendez-vous</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ZONE D'INTERVENTION -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Zone d'<span class="text-primary">intervention</span>
+                    </h2>
+                    <p class="lead text-secondary">
+                        Coaching présentiel à Paris et toute l'Île-de-France
+                    </p>
+                </div>
+
+                <div class="row align-items-center g-5">
+                    
+                    <!-- Carte (placeholder) -->
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="card bg-dark border-primary p-4 text-center" style="min-height: 400px;">
+                            <i class="bi bi-geo-alt text-primary mb-3" style="font-size: 5rem;"></i>
+                            <h4 class="text-white mb-3">Paris & Île-de-France</h4>
+                            <p class="text-secondary">
+                                Carte interactive disponible prochainement<br>
+                                En attendant, contacte-moi pour vérifier si je me déplace dans ta zone !
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Liste des zones -->
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <h4 class="fw-bold text-white mb-4">Zones principales</h4>
+                        
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="bg-dark border-secondary rounded p-3">
+                                    <i class="bi bi-check-circle text-primary me-2"></i>
+                                    <span class="text-white">Paris intra-muros</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-dark border-secondary rounded p-3">
+                                    <i class="bi bi-check-circle text-primary me-2"></i>
+                                    <span class="text-white">Hauts-de-Seine (92)</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-dark border-secondary rounded p-3">
+                                    <i class="bi bi-check-circle text-primary me-2"></i>
+                                    <span class="text-white">Seine-Saint-Denis (93)</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-dark border-secondary rounded p-3">
+                                    <i class="bi bi-check-circle text-primary me-2"></i>
+                                    <span class="text-white">Val-de-Marne (94)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info bg-primary bg-opacity-10 border-primary mt-4">
+                            <i class="bi bi-info-circle text-primary me-2"></i>
+                            <span class="text-white">Autre zone ? Contacte-moi, on trouvera une solution !</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Questions <span class="text-primary">fréquentes</span>
+                    </h2>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="accordion accordion-flush" id="faqAccordion">
+                            
+                            <div class="accordion-item bg-dark border-bottom border-secondary" data-aos="fade-up">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-dark text-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        <i class="bi bi-question-circle text-primary me-3"></i>
+                                        Comment se passe la première séance ?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body text-secondary">
+                                        La première séance est un bilan complet : on discute de tes objectifs, j'évalue ton niveau actuel, tes contraintes et tes habitudes. Ensuite on fait une petite séance test pour que je puisse observer ta technique. Tout ça dure environ 1h30.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item bg-dark border-bottom border-secondary" data-aos="fade-up" data-aos-delay="100">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-dark text-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        <i class="bi bi-question-circle text-primary me-3"></i>
+                                        Faut-il avoir du matériel pour le coaching à domicile ?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body text-secondary">
+                                        Non, j'apporte tout le matériel nécessaire (haltères, élastiques, tapis, etc.). Tu n'as besoin que d'un peu d'espace et de ta motivation !
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item bg-dark border-bottom border-secondary" data-aos="fade-up" data-aos-delay="200">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-dark text-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        <i class="bi bi-question-circle text-primary me-3"></i>
+                                        Je suis débutant, est-ce adapté pour moi ?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body text-secondary">
+                                        Absolument ! Je travaille avec tous les niveaux. En tant que débutant, tu auras même un avantage : pas de mauvaises habitudes à corriger. On construit tout ensemble sur des bases solides.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item bg-dark border-bottom border-secondary" data-aos="fade-up" data-aos-delay="300">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-dark text-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        <i class="bi bi-question-circle text-primary me-3"></i>
+                                        Quelle est la différence entre le coaching online et présentiel ?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body text-secondary">
+                                        Le coaching online, c'est un programme personnalisé que tu suis en autonomie avec mon accompagnement à distance (vidéos, messages, appels). Le présentiel, je suis physiquement avec toi pour chaque séance. Les deux sont efficaces, ça dépend de ton budget et de ta préférence !
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item bg-dark border-bottom border-secondary" data-aos="fade-up" data-aos-delay="400">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-dark text-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                        <i class="bi bi-question-circle text-primary me-3"></i>
+                                        Acceptes-tu les paiements en plusieurs fois ?
+                                    </button>
+                                </h2>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body text-secondary">
+                                        Oui ! Pour les formules longue durée (6 mois et plus), on peut s'arranger sur un paiement mensuel. On en discute ensemble selon ta situation.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="text-center">
+                    <h3 class="display-6 fw-bold text-white mb-4" data-aos="fade-up">
+                        Une question ? Je suis là pour y répondre
+                    </h3>
+                    <p class="lead text-secondary mb-5" data-aos="fade-up" data-aos-delay="100">
+                        N'hésite pas à me contacter, même juste pour discuter de ton projet sans engagement
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                        <a href="https://wa.me/33613578119" class="btn btn-primary btn-lg rounded-pill px-5 fw-bold">
+                            <i class="bi bi-whatsapp me-2"></i>WhatsApp direct
+                        </a>
+                        <a href="reservation.html" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                            <i class="bi bi-calendar-check me-2"></i>Réserver une séance
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/js/script.js"></script>
+
+    <script>
+    // Gestion du formulaire de contact
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = this.querySelector('button[type="submit"]');
+        const originalHTML = btn.innerHTML;
+        
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Envoi en cours...';
+        btn.disabled = true;
+        
+        // Simulation d'envoi
+        setTimeout(() => {
+            btn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Message envoyé !';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+                this.reset();
+                
+                alert('Merci pour ton message ! Je te réponds sous 24h maximum. Check tes emails ! 💪');
+            }, 2000);
+        }, 1500);
+    });
+    </script>
+
+</body>
+</html>

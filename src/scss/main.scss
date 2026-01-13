@@ -1,116 +1,167 @@
-// 1. Variables
-$primary: #FF5722; // Ton Orange vibrant
-$dark: #121212;
-$white: #ffffff;
-$gray-light: #e0e0e0; // Un blanc cassé pour les textes secondaires
-$dark-card: #1e1e1e;
+// ============================================
+// Y COACHING - STYLE.CSS COMPLET
+// Version 2.0 - Site Multi-pages Professionnel
+// ============================================
 
-// 2. Import Bootstrap
+// 1. VARIABLES
+$primary: #FF5722;
+$dark: #121212;
+$dark-card: #1e1e1e;
+$bg-darker: #0b0b0b;
+$white: #ffffff;
+$gray-light: #e0e0e0;
+$secondary: #6c757d;
+
+// 2. IMPORT BOOTSTRAP
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
-// 3. Styles globaux
+// 3. STYLES GLOBAUX
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: $dark;
     color: $white;
+    overflow-x: hidden;
 }
 
-// Navbar plus claire et lisible
+// Scroll behavior
+html {
+    scroll-behavior: smooth;
+}
+
+// Selection color
+::selection {
+    background-color: $primary;
+    color: $white;
+}
+
+// ============================================
+// 4. NAVBAR
+// ============================================
 .navbar {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+
     .nav-link {
-        color: $white !important; // Blanc pur
+        color: $white !important;
         font-weight: 500;
         opacity: 0.85;
-        &:hover {
+        transition: all 0.3s ease;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 80%;
+            height: 2px;
+            background-color: $primary;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover, &.active {
             opacity: 1;
             color: $primary !important;
+
+            &::after {
+                transform: translateX(-50%) scaleX(1);
+            }
         }
     }
-    
-    .logo-y {
-        color: $primary !important; // On passe le Y en Orange
-        font-size: 2.2rem;
-        font-weight: 800;
-        text-shadow: 0 0 15px rgba($primary, 0.4);
+
+    .logo-text {
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+
+    &.scrolled {
+        background-color: rgba($dark, 0.98) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 }
 
-// Hero Section : On réduit l'opacité du filtre noir (de 0.8 à 0.5)
+// ============================================
+// 5. HERO SECTION
+// ============================================
 .hero-section {
-    min-height: 80vh;
-    background: linear-gradient(rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.5)), 
+    min-height: 85vh;
+    background: linear-gradient(rgba(18, 18, 18, 0.6), rgba(18, 18, 18, 0.6)),
                 url('../img/hero-bg.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
+    position: relative;
 
     h1 {
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.5); // Ombre portée pour détacher le texte du fond
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        line-height: 1.2;
     }
 
     .lead {
-        color: $gray-light !important; // Plus lisible que le gris Bootstrap par défaut
+        color: $gray-light !important;
         font-weight: 400;
     }
-}
 
-// On s'assure que le badge du panier est aussi orange
-.badge.bg-primary {
-    background-color: $primary !important;
-}
-
-// Section Parcours
-#parcours {
-    .img-fluid {
-        filter: grayscale(20%); // Un look un peu plus brut/authentique
-        transition: filter 0.5s ease;
-        &:hover {
-            filter: grayscale(0%);
-        }
-    }
-
-    .story-content {
-        p {
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-    }
-
-    // Style pour la citation
-    blockquote, .fst-italic {
-        background-color: rgba($primary, 0.05);
-        color: $white !important;
+    // Animation bounce pour la flèche
+    .animate-bounce {
+        animation: bounce 2s infinite;
     }
 }
 
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero-section-sm {
+    min-height: 35vh;
+}
+
+// ============================================
+// 6. SECTIONS
+// ============================================
 .bg-darker {
-    background-color: #0b0b0b; // Un noir encore plus profond pour le contraste
+    background-color: $bg-darker;
+}
+
+section {
+    position: relative;
+}
+
+// ============================================
+// 7. CARDS & PRICING
+// ============================================
+.card {
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .pricing-card {
     background-color: $dark-card;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     border-width: 1px;
-    
+
     &:hover {
-        transform: translateY(-10px); // Soulèvement
+        transform: translateY(-10px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         border-color: $primary !important;
     }
 
-    // Style spécifique pour la carte recommandée
     &.featured {
-        transform: scale(1.05); // Elle est un peu plus grande de base
+        transform: scale(1.05);
         border-width: 2px;
         box-shadow: 0 0 20px rgba($primary, 0.1);
-        
+
         &:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 15px 40px rgba($primary, 0.2);
         }
-    }
-
-    .price {
-        font-family: 'Poppins', sans-serif;
     }
 
     ul li {
@@ -119,64 +170,337 @@ body {
     }
 }
 
-.custom-switch {
-    .form-check-input {
-        width: 3.5em;
-        height: 1.75em;
-        cursor: pointer;
-        background-color: $secondary;
-        border-color: transparent;
-        &:checked {
-            background-color: $primary;
-            border-color: $primary;
-        }
-        &:focus {
-            box-shadow: none;
-            border-color: rgba($primary, 0.5);
-        }
-    }
-}
+.service-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 
-#label-monthly.active, #label-yearly.active {
-    color: white !important;
-    font-weight: bold;
-}
-
-// section contact
-#contact {
-    .form-control, .form-select {
-        &:focus {
-            background-color: rgba($primary, 0.05);
-            border-color: $primary;
-            box-shadow: 0 0 0 0.25rem rgba($primary, 0.1);
-            color: white;
-        }
-        &::placeholder {
-            color: rgba(255,255,255,0.3);
-        }
-    }
-}
-
-
-// footer
-
-.hover-primary {
-    transition: color 0.3s ease;
     &:hover {
-        color: $primary !important;
+        transform: translateY(-5px);
+        border-color: $primary !important;
+        box-shadow: 0 10px 30px rgba($primary, 0.1);
+    }
+
+    &.featured {
+        border-color: $primary !important;
     }
 }
 
+// ============================================
+// 8. BUTTONS
+// ============================================
+.btn {
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    font-weight: 600;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba($primary, 0.3);
+    }
+
+    &.btn-primary {
+        background-color: $primary;
+        border-color: $primary;
+
+        &:hover {
+            background-color: darken($primary, 10%);
+            border-color: darken($primary, 10%);
+        }
+    }
+}
+
+.duration-btn {
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid $secondary;
+    background: transparent;
+    color: $white;
+    transition: all 0.3s ease;
+
+    &.active, &:hover {
+        background-color: $primary;
+        border-color: $primary;
+        color: $white;
+    }
+}
+
+// ============================================
+// 9. FORMS
+// ============================================
+.form-control, .form-select {
+    &:focus {
+        background-color: rgba($primary, 0.05);
+        border-color: $primary;
+        box-shadow: 0 0 0 0.25rem rgba($primary, 0.1);
+        color: $white;
+    }
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+.form-check-input {
+    &:checked {
+        background-color: $primary;
+        border-color: $primary;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.25rem rgba($primary, 0.25);
+    }
+}
+
+// ============================================
+// 10. ACCORDION (FAQ)
+// ============================================
+.accordion-button {
+    &:not(.collapsed) {
+        background-color: rgba($primary, 0.1);
+        color: $primary;
+        box-shadow: none;
+    }
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+// ============================================
+// 11. BADGES & LABELS
+// ============================================
+.badge {
+    font-weight: 600;
+    padding: 0.5em 1em;
+}
+
+// ============================================
+// 12. FOOTER
+// ============================================
 footer {
+    .hover-primary {
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $primary !important;
+        }
+    }
+
     .btn-outline-light {
-        width: 35px;
-        height: 35px;
+        width: 40px;
+        height: 40px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.3s ease;
+
         &:hover {
             background-color: $primary;
             border-color: $primary;
+            transform: translateY(-3px);
         }
+    }
+}
+
+// ============================================
+// 13. ANIMATIONS PERSONNALISÉES
+// ============================================
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease;
+}
+
+// ============================================
+// 14. SCROLL TO TOP BUTTON
+// ============================================
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: $primary;
+    color: $white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba($primary, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba($primary, 0.5);
+    }
+
+    i {
+        font-size: 1.2rem;
+    }
+}
+
+// ============================================
+// 15. TOAST NOTIFICATIONS
+// ============================================
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: $dark-card;
+    color: $white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+
+    &.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    &.toast-success {
+        border-left: 4px solid #28a745;
+    }
+
+    &.toast-error {
+        border-left: 4px solid #dc3545;
+    }
+}
+
+// ============================================
+// 16. CALENDRIER (Réservation)
+// ============================================
+.calendar-grid {
+    .btn {
+        transition: all 0.2s ease;
+
+        &:not(.disabled):hover {
+            transform: scale(1.1);
+            background-color: $primary !important;
+        }
+    }
+}
+
+// ============================================
+// 17. RESPONSIVE DESIGN
+// ============================================
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 70vh;
+
+        h1 {
+            font-size: 2rem !important;
+        }
+
+        .lead {
+            font-size: 1rem;
+        }
+    }
+
+    .display-3, .display-4, .display-5 {
+        font-size: 2rem !important;
+    }
+
+    .pricing-card.featured {
+        transform: scale(1) !important;
+    }
+
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+// ============================================
+// 18. UTILITIES
+// ============================================
+.text-gradient {
+    background: linear-gradient(135deg, $primary 0%, #FF8A65 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.border-gradient {
+    border: 2px solid;
+    border-image: linear-gradient(135deg, $primary, #FF8A65) 1;
+}
+
+.shadow-primary {
+    box-shadow: 0 10px 30px rgba($primary, 0.2);
+}
+
+// Image hover effects
+img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: $dark;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $primary;
+    border-radius: 5px;
+
+    &:hover {
+        background: darken($primary, 10%);
+    }
+}
+
+// ============================================
+// 19. LOADING SPINNER
+// ============================================
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba($white, 0.3);
+    border-top-color: $white;
+    border-radius: 50%;
+    animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+    to { transform: rotate(360deg); }
+}
+
+// ============================================
+// 20. PRINT STYLES
+// ============================================
+@media print {
+    .navbar, footer, .scroll-to-top, .btn {
+        display: none !important;
+    }
+
+    body {
+        background-color: white;
+        color: black;
     }
 }
