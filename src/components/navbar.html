@@ -1,32 +1,88 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-3" id="mainNavbar">
     <div class="container-fluid px-lg-5">
         
-        <a class="navbar-brand fw-bold d-flex align-items-baseline" href="index.html">
-            <span class="logo-y">Y</span>
-            <span class="logo-text ms-1">Coaching</span>
+        <!-- Logo avec SVG inline -->
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="45" height="45" class="me-2">
+                <g transform="translate(100, 100)">
+                    <path d="M -30 -40 L -10 0" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none"/>
+                    <path d="M 30 -40 L 10 0" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none"/>
+                    <path d="M 0 0 L 0 50" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none"/>
+                    <circle cx="0" cy="0" r="6" fill="#FF5722"/>
+                </g>
+            </svg>
+            <span class="logo-text text-uppercase" style="letter-spacing: 2px; font-size: 1.3rem;">Coaching</span>
         </a>
 
+        <!-- Burger menu mobile -->
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Menu principal -->
         <div class="collapse navbar-collapse" id="navMain">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4">
-                <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Programmes</a></li>
-                <li class="nav-item"><a class="nav-link" href="#parcours">Mon Parcours</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="programmes.html">Programmes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog.html">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
             </ul>
 
-            <div class="d-flex align-items-center gap-4">
-                <a href="#" class="text-light position-relative">
-                    <i class="bi bi-bag-check fs-4"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style="font-size: 0.6rem;">
-                        0
-                    </span>
+            <!-- CTA + Réseaux sociaux -->
+            <div class="d-flex align-items-center gap-3">
+                <!-- Instagram -->
+                <a href="https://instagram.com/ycoaching" target="_blank" class="text-light fs-5" title="Instagram">
+                    <i class="bi bi-instagram"></i>
                 </a>
-                <button class="btn btn-primary fw-bold px-4 rounded-pill">Connexion</button>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/33613578119" target="_blank" class="text-light fs-5" title="WhatsApp">
+                    <i class="bi bi-whatsapp"></i>
+                </a>
+
+                <!-- Bouton CTA principal -->
+                <a href="reservation.html" class="btn btn-primary fw-bold px-4 rounded-pill">
+                    Réserver une séance
+                </a>
             </div>
         </div>
     </div>
 </nav>
+
+<!-- Script pour effet scroll navbar -->
+<script>
+window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('mainNavbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+</script>
+
+<style>
+/* Effet scroll navbar */
+#mainNavbar {
+    transition: all 0.3s ease;
+}
+
+#mainNavbar.scrolled {
+    background-color: rgba(18, 18, 18, 0.98) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Active link state */
+.nav-link.active {
+    color: #FF5722 !important;
+    opacity: 1 !important;
+}
+</style>
