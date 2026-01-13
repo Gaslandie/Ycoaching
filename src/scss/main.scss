@@ -1,11 +1,120 @@
-// 1. Définis tes couleurs personnalisées AVANT l'import de Bootstrap
-$primary: #FF5722; 
+// 1. Variables
+$primary: #FF5722; // Ton Orange vibrant
 $dark: #121212;
+$white: #ffffff;
+$gray-light: #e0e0e0; // Un blanc cassé pour les textes secondaires
+$dark-card: #1e1e1e;
 
-// 2. Import de Bootstrap
+// 2. Import Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
-// 3. Tes styles persos ici
+// 3. Styles globaux
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background-color: $dark;
+    color: $white;
+}
+
+// Navbar plus claire et lisible
+.navbar {
+    .nav-link {
+        color: $white !important; // Blanc pur
+        font-weight: 500;
+        opacity: 0.85;
+        &:hover {
+            opacity: 1;
+            color: $primary !important;
+        }
+    }
+    
+    .logo-y {
+        color: $primary !important; // On passe le Y en Orange
+        font-size: 2.2rem;
+        font-weight: 800;
+        text-shadow: 0 0 15px rgba($primary, 0.4);
+    }
+}
+
+// Hero Section : On réduit l'opacité du filtre noir (de 0.8 à 0.5)
+.hero-section {
+    min-height: 80vh;
+    background: linear-gradient(rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.5)), 
+                url('../img/hero-bg.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+
+    h1 {
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.5); // Ombre portée pour détacher le texte du fond
+    }
+
+    .lead {
+        color: $gray-light !important; // Plus lisible que le gris Bootstrap par défaut
+        font-weight: 400;
+    }
+}
+
+// On s'assure que le badge du panier est aussi orange
+.badge.bg-primary {
+    background-color: $primary !important;
+}
+
+// Section Parcours
+#parcours {
+    .img-fluid {
+        filter: grayscale(20%); // Un look un peu plus brut/authentique
+        transition: filter 0.5s ease;
+        &:hover {
+            filter: grayscale(0%);
+        }
+    }
+
+    .story-content {
+        p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+    }
+
+    // Style pour la citation
+    blockquote, .fst-italic {
+        background-color: rgba($primary, 0.05);
+        color: $white !important;
+    }
+}
+
+.bg-darker {
+    background-color: #0b0b0b; // Un noir encore plus profond pour le contraste
+}
+
+.pricing-card {
+    background-color: $dark-card;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border-width: 1px;
+    
+    &:hover {
+        transform: translateY(-10px); // Soulèvement
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border-color: $primary !important;
+    }
+
+    // Style spécifique pour la carte recommandée
+    &.featured {
+        transform: scale(1.05); // Elle est un peu plus grande de base
+        border-width: 2px;
+        box-shadow: 0 0 20px rgba($primary, 0.1);
+        
+        &:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba($primary, 0.2);
+        }
+    }
+
+    .price {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    ul li {
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
 }
