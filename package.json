@@ -1,0 +1,24 @@
+{
+  "name": "ycoaching",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+"sass-compile": "sass src/scss/main.scss dist/css/style.css --watch"  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gaslandie/Ycoaching.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Gaslandie/Ycoaching/issues"
+  },
+  "homepage": "https://github.com/Gaslandie/Ycoaching#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "sass": "^1.97.2"
+  }
+}

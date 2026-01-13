@@ -1,0 +1,11 @@
+// 1. Définis tes couleurs personnalisées AVANT l'import de Bootstrap
+$primary: #FF5722; 
+$dark: #121212;
+
+// 2. Import de Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// 3. Tes styles persos ici
+body {
+    font-family: 'Inter', sans-serif;
+}
