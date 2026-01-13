@@ -1,289 +1,327 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Y Coaching | Performance & Accompagnement</title>
+    <meta name="description" content="Y Coaching - Coach sportif à Paris. Coaching personnalisé en présentiel et en ligne. Transforme ton corps et ton esprit avec un accompagnement humain et professionnel.">
+    <meta name="keywords" content="coach sportif paris, personal trainer, coaching fitness, musculation, perte de poids, prise de masse">
+    <title>Y Coaching | Coach Sportif Paris - Transformation & Performance</title>
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    
+    <!-- AOS Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="dist/css/style.css">
 </head>
-
 <body>
 
+    <!-- NAVBAR -->
     <div id="navbar-placeholder"></div>
 
     <main>
-        <section class="hero-section d-flex align-items-center">
+        
+        <!-- HERO SECTION -->
+        <section class="hero-section d-flex align-items-center position-relative">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-7">
-                        <h1 class="display-3 fw-bold mb-4" data-aos="fade-down">
-                            <span class="text-primary">Y</span> COACHING : <br>
-                            L'HUMAIN AU CŒUR DE TA <span class="text-primary">TRANSFORMATION</span>.
+                        <div class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3" data-aos="fade-down">
+                            <i class="bi bi-award me-2"></i>Coach Certifié 2024
+                        </div>
+                        
+                        <h1 class="display-3 fw-bold mb-4 text-white" data-aos="fade-down" data-aos-delay="100">
+                            L'humain au cœur de ta <span class="text-primary">transformation</span>
                         </h1>
-                        <p class="lead mb-5 text-secondary" data-aos="fade-right" data-aos-delay="200">
-                            Ancien homme de terrain, aujourd'hui passionné de performance.
-                            Je t'accompagne avec une méthode 100% personnalisée, que tu sois à Paris ou en ligne.
-                            Pas de barrière, juste des résultats.
+                        
+                        <p class="lead mb-5 text-secondary" data-aos="fade-right" data-aos-delay="200" style="line-height: 1.8;">
+                            Pas de méthode miracle, juste de l'authenticité et du résultat. Je t'accompagne avec un coaching 100% personnalisé, que tu sois à Paris ou en ligne. Débutant ou confirmé, on va au bout ensemble.
                         </p>
-                        <div class="d-flex gap-3" data-aos="fade-up" data-aos-delay="400">
-                            <a href="#services" class="btn btn-primary btn-lg rounded-pill px-4">Découvrir mes
-                                offres</a>
-                            <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill px-4">Me contacter</a>
+                        
+                        <div class="d-flex flex-wrap gap-3 mb-5" data-aos="fade-up" data-aos-delay="300">
+                            <a href="programmes.html" class="btn btn-primary btn-lg rounded-pill px-5 shadow">
+                                <i class="bi bi-lightning-charge me-2"></i>Découvrir mes programmes
+                            </a>
+                            <a href="contact.html" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                                <i class="bi bi-chat-dots me-2"></i>Discutons de ton projet
+                            </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="parcours" class="py-5 my-5">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
-                        <div class="position-relative">
-                            <img src="dist/img/coach-parcours.jpg" alt="Parcours de Y Coaching"
-                                class="img-fluid rounded-3 shadow-lg border-start border-primary border-5">
-                            <div class="position-absolute bottom-0 start-0 bg-primary text-white p-3 m-3 rounded shadow"
-                                data-aos="zoom-in" data-aos-delay="400">
-                                <span class="fw-bold h2 mb-0">6+</span><br>Années d'expérience
+                        <!-- Stats rapides -->
+                        <div class="row g-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="col-4">
+                                <div class="text-center">
+                                    <h3 class="fw-bold text-primary mb-0">6+</h3>
+                                    <small class="text-secondary">Années d'expérience</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-center">
+                                    <h3 class="fw-bold text-primary mb-0">100%</h3>
+                                    <small class="text-secondary">Personnalisé</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-center">
+                                    <h3 class="fw-bold text-primary mb-0">7j/7</h3>
+                                    <small class="text-secondary">Disponible</small>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-7 ps-lg-5" data-aos="fade-left">
-                        <h6 class="text-primary text-uppercase fw-bold mb-3">Mon Histoire</h6>
-                        <h2 class="display-5 fw-bold mb-4 text-white">De l'authenticité à la <span
-                                class="text-primary">performance</span></h2>
-                        <p class="lead mb-4">
-                            Je ne suis pas né dans une salle de sport. J'ai commencé sur les chantiers, dans la vente et
-                            la sécurité. J'ai cherché ma voie pendant longtemps avant de découvrir ma véritable passion
-                            en 2018.
-                        </p>
-                        <div class="story-content text-secondary">
-                            <p>
-                                Après avoir transformé mon propre physique, j'ai compris que le sport n'était pas qu'une
-                                question de muscles, mais de discipline et de santé mentale. Diplômé en 2024 après avoir
-                                surmonté blessures et défis, je suis aujourd'hui à 100% dédié à tes objectifs.
-                            </p>
-                            <p class="fst-italic border-start border-primary ps-3 py-2 text-white">
-                                "Je ne suis pas là pour être ton 'prof' distant. Je suis ton partenaire, ton confident,
-                                celui qui t'aide à mettre le cerveau sur 'off' pour te dépasser."
-                            </p>
-                        </div>
-                        <div class="mt-4">
-                            <a href="#contact" class="btn btn-primary rounded-pill px-4 fw-bold">Travailler ensemble</a>
-                        </div>
-                    </div>
                 </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4" data-aos="fade-up" data-aos-delay="500">
+                <a href="#services" class="text-white text-decoration-none">
+                    <i class="bi bi-chevron-down fs-2 animate-bounce"></i>
+                </a>
             </div>
         </section>
 
-        <!-- section offres et prix -->
+        <!-- SERVICES APERÇU -->
         <section id="services" class="py-5 bg-darker">
-            <div class="container">
+            <div class="container py-5">
                 <div class="text-center mb-5" data-aos="fade-up">
-                    <h6 class="text-primary text-uppercase fw-bold">Mes Offres</h6>
-                    <h2 class="display-5 fw-bold text-white mb-4">Choisis ton plan de <span
-                            class="text-primary">transformation</span></h2>
-
-                    <div class="d-flex justify-content-center align-items-center gap-3">
-                        <span class="text-secondary fw-bold" id="label-monthly">Mensuel</span>
-                        <div class="form-check form-switch custom-switch">
-                            <input class="form-check-input" type="checkbox" id="billingToggle">
-                        </div>
-                        <span class="text-secondary" id="label-yearly">Annuel <small
-                                class="badge bg-success">-20%</small></span>
-                    </div>
+                    <h6 class="text-primary text-uppercase fw-bold mb-3">Mes Services</h6>
+                    <h2 class="display-5 fw-bold text-white mb-4">
+                        Un coaching <span class="text-primary">qui te ressemble</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Que tu veuilles perdre du poids, prendre de la masse ou améliorer tes performances, j'ai la formule qu'il te faut.
+                    </p>
                 </div>
 
-                <div class="row g-4 justify-content-center">
+                <div class="row g-4">
+                    <!-- Service 1 -->
                     <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="card h-100 bg-dark border-secondary text-white p-4 pricing-card">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="h4 fw-bold">Coaching Online</h3>
-                                <div class="price my-3">
-                                    <div class="price-monthly">
-                                        <span class="display-5 fw-bold text-primary">80€</span><span
-                                            class="text-secondary">/mois</span>
-                                    </div>
-                                    <div class="price-yearly d-none">
-                                        <span class="display-5 fw-bold text-primary">760€</span><span
-                                            class="text-secondary">/an</span>
-                                    </div>
+                        <div class="card h-100 bg-dark border-0 text-white p-4 service-card">
+                            <div class="mb-4">
+                                <div class="bg-primary bg-opacity-10 d-inline-flex p-3 rounded-3">
+                                    <i class="bi bi-geo-alt text-primary fs-1"></i>
                                 </div>
-                                <ul class="list-unstyled mb-5 flex-grow-1">
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>Programme
-                                        personnalisé</li>
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>Suivi
-                                        nutritionnel</li>
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>Check-up
-                                        hebdomadaire</li>
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>App mobile
-                                        dédiée</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-outline-primary rounded-pill py-2 fw-bold">Démarrer
-                                    maintenant</a>
                             </div>
+                            <h4 class="fw-bold mb-3">Coaching Présentiel</h4>
+                            <p class="text-secondary mb-4">
+                                Séances en salle ou à domicile à Paris et banlieue. Minimum 2 séances/semaine pour des résultats optimaux.
+                            </p>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Suivi en temps réel</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Correction technique</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Matériel fourni</li>
+                            </ul>
+                            <a href="programmes.html#presentiel" class="btn btn-outline-primary rounded-pill mt-auto">En savoir plus</a>
                         </div>
                     </div>
 
+                    <!-- Service 2 -->
                     <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="card h-100 bg-dark border-primary text-white p-4 pricing-card featured">
-                            <div class="card-body d-flex flex-column text-center">
-                                <span class="badge bg-primary align-self-center mb-3">RECOMMANDÉ</span>
-                                <h3 class="h4 fw-bold">Suivi Hybride</h3>
-                                <div class="price my-3">
-                                    <div class="price-monthly">
-                                        <span class="display-5 fw-bold text-primary">150€</span><span
-                                            class="text-secondary">/mois</span>
-                                    </div>
-                                    <div class="price-yearly d-none">
-                                        <span class="display-5 fw-bold text-primary">1425€</span><span
-                                            class="text-secondary">/an</span>
-                                    </div>
+                        <div class="card h-100 bg-dark border-primary border-2 text-white p-4 service-card featured position-relative">
+                            <span class="position-absolute top-0 end-0 badge bg-primary m-3">POPULAIRE</span>
+                            <div class="mb-4">
+                                <div class="bg-primary bg-opacity-10 d-inline-flex p-3 rounded-3">
+                                    <i class="bi bi-laptop text-primary fs-1"></i>
                                 </div>
-                                <ul class="list-unstyled mb-5 flex-grow-1 text-start">
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>Tout le pack
-                                        Online</li>
-                                    <li class="mb-3"><i class="bi bi-star-fill text-primary me-2"></i>2 séances privées
-                                        / mois</li>
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>Correction
-                                        technique vidéo</li>
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>WhatsApp 7j/7
-                                    </li>
-                                </ul>
-                                <a href="#contact" class="btn btn-primary rounded-pill py-2 fw-bold shadow-sm">Prendre
-                                    rendez-vous</a>
                             </div>
+                            <h4 class="fw-bold mb-3">Coaching Online</h4>
+                            <p class="text-secondary mb-4">
+                                Programme d'entraînement personnalisé avec suivi à distance. Formules de 3 à 12 mois selon tes objectifs.
+                            </p>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Programme sur mesure</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Check-up hebdomadaire</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>App mobile dédiée</li>
+                            </ul>
+                            <a href="programmes.html#online" class="btn btn-primary rounded-pill mt-auto">Démarrer maintenant</a>
                         </div>
                     </div>
 
+                    <!-- Service 3 -->
                     <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="card h-100 bg-dark border-secondary text-white p-4 pricing-card">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="h4 fw-bold">Séance Privée</h3>
-                                <div class="price my-3">
-                                    <div class="price-monthly">
-                                        <span class="display-5 fw-bold text-primary">60€</span><span
-                                            class="text-secondary">/mois</span>
-                                    </div>
-                                    <div class="price-yearly d-none">
-                                        <span class="display-5 fw-bold text-primary">570€</span><span
-                                            class="text-secondary">/an</span>
-                                    </div>
+                        <div class="card h-100 bg-dark border-0 text-white p-4 service-card">
+                            <div class="mb-4">
+                                <div class="bg-primary bg-opacity-10 d-inline-flex p-3 rounded-3">
+                                    <i class="bi bi-heart-pulse text-primary fs-1"></i>
                                 </div>
-                                <ul class="list-unstyled mb-5 flex-grow-1">
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>À domicile ou
-                                        en salle</li>
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>Analyse
-                                        posturale</li>
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>Matériel
-                                        fourni</li>
-                                    <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i>Conseils
-                                        immédiats</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-outline-primary rounded-pill py-2 fw-bold">Réserver un
-                                    créneau</a>
                             </div>
+                            <h4 class="fw-bold mb-3">Suivi Nutritionnel</h4>
+                            <p class="text-secondary mb-4">
+                                Plan alimentaire personnalisé et ajustable. Disponible seul ou combiné avec le coaching sportif.
+                            </p>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>100% personnalisé</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Ajustements réguliers</li>
+                                <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Recettes incluses</li>
+                            </ul>
+                            <a href="programmes.html#nutrition" class="btn btn-outline-primary rounded-pill mt-auto">Découvrir</a>
                         </div>
                     </div>
+                </div>
+
+                <div class="text-center mt-5" data-aos="fade-up">
+                    <a href="programmes.html" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                        Voir tous les programmes <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- section contact -->
-        <section id="contact" class="py-5">
-            <div class="container py-4">
-                <div class="row g-5">
+        <!-- MON PARCOURS -->
+        <section id="parcours" class="py-5">
+            <div class="container py-5">
+                <div class="row align-items-center g-5">
+                    
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="position-relative">
+                            <img src="dist/img/coach-parcours.jpg" alt="Coach Y Coaching" class="img-fluid rounded-4 shadow-lg border-start border-primary border-5">
+                            
+                            <!-- Badge flottant -->
+                            <div class="position-absolute bottom-0 start-0 bg-primary text-white p-4 m-4 rounded-3 shadow" data-aos="zoom-in" data-aos-delay="400">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <span class="fw-bold h1 mb-0 d-block">2024</span>
+                                        <small>Diplômé coach sportif</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="col-lg-5" data-aos="fade-right">
-                        <h6 class="text-primary text-uppercase fw-bold mb-3">Contact</h6>
-                        <h2 class="display-5 fw-bold text-white mb-4">Prêt à passer au <span class="text-primary">niveau
-                                supérieur ?</span></h2>
-                        <p class="text-secondary mb-5">
-                            Besoin d'un renseignement ou prêt à démarrer ta transformation ? Envoie-moi un message, je
-                            te réponds sous 24h.
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <h6 class="text-primary text-uppercase fw-bold mb-3">Mon Histoire</h6>
+                        <h2 class="display-5 fw-bold mb-4 text-white">
+                            De l'authenticité à la <span class="text-primary">performance</span>
+                        </h2>
+                        
+                        <p class="lead text-secondary mb-4" style="line-height: 1.8;">
+                            Je ne suis pas né dans une salle de sport. Chantiers, vente, sécurité... J'ai longtemps cherché ma voie avant de la trouver en 2018, le jour où j'ai poussé la porte d'une salle pour la première fois.
                         </p>
-
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
-                                <i class="bi bi-whatsapp text-primary fs-3"></i>
-                            </div>
-                            <div>
-                                <h5 class="mb-0 text-white">WhatsApp</h5>
-                                <p class="mb-0 text-secondary">+33 6 00 00 00 00</p>
-                            </div>
+                        
+                        <div class="text-secondary mb-4" style="line-height: 1.8;">
+                            <p>
+                                Ce qui devait être juste une transformation physique est devenu une passion dévorante. J'ai compris que le sport, c'est bien plus que des muscles : c'est de la discipline, du mental, de la résilience.
+                            </p>
+                            <p>
+                                Après avoir surmonté blessures et obstacles, j'ai obtenu mon diplôme de coach en décembre 2024. Aujourd'hui, je suis à 100% dédié à une mission : t'aider à atteindre tes objectifs.
+                            </p>
                         </div>
 
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
-                                <i class="bi bi-envelope text-primary fs-3"></i>
-                            </div>
-                            <div>
-                                <h5 class="mb-0 text-white">Email</h5>
-                                <p class="mb-0 text-secondary">contact@ycoaching.fr</p>
-                            </div>
+                        <div class="bg-dark border-start border-primary border-3 p-4 rounded mb-4">
+                            <p class="fst-italic text-white mb-0">
+                                <i class="bi bi-quote text-primary me-2"></i>
+                                Je ne suis pas là pour être ton 'prof' distant. Je suis ton partenaire, ton confident, celui qui t'aide à mettre le cerveau sur 'off' pour te dépasser.
+                            </p>
                         </div>
+
+                        <a href="contact.html" class="btn btn-primary rounded-pill px-5 py-3 fw-bold">
+                            <i class="bi bi-person-check me-2"></i>Travailler ensemble
+                        </a>
                     </div>
-
-                    <div class="col-lg-7" data-aos="fade-left">
-                        <div class="card bg-dark border-secondary p-4 p-md-5">
-                            <form id="contactForm">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label text-secondary">Nom complet</label>
-                                        <input type="text"
-                                            class="form-control bg-transparent border-secondary text-white py-2"
-                                            placeholder="Jean Dupont" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label text-secondary">Email</label>
-                                        <input type="email"
-                                            class="form-control bg-transparent border-secondary text-white py-2"
-                                            placeholder="jean@email.com" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label text-secondary">Ton objectif</label>
-                                        <select class="form-select bg-transparent border-secondary text-white py-2">
-                                            <option value="perte-poids" class="bg-dark">Perte de poids</option>
-                                            <option value="prise-masse" class="bg-dark">Prise de masse</option>
-                                            <option value="remise-forme" class="bg-dark">Remise en forme</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label text-secondary">Message</label>
-                                        <textarea class="form-control bg-transparent border-secondary text-white"
-                                            rows="4" placeholder="Parle-moi de ton projet..."></textarea>
-                                    </div>
-                                    <div class="col-12 mt-4">
-                                        <button type="submit"
-                                            class="btn btn-primary w-100 py-3 fw-bold rounded-pill">Envoyer ma
-                                            demande</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
+
+        <!-- PROCESS -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h6 class="text-primary text-uppercase fw-bold mb-3">Comment ça marche</h6>
+                    <h2 class="display-5 fw-bold text-white mb-4">
+                        4 étapes vers ton <span class="text-primary">objectif</span>
+                    </h2>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-center">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex p-4 rounded-circle mb-3">
+                                <span class="text-primary fw-bold fs-3">1</span>
+                            </div>
+                            <h5 class="fw-bold text-white mb-3">Premier Contact</h5>
+                            <p class="text-secondary">
+                                On discute de tes objectifs, ton niveau et tes disponibilités. Gratuit et sans engagement.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-center">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex p-4 rounded-circle mb-3">
+                                <span class="text-primary fw-bold fs-3">2</span>
+                            </div>
+                            <h5 class="fw-bold text-white mb-3">Bilan Personnalisé</h5>
+                            <p class="text-secondary">
+                                J'analyse ta situation actuelle et je définis un plan d'action sur mesure pour toi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-center">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex p-4 rounded-circle mb-3">
+                                <span class="text-primary fw-bold fs-3">3</span>
+                            </div>
+                            <h5 class="fw-bold text-white mb-3">Programme Lancé</h5>
+                            <p class="text-secondary">
+                                C'est parti ! Tu reçois ton programme personnalisé et on démarre l'aventure ensemble.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="text-center">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex p-4 rounded-circle mb-3">
+                                <span class="text-primary fw-bold fs-3">4</span>
+                            </div>
+                            <h5 class="fw-bold text-white mb-3">Suivi & Résultats</h5>
+                            <p class="text-secondary">
+                                Je t'accompagne au quotidien avec ajustements et motivation jusqu'à l'atteinte de ton objectif.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="bg-gradient-primary p-5 rounded-4 text-center" data-aos="zoom-in" style="background: linear-gradient(135deg, #FF5722 0%, #FF8A65 100%);">
+                    <h2 class="display-5 fw-bold text-white mb-4">
+                        Prêt à passer au niveau supérieur ?
+                    </h2>
+                    <p class="lead text-white mb-5 opacity-90">
+                        Réserve ton créneau pour une première séance découverte gratuite
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <a href="reservation.html" class="btn btn-light btn-lg rounded-pill px-5 fw-bold">
+                            <i class="bi bi-calendar-check me-2"></i>Réserver ma séance
+                        </a>
+                        <a href="contact.html" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                            <i class="bi bi-whatsapp me-2"></i>Discuter sur WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- FOOTER -->
     <div id="footer-placeholder"></div>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="src/js/script.js"></script>
 
 </body>
-
 </html>
