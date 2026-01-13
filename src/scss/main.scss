@@ -141,3 +141,42 @@ body {
     color: white !important;
     font-weight: bold;
 }
+
+// section contact
+#contact {
+    .form-control, .form-select {
+        &:focus {
+            background-color: rgba($primary, 0.05);
+            border-color: $primary;
+            box-shadow: 0 0 0 0.25rem rgba($primary, 0.1);
+            color: white;
+        }
+        &::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+    }
+}
+
+
+// footer
+
+.hover-primary {
+    transition: color 0.3s ease;
+    &:hover {
+        color: $primary !important;
+    }
+}
+
+footer {
+    .btn-outline-light {
+        width: 35px;
+        height: 35px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            background-color: $primary;
+            border-color: $primary;
+        }
+    }
+}

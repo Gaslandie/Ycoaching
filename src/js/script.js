@@ -5,8 +5,9 @@
 // 1. Initialisation générale au chargement du DOM
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Charger la navbar
+    // Charger la navbar et le footer
     loadComponent("navbar-placeholder", "src/components/navbar.html");
+    loadComponent("footer-placeholder", "src/components/footer.html");
 
     // Initialiser AOS
     AOS.init({
