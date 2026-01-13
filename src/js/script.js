@@ -1,6 +1,6 @@
 /**
  * Y COACHING - Script Principal
- * Version 2.0 - Site Multi-pages
+ * Version 2.1 - Corrections complètes
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,20 +14,27 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 800,
         easing: 'ease-out-cubic',
         once: true,
-        offset: 100
+        offset: 100,
+        disable: window.innerWidth < 768 // Désactiver sur mobile pour performance
     });
 
     // 3. Gestion de la navigation active
     setActiveNavLink();
 
-    // 4. Smooth scroll pour les ancres
+    // 4. Smooth scroll pour les ancres (CORRIGÉ)
     initSmoothScroll();
 
-    // 5. Effet parallax sur le hero (optionnel)
-    initParallaxEffect();
+    // 5. Initialisation des liens WhatsApp
+    initWhatsAppLinks();
 
-    // 6. Lazy loading des images (si besoin)
+    // 6. Animation de la flèche du Hero
+    initArrowAnimation();
+
+    // 7. Lazy loading des images (si besoin)
     initLazyLoading();
+
+    // 8. Gestion du scroll (navbar + bouton retour en haut)
+    initScrollHandlers();
 });
 
 /**
@@ -51,14 +58,17 @@ function loadComponent(elementId, filePath) {
                 // Mettre à jour le lien actif après chargement de la navbar
                 if (elementId === "navbar-placeholder") {
                     setActiveNavLink();
+                    // Réinitialiser le smooth scroll après chargement de la navbar
+                    initSmoothScroll();
+                    initWhatsAppLinks();
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => console.error('Erreur chargement composant:', error));
     }
 }
 
 /**
- * Marque le lien de navigation actif selon la page actuelle
+ * Navigation active corrigée
  */
 function setActiveNavLink() {
     setTimeout(() => {
@@ -68,8 +78,19 @@ function setActiveNavLink() {
         navLinks.forEach(link => {
             link.classList.remove('active');
             
-            if (link.getAttribute('href') === currentPage || 
-                (currentPage === '' && link.getAttribute('href') === 'index.html')) {
+            const href = link.getAttribute('href');
+            
+            // Gestion page d'accueil
+            if ((currentPage === 'index.html' || currentPage === '' || currentPage.includes('index')) && 
+                (href === './' || href === 'index.html' || href === '/' || href === '')) {
+                link.classList.add('active');
+            } 
+            // Gestion autres pages
+            else if (href === currentPage || 
+                     href === `./${currentPage}` ||
+                     (currentPage.includes('programmes') && href === 'programmes.html') ||
+                     (currentPage.includes('contact') && href === 'contact.html') ||
+                     (currentPage.includes('reservation') && href === 'reservation.html')) {
                 link.classList.add('active');
             }
         });
@@ -77,43 +98,77 @@ function setActiveNavLink() {
 }
 
 /**
- * Smooth scroll pour les liens d'ancre (#section)
+ * Smooth scroll corrigé - NE BLOQUE PAS les liens vers d'autres pages
  */
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            // Ignorer les liens de type data-bs-toggle
             if (href === '#' || this.hasAttribute('data-bs-toggle')) return;
             
+            // Si le lien contient .html#, c'est une ancre vers une autre page
+            // On laisse le navigateur gérer normalement
+            if (href.includes('.html#')) {
+                return;
+            }
+            
+            // Si c'est une ancre sur la même page
             e.preventDefault();
             
             const target = document.querySelector(href);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const navbar = document.querySelector('.navbar');
+                const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                
+                window.scrollTo({
+                    top: target.offsetTop - navbarHeight,
+                    behavior: 'smooth'
                 });
+                
+                // Mettre à jour l'URL sans recharger la page
+                history.pushState(null, null, href);
             }
         });
     });
 }
 
 /**
- * Effet parallax léger sur le hero
+ * Initialisation des liens WhatsApp - S'ASSURER qu'ils ouvrent WhatsApp
  */
-function initParallaxEffect() {
-    const heroSection = document.querySelector('.hero-section');
-    
-    if (heroSection) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = heroSection.querySelector('div');
-            
-            if (parallax && scrolled < 800) {
-                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
+function initWhatsAppLinks() {
+    document.querySelectorAll('a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && (href.includes('whatsapp') || href.includes('wa.me'))) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        }
+    });
+}
+
+/**
+ * Animation de la flèche du Hero
+ */
+function initArrowAnimation() {
+    const arrow = document.querySelector('.hero-section .animate-bounce');
+    if (arrow) {
+        // Supprimer l'animation par défaut si elle existe
+        arrow.style.animation = 'none';
+        
+        // Forcer un reflow pour réinitialiser l'animation
+        void arrow.offsetWidth;
+        
+        // Appliquer la nouvelle animation
+        arrow.style.animation = 'bounce 2s infinite ease-in-out';
+        
+        // Ajouter un effet au survol
+        arrow.addEventListener('mouseenter', () => {
+            arrow.style.transform = 'scale(1.2)';
+            arrow.style.transition = 'transform 0.3s ease';
+        });
+        
+        arrow.addEventListener('mouseleave', () => {
+            arrow.style.transform = 'scale(1)';
         });
     }
 }
@@ -124,18 +179,54 @@ function initParallaxEffect() {
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
     
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
         });
-    });
 
-    images.forEach(img => imageObserver.observe(img));
+        images.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback pour les navigateurs qui ne supportent pas IntersectionObserver
+        images.forEach(img => {
+            img.src = img.dataset.src;
+        });
+    }
+}
+
+/**
+ * Gestion des événements de scroll
+ */
+function initScrollHandlers() {
+    // Gestion de la navbar qui change de style au scroll
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const navbar = document.querySelector('.navbar');
+        
+        if (navbar) {
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+        
+        // Bouton retour en haut
+        if (scrollTop > 300) {
+            if (!document.querySelector('.scroll-to-top')) {
+                createScrollToTopButton();
+            }
+        } else {
+            const btn = document.querySelector('.scroll-to-top');
+            if (btn) btn.remove();
+        }
+    });
 }
 
 /**
@@ -192,26 +283,11 @@ function validatePhone(phone) {
     return re.test(phone.replace(/\s/g, ''));
 }
 
-/**
- * Gestion du scroll to top button
- */
-window.addEventListener('scroll', () => {
-    const scrollTop = document.documentElement.scrollTop;
-    
-    if (scrollTop > 300) {
-        if (!document.querySelector('.scroll-to-top')) {
-            createScrollToTopButton();
-        }
-    } else {
-        const btn = document.querySelector('.scroll-to-top');
-        if (btn) btn.remove();
-    }
-});
-
 function createScrollToTopButton() {
     const btn = document.createElement('button');
     btn.className = 'scroll-to-top';
     btn.innerHTML = '<i class="bi bi-arrow-up"></i>';
+    btn.setAttribute('aria-label', 'Retour en haut');
     btn.onclick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
