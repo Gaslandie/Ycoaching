@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Programme SHRED 90 - Définition musculaire extrême en 90 jours. Perte de graisse, sèche musculaire et définition maximale. Coaching personnalisé pour révéler vos abdos.">
+    <meta name="keywords"
+        content="shred 90, définition musculaire, perte de graisse, sèche, abdos, cardio, brûleur de graisse">
+    <title>SHRED 90 | Définition Extrême - Y Coaching</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="dist/css/style.css">
+    
+    <!-- Styles spécifiques SHRED 90 -->
+    <style>
+        /* Hero Shred 90 */
+        .shred-hero {
+            min-height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(18, 18, 18, 0.9)),
+                        url('dist/img/programs/shred-hero.jpg') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shred-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(0, 150, 136, 0.1) 100%);
+            z-index: 1;
+        }
+
+        /* Badge Shred avec dégradé vert */
+        .shred-badge {
+            background: linear-gradient(135deg, #009688 0%, #4DB6AC 100%);
+            color: white;
+            font-weight: 800;
+            letter-spacing: 3px;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0 20px 20px 0;
+            position: relative;
+            left: -2rem;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Stats Cards Shred */
+        .shred-stat-card {
+            background: rgba(0, 150, 136, 0.1);
+            border-left: 4px solid #009688;
+            transition: all 0.3s ease;
+        }
+
+        .shred-stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 150, 136, 0.15);
+        }
+
+        /* Timeline Shred */
+        .shred-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .shred-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #009688, transparent);
+        }
+
+        .shred-timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .shred-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #009688;
+            border: 3px solid rgba(0, 150, 136, 0.3);
+        }
+
+        /* Card exercice Shred */
+        .shred-exercise-card {
+            background: linear-gradient(145deg, #1a1a1a, #262626);
+            border: 1px solid rgba(0, 150, 136, 0.2);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .shred-exercise-card:hover {
+            transform: translateY(-10px);
+            border-color: #009688;
+            box-shadow: 0 15px 30px rgba(0, 150, 136, 0.2);
+        }
+
+        .shred-exercise-img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .shred-exercise-card:hover .shred-exercise-img {
+            transform: scale(1.1);
+        }
+
+        /* Badge intensité */
+        .intensity-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #009688, #4DB6AC);
+            color: white;
+            font-weight: bold;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Bouton Shred */
+        .btn-shred {
+            background: linear-gradient(135deg, #009688 0%, #4DB6AC 100%);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 3rem;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shred::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-shred:hover::before {
+            left: 100%;
+        }
+
+        .btn-shred:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 150, 136, 0.4);
+        }
+
+        /* Progress Bar Shred */
+        .progress-shred {
+            height: 8px;
+            background: rgba(0, 150, 136, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-shred .progress-bar {
+            background: linear-gradient(90deg, #009688, #4DB6AC);
+            border-radius: 4px;
+        }
+
+        /* Quote Box Shred */
+        .shred-quote-box {
+            border-left: 4px solid #009688;
+            background: rgba(0, 150, 136, 0.05);
+            font-style: italic;
+            position: relative;
+        }
+
+        .shred-quote-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(0, 150, 136, 0.1);
+            font-family: serif;
+        }
+
+        /* Transformation card avec effet hover */
+        .shred-transformation-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .shred-transformation-card .shred-before,
+        .shred-transformation-card .shred-after {
+            transition: all 0.8s ease;
+        }
+
+        .shred-transformation-card:hover .shred-before {
+            opacity: 0.3;
+            transform: scale(1.1);
+        }
+
+        .shred-transformation-card:hover .shred-after {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Card nutrition */
+        .nutrition-card {
+            background: linear-gradient(135deg, rgba(0, 150, 136, 0.1), transparent);
+            border: 1px solid rgba(0, 150, 136, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* Calorie counter */
+        .calorie-counter {
+            background: linear-gradient(135deg, #009688, #00796B);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .shred-badge {
+                left: -1rem;
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .shred-hero {
+                min-height: 50vh;
+            }
+            
+            .calorie-counter {
+                padding: 1rem;
+            }
+        }
+
+        /* Animation pour les résultats */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-placeholder"></div>
+
+    <main>
+
+        <!-- HERO SHRED 90 -->
+        <section class="shred-hero d-flex align-items-center">
+            <div class="container position-relative z-2">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="shred-badge mb-4" data-aos="fade-right">
+                            DÉFINITION EXTRÊME
+                        </div>
+                        
+                        <h1 class="display-2 fw-bold text-white mb-4" data-aos="fade-right" data-aos-delay="100">
+                            <span style="color: #009688">SHRED 90</span><br>
+                            90 jours pour tout changer
+                        </h1>
+                        
+                        <p class="lead text-white mb-5" data-aos="fade-right" data-aos-delay="200" style="max-width: 600px;">
+                            Programme intensif de perte de graisse et définition musculaire. 
+                            Révélez votre physique sec et dessiné en seulement 90 jours.
+                        </p>
+                        
+                        <div class="d-flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+                            <a href="#reservation" class="btn btn-shred rounded-pill">
+                                <i class="bi bi-fire me-2"></i>Commencer ma transformation
+                            </a>
+                            <a href="#details" class="btn btn-outline-light rounded-pill px-4">
+                                <i class="bi bi-info-circle me-2"></i>Voir le programme
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SHRED -->
+        <section class="py-5 bg-darker" id="stats">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-3" data-aos="fade-up">
+                        <div class="shred-stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="p-3 rounded-circle me-3" style="background: rgba(0, 150, 136, 0.2)">
+                                    <i class="bi bi-droplet" style="color: #009688; font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">-8 à 12kg</h3>
+                                    <small class="text-secondary">Graisse perdue</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="shred-stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="p-3 rounded-circle me-3" style="background: rgba(0, 150, 136, 0.2)">
+                                    <i class="bi bi-calendar-week" style="color: #009688; font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">90</h3>
+                                    <small class="text-secondary">Jours de transformation</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="shred-stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="p-3 rounded-circle me-3" style="background: rgba(0, 150, 136, 0.2)">
+                                    <i class="bi bi-heart-pulse" style="color: #009688; font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">5-6x</h3>
+                                    <small class="text-secondary">Séances/semaine</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="shred-stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="p-3 rounded-circle me-3" style="background: rgba(0, 150, 136, 0.2)">
+                                    <i class="bi bi-speedometer2" style="color: #009688; font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">%BF ≤10</h3>
+                                    <small class="text-secondary">Fatigue corporelle</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DÉTAILS DU PROGRAMME -->
+        <section class="py-5" id="details">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h2 class="display-5 fw-bold text-white mb-4">
+                            Le challenge <span style="color: #009688">SHRED 90</span>
+                        </h2>
+                        
+                        <div class="shred-quote-box p-4 mb-4">
+                            <p class="text-white mb-0">
+                                "90 jours pour éliminer la graisse, révéler vos muscles et transformer radicalement votre physique. 
+                                Pour ceux qui veulent des résultats rapides et visibles."
+                            </p>
+                        </div>
+                        
+                        <ul class="list-unstyled text-white mb-4">
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill" style="color: #009688" class="me-2"></i>
+                                Vous avez un surplus de graisse à perdre
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill" style="color: #009688" class="me-2"></i>
+                                Vous voulez révéler vos abdos
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill" style="color: #009688" class="me-2"></i>
+                                Vous êtes prêt à suivre un régime strict
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill" style="color: #009688" class="me-2"></i>
+                                Vous voulez une définition musculaire maximale
+                            </li>
+                        </ul>
+                        
+                        <div class="calorie-counter mt-5" data-aos="zoom-in">
+                            <h4 class="fw-bold mb-2">Déficit calorique contrôlé</h4>
+                            <div class="display-4 fw-bold mb-0">500-750</div>
+                            <small>calories/jour en déficit</small>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="card bg-dark border-2 p-4" style="border-color: #009688 !important">
+                            <h4 class="text-white fw-bold mb-4">
+                                <i class="bi bi-graph-down" style="color: #009688" class="me-2"></i>
+                                Objectifs du programme
+                            </h4>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Perte de graisse</span>
+                                    <span style="color: #009688">-12kg max</span>
+                                </div>
+                                <div class="progress-shred">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Définition musculaire</span>
+                                    <span style="color: #009688">Maximum</span>
+                                </div>
+                                <div class="progress-shred">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Conservation muscle</span>
+                                    <span style="color: #009688">95%+</span>
+                                </div>
+                                <div class="progress-shred">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Performance cardio</span>
+                                    <span style="color: #009688">+60%</span>
+                                </div>
+                                <div class="progress-shred">
+                                    <div class="progress-bar" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Nutrition Box -->
+                        <div class="nutrition-card p-4 mt-4">
+                            <h5 class="text-white fw-bold mb-3">
+                                <i class="bi bi-egg-fried" style="color: #009688" class="me-2"></i>
+                                Nutrition SHRED 90
+                            </h5>
+                            <p class="text-secondary mb-0">
+                                Régime hyperprotéiné, glucides cycliques et supplémentation spécifique. 
+                                Suivi nutritionnel quotidien avec ajustements hebdomadaires.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRUCTURE DU PROGRAMME -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        3 phases, <span style="color: #009688">1 transformation</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Un programme scientifique divisé en 3 phases de 30 jours chacune
+                    </p>
+                </div>
+                
+                <div class="shred-timeline" data-aos="fade-up">
+                    <!-- Phase 1 -->
+                    <div class="shred-timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge me-3" style="background: #009688">Phase 1</span>
+                                <h4 class="text-white fw-bold mb-0">Adaptation (Jours 1-30)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Réduction progressive des calories, introduction du cardio. 
+                                Le corps s'adapte au déficit énergétique. Perte de 2-3kg.
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small style="color: #009688" class="d-block"><i class="bi bi-fire me-1"></i> Déficit 500 cal</small>
+                                </div>
+                                <div class="col-6">
+                                    <small style="color: #009688" class="d-block"><i class="bi bi-activity me-1"></i> 4 séances cardio</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 2 -->
+                    <div class="shred-timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge me-3" style="background: #009688">Phase 2</span>
+                                <h4 class="text-white fw-bold mb-0">Intensification (Jours 31-60)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Augmentation du déficit, cardio HIIT intensifié. 
+                                Phase de perte de graisse accélérée. Perte de 4-5kg.
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small style="color: #009688" class="d-block"><i class="bi bi-fire me-1"></i> Déficit 750 cal</small>
+                                </div>
+                                <div class="col-6">
+                                    <small style="color: #009688" class="d-block"><i class="bi bi-lightning me-1"></i> HIIT quotidien</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 3 -->
+                    <div class="shred-timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge me-3" style="background: #009688">Phase 3</span>
+                                <h4 class="text-white fw-bold mb-0">Définition (Jours 61-90)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Phase finale pour révéler la définition maximale. 
+                                Affinage musculaire, élimination des dernières graisses. Perte de 2-3kg.
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small style="color: #009688" class="d-block"><i class="bi bi-droplet me-1"></i> Sèche extrême</small>
+                                </div>
+                                <div class="col-6">
+                                    <small style="color: #009688" class="d-block"><i class="bi bi-star me-1"></i> Définition max</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXERCICES CARDIO & HIIT -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Brûleur de <span style="color: #009688">graisse</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Les méthodes d'entraînement qui maximisent la combustion des graisses
+                    </p>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- HIIT -->
+                    <div class="col-md-4" data-aos="zoom-in">
+                        <div class="shred-exercise-card rounded-4 p-0 h-100">
+                            <span class="intensity-badge">HIIT</span>
+                            <img src="dist/img/exercises/hiit.jpg" alt="HIIT Training" class="shred-exercise-img w-100 rounded-top">
+                            <div class="p-4">
+                                <h5 class="text-white fw-bold mb-3">HIIT Intensif</h5>
+                                <p class="text-secondary small mb-3">
+                                    Sessions courtes et intenses pour maximiser la combustion des graisses après l'entraînement.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small style="color: #009688"><i class="bi bi-clock me-1"></i> 20-30 min</small>
+                                    <small style="color: #009688"><i class="bi bi-fire me-1"></i> 500+ cal</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- LISS Cardio -->
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="shred-exercise-card rounded-4 p-0 h-100">
+                            <span class="intensity-badge">LISS</span>
+                            <img src="dist/img/exercises/liss.jpg" alt="Cardio LISS" class="shred-exercise-img w-100 rounded-top">
+                            <div class="p-4">
+                                <h5 class="text-white fw-bold mb-3">Cardio LISS</h5>
+                                <p class="text-secondary small mb-3">
+                                    Cardio à faible intensité pour brûler les graisses sans stresser le système nerveux.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small style="color: #009688"><i class="bi bi-clock me-1"></i> 45-60 min</small>
+                                    <small style="color: #009688"><i class="bi bi-droplet me-1"></i> Graisse pure</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Circuit Training -->
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="shred-exercise-card rounded-4 p-0 h-100">
+                            <span class="intensity-badge">CIRCUIT</span>
+                            <img src="dist/img/exercises/circuit.jpg" alt="Circuit Training" class="shred-exercise-img w-100 rounded-top">
+                            <div class="p-4">
+                                <h5 class="text-white fw-bold mb-3">Circuit Training</h5>
+                                <p class="text-secondary small mb-3">
+                                    Enchaînement d'exercices sans repos pour maintenir un métabolisme élevé toute la journée.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small style="color: #009688"><i class="bi bi-arrow-repeat me-1"></i> 8-10 exercices</small>
+                                    <small style="color: #009688"><i class="bi bi-activity me-1"></i> Métabolisme x2</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSFORMATIONS SHRED -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Résultats <span style="color: #009688">SHRED 90</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Des transformations radicales en seulement 90 jours
+                    </p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-6" data-aos="fade-right">
+                        <div class="shred-transformation-card">
+                            <div class="position-relative" style="height: 400px;">
+                                <div class="shred-before position-absolute w-100 h-100" style="background: url('dist/img/transformations/shred-before-1.jpg') center/cover;"></div>
+                                <div class="shred-after position-absolute w-100 h-100" style="background: url('dist/img/transformations/shred-after-1.jpg') center/cover; opacity: 0;"></div>
+                                <div class="position-absolute bottom-0 start-0 p-4">
+                                    <h5 class="text-white fw-bold mb-1">Alexandre, 29 ans</h5>
+                                    <small style="color: #009688">-11kg, abdos révélés</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6" data-aos="fade-left">
+                        <div class="shred-transformation-card">
+                            <div class="position-relative" style="height: 400px;">
+                                <div class="shred-before position-absolute w-100 h-100" style="background: url('dist/img/transformations/shred-before-2.jpg') center/cover;"></div>
+                                <div class="shred-after position-absolute w-100 h-100" style="background: url('dist/img/transformations/shred-after-2.jpg') center/cover; opacity: 0;"></div>
+                                <div class="position-absolute bottom-0 start-0 p-4">
+                                    <h5 class="text-white fw-bold mb-1">Julien, 34 ans</h5>
+                                    <small style="color: #009688">-9kg, définition extrême</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats de transformation -->
+                <div class="row g-4 mt-4">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="card bg-dark border-secondary p-4 text-center">
+                            <div class="display-4 fw-bold" style="color: #009688">92%</div>
+                            <small class="text-secondary">Taux de réussite</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card bg-dark border-secondary p-4 text-center">
+                            <div class="display-4 fw-bold" style="color: #009688">-9.5kg</div>
+                            <small class="text-secondary">Moyenne de perte</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card bg-dark border-secondary p-4 text-center">
+                            <div class="display-4 fw-bold" style="color: #009688">8.7%</div>
+                            <small class="text-secondary">Fatigue corporelle moyenne finale</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TARIFS ET RÉSERVATION -->
+        <section class="py-5" id="reservation">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Programme <span style="color: #009688">SHRED 90</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Investissez 90 jours pour transformer votre physique définitivement
+                    </p>
+                </div>
+                
+                <div class="row g-4 justify-content-center">
+                    <!-- Formule Online -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="card h-100 bg-dark border-secondary text-white p-4">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">SHRED 90 Online</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold" style="color: #009688">450€</div>
+                                    <small class="text-secondary">90 jours de programme</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Programme personnalisé 90 jours</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Suivi nutritionnel quotidien</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>App mobile dédiée</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Plans de repas hebdomadaires</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Support WhatsApp illimité</li>
+                                </ul>
+                                <a href="reservation.html?program=shred90&type=online" 
+                                   class="btn btn-outline-primary rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formule Présentiel -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="card h-100 bg-dark border-2 text-white p-4 position-relative" style="border-color: #009688 !important">
+                            <span class="position-absolute top-0 end-0 badge m-3" style="background: #009688">RECOMMANDÉ</span>
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">SHRED 90 Présentiel</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold" style="color: #009688">675€</div>
+                                    <small class="text-secondary">90 jours avec coach</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-star-fill" style="color: #009688" class="me-2"></i>Tout le pack Online</li>
+                                    <li class="mb-3"><i class="bi bi-star-fill" style="color: #009688" class="me-2"></i>3 séances/semaine avec coach</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Cardio coaching personnalisé</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Mesures corporelles hebdo</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Garantie résultats</li>
+                                </ul>
+                                <a href="reservation.html?program=shred90&type=presentiel" 
+                                   class="btn btn-shred rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formule VIP -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="card h-100 bg-dark border-secondary text-white p-4">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">SHRED 90 Elite</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold" style="color: #009688">900€</div>
+                                    <small class="text-secondary">90 jours intensifs</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-star-fill" style="color: #009688" class="me-2"></i>Tout le pack Présentiel</li>
+                                    <li class="mb-3"><i class="bi bi-star-fill" style="color: #009688" class="me-2"></i>5 séances/semaine</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Nutrition 100% personnalisée</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Supplémentation incluse</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #009688" class="me-2"></i>Suivi 24/7 prioritaire</li>
+                                </ul>
+                                <a href="reservation.html?program=shred90&type=elite" 
+                                   class="btn btn-outline-primary rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Note importante -->
+                <div class="text-center mt-5" data-aos="fade-up">
+                    <div class="card bg-dark border-secondary p-4 mx-auto" style="max-width: 800px;">
+                        <h5 class="text-white mb-3">
+                            <i class="bi bi-info-circle" style="color: #009688" class="me-2"></i>
+                            Engagement requis
+                        </h5>
+                        <p class="text-secondary mb-0">
+                            Le programme SHRED 90 demande un engagement total pendant 90 jours. 
+                            Bilan initial gratuit obligatoire. Paiement en 3 fois possible. 
+                            Résultats garantis sous condition de suivi rigoureux.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="p-5 rounded-4 text-center" data-aos="zoom-in"
+                     style="background: linear-gradient(135deg, #009688 0%, #4DB6AC 100%);">
+                    <h2 class="display-5 fw-bold text-white mb-4">
+                        Prêt à révéler votre meilleur physique ?
+                    </h2>
+                    <p class="lead text-white mb-5 opacity-90">
+                        Commencez votre transformation SHRED 90 dès aujourd'hui
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <a href="reservation.html?program=shred90" class="btn btn-light btn-lg rounded-pill px-5 fw-bold">
+                            <i class="bi bi-calendar-check me-2"></i>Réserver mon bilan
+                        </a>
+                        <a href="https://wa.me/33613578119?text=Bonjour%20!%20Je%20suis%20intéressé%20par%20le%20programme%20SHRED%2090."
+                           target="_blank" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                            <i class="bi bi-whatsapp me-2"></i>Questions sur WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/js/script.js"></script>
+    
+    <script>
+        // Initialisation AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Animation pour les transformations SHRED
+        document.addEventListener('DOMContentLoaded', function() {
+            const transformationCards = document.querySelectorAll('.shred-transformation-card');
+            
+            transformationCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const after = this.querySelector('.shred-after');
+                    after.style.opacity = '1';
+                    after.style.transform = 'scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const after = this.querySelector('.shred-after');
+                    after.style.opacity = '0';
+                    after.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Animation pour les stats
+            const statCards = document.querySelectorAll('.shred-stat-card');
+            statCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.animation = 'pulse 2s infinite ease-in-out';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.animation = 'none';
+                });
+            });
+            
+            // Compteur animé
+            function animateCounter(element, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    element.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+            
+            // Animer les stats au scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statElements = entry.target.querySelectorAll('.display-4');
+                        statElements.forEach(el => {
+                            const value = parseInt(el.textContent);
+                            if (!isNaN(value)) {
+                                animateCounter(el, 0, value, 2000);
+                            }
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const statsSection = document.querySelector('#reservation');
+            if (statsSection) observer.observe(statsSection);
+        });
+    </script>
+
+</body>
+</html>
