@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Programme GLOW UP - Remise en forme complète. Retrouvez énergie, vitalité et confiance en vous avec ce programme doux et progressif.">
+    <meta name="keywords"
+        content="glow up, remise en forme, bien-être, énergie, perte de poids douce, confiance en soi, santé">
+    <title>GLOW UP | Remise en Forme - Y Coaching</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="dist/css/style.css">
+    
+    <!-- Styles spécifiques GLOW UP -->
+    <style>
+        /* Hero Glow Up - Dégradé doré/saumon */
+        .glowup-hero {
+            min-height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(18, 18, 18, 0.85)),
+                        url('dist/img/programs/glowup-hero.jpg') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glowup-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 183, 77, 0.2) 0%, rgba(255, 138, 101, 0.15) 100%);
+            z-index: 1;
+        }
+
+        /* Badge Glow Up avec dégradé doré */
+        .glowup-badge {
+            background: linear-gradient(135deg, #FFB74D 0%, #FF8A65 100%);
+            color: white;
+            font-weight: 800;
+            letter-spacing: 3px;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0 20px 20px 0;
+            position: relative;
+            left: -2rem;
+            box-shadow: 0 5px 15px rgba(255, 183, 77, 0.3);
+        }
+
+        /* Stats Cards Glow Up */
+        .glowup-stat-card {
+            background: rgba(255, 183, 77, 0.1);
+            border-left: 4px solid #FFB74D;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glowup-stat-card::after {
+            content: '✨';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            opacity: 0.3;
+        }
+
+        .glowup-stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 183, 77, 0.15);
+            box-shadow: 0 10px 25px rgba(255, 183, 77, 0.15);
+        }
+
+        /* Timeline Glow Up */
+        .glowup-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .glowup-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #FFB74D, #FF8A65, transparent);
+        }
+
+        .glowup-timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .glowup-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.5rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFB74D, #FF8A65);
+            border: 3px solid rgba(255, 183, 77, 0.3);
+            box-shadow: 0 0 10px rgba(255, 183, 77, 0.5);
+        }
+
+        /* Card activité douce */
+        .gentle-activity-card {
+            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+            border: 1px solid rgba(255, 183, 77, 0.2);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            position: relative;
+            border-radius: 15px;
+        }
+
+        .gentle-activity-card:hover {
+            transform: translateY(-8px);
+            border-color: #FFB74D;
+            box-shadow: 0 15px 30px rgba(255, 183, 77, 0.2);
+        }
+
+        .gentle-activity-img {
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: brightness(0.9);
+        }
+
+        .gentle-activity-card:hover .gentle-activity-img {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        /* Badge intensité douce */
+        .gentle-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #FFB74D, #FF8A65);
+            color: white;
+            font-weight: bold;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        /* Bouton Glow Up */
+        .btn-glowup {
+            background: linear-gradient(135deg, #FFB74D 0%, #FF8A65 100%);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 3rem;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-glowup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-glowup:hover::before {
+            left: 100%;
+        }
+
+        .btn-glowup:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 183, 77, 0.4);
+        }
+
+        /* Progress Bar Glow Up */
+        .progress-glowup {
+            height: 8px;
+            background: rgba(255, 183, 77, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-glowup .progress-bar {
+            background: linear-gradient(90deg, #FFB74D, #FF8A65);
+            border-radius: 4px;
+        }
+
+        /* Quote Box Glow Up */
+        .glowup-quote-box {
+            border-left: 4px solid #FFB74D;
+            background: linear-gradient(135deg, rgba(255, 183, 77, 0.05), transparent);
+            font-style: italic;
+            position: relative;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .glowup-quote-box::before {
+            content: '💫';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 2rem;
+        }
+
+        /* Card bien-être */
+        .wellness-card {
+            background: linear-gradient(135deg, rgba(255, 183, 77, 0.1), rgba(255, 138, 101, 0.05));
+            border: 1px solid rgba(255, 183, 77, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .wellness-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(255, 183, 77, 0.15);
+        }
+
+        /* Icônes bien-être */
+        .wellness-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFB74D, #FF8A65);
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(255, 183, 77, 0.3);
+        }
+
+        /* Card transformation douce */
+        .gentle-transformation-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .gentle-transformation-card img {
+            transition: all 0.8s ease;
+        }
+
+        .gentle-transformation-card:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Overlay de transformation */
+        .transformation-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gentle-transformation-card:hover .transformation-overlay {
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glowup-badge {
+                left: -1rem;
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .glowup-hero {
+                min-height: 50vh;
+            }
+            
+            .wellness-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .gentle-activity-img {
+                height: 150px;
+            }
+        }
+
+        /* Animation pour les étincelles */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        /* Animation douce pour les cartes */
+        @keyframes gentleGlow {
+            0%, 100% { box-shadow: 0 5px 15px rgba(255, 183, 77, 0.1); }
+            50% { box-shadow: 0 5px 25px rgba(255, 183, 77, 0.3); }
+        }
+
+        .glowing-card {
+            animation: gentleGlow 3s ease-in-out infinite;
+        }
+
+        /* Animation pour les icônes */
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .bouncing-icon {
+            animation: gentleBounce 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-placeholder"></div>
+
+    <main>
+
+        <!-- HERO GLOW UP -->
+        <section class="glowup-hero d-flex align-items-center">
+            <div class="container position-relative z-2">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="glowup-badge mb-4" data-aos="fade-right">
+                            TRANSFORMATION DOUCE
+                        </div>
+                        
+                        <h1 class="display-2 fw-bold text-white mb-4" data-aos="fade-right" data-aos-delay="100">
+                            <span style="background: linear-gradient(135deg, #FFB74D, #FF8A65); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">GLOW UP</span><br>
+                            Votre renaissance bien-être
+                        </h1>
+                        
+                        <p class="lead text-white mb-5" data-aos="fade-right" data-aos-delay="200" style="max-width: 600px;">
+                            Programme doux et progressif pour retrouver énergie, vitalité et confiance en vous. 
+                            Parfait pour les débutantes ou celles qui reprennent le sport.
+                        </p>
+                        
+                        <div class="d-flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+                            <a href="#reservation" class="btn btn-glowup rounded-pill">
+                                <i class="bi bi-sun me-2"></i>Commencer ma renaissance
+                            </a>
+                            <a href="#method" class="btn btn-outline-light rounded-pill px-4">
+                                <i class="bi bi-book me-2"></i>Découvrir la méthode
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS GLOW UP -->
+        <section class="py-5 bg-darker" id="stats">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-3" data-aos="fade-up">
+                        <div class="glowup-stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="wellness-icon sparkle me-3">
+                                    <i class="bi bi-heart-pulse"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">12</h3>
+                                    <small class="text-secondary">Semaines de transformation</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="glowup-stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="wellness-icon sparkle me-3">
+                                    <i class="bi bi-lightning-charge"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">+90%</h3>
+                                    <small class="text-secondary">Énergie retrouvée</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="glowup-stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="wellness-icon sparkle me-3">
+                                    <i class="bi bi-droplet"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">-5 à 8kg</h3>
+                                    <small class="text-secondary">Perte de poids douce</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="glowup-stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="wellness-icon sparkle me-3">
+                                    <i class="bi bi-emoji-smile"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">100%</h3>
+                                    <small class="text-secondary">Débutantes acceptées</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHILOSOPHIE GLOW UP -->
+        <section class="py-5" id="philosophy">
+            <div class="container py-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="wellness-card p-5 rounded-4 glowing-card">
+                            <h2 class="display-5 fw-bold text-white mb-4">
+                                Le pouvoir d'un <span style="color: #FFB74D">nouveau départ</span>
+                            </h2>
+                            
+                            <div class="glowup-quote-box p-4 mb-4">
+                                <p class="text-white mb-0">
+                                    "Glow Up, c'est bien plus qu'un programme de fitness. 
+                                    C'est une renaissance complète : corps, esprit et énergie."
+                                </p>
+                            </div>
+                            
+                            <p class="text-white mb-4">
+                                Conçu spécialement pour les débutantes ou celles qui reprennent le sport 
+                                après une pause, ce programme mise sur la progressivité, la bienveillance 
+                                et des résultats durables.
+                            </p>
+                            
+                            <div class="p-3 rounded" style="background: rgba(255, 138, 101, 0.1); border-left: 3px solid #FF8A65">
+                                <h5 class="text-white fw-bold mb-2">Pas à pas, sans pression</h5>
+                                <p class="text-white mb-0 small">
+                                    Aucune expérience requise. Chaque exercice est adapté à votre niveau 
+                                    et évolue avec vous.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="card bg-dark border-2 p-4" style="border-color: #FFB74D !important">
+                            <h4 class="text-white fw-bold mb-4">
+                                <i class="bi bi-bullseye" style="color: #FFB74D" class="me-2"></i>
+                                Votre transformation Glow Up
+                            </h4>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Énergie & vitalité</span>
+                                    <span style="color: #FFB74D">+90%</span>
+                                </div>
+                                <div class="progress-glowup">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Confiance en soi</span>
+                                    <span style="color: #FF8A65">+85%</span>
+                                </div>
+                                <div class="progress-glowup">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Bien-être général</span>
+                                    <span style="color: #FFB74D">+95%</span>
+                                </div>
+                                <div class="progress-glowup">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Habitudes santé</span>
+                                    <span style="color: #FF8A65">Durables</span>
+                                </div>
+                                <div class="progress-glowup">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Message d'accueil -->
+                        <div class="mt-4 p-3 rounded text-center" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.1), rgba(255, 138, 101, 0.1))">
+                            <h5 class="text-white fw-bold mb-1">Bienvenue à toutes !</h5>
+                            <small class="text-white">
+                                Que vous n'ayez jamais fait de sport ou que vous repreniez après des années, 
+                                ce programme est fait pour vous.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÉTHODE GLOW UP -->
+        <section class="py-5 bg-darker" id="method">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        La méthode <span style="color: #FFB74D">Glow Up</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        3 piliers pour une transformation complète et durable
+                    </p>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- Pilier 1 -->
+                    <div class="col-md-4" data-aos="zoom-in">
+                        <div class="wellness-card p-4 h-100">
+                            <div class="wellness-icon bouncing-icon mb-3" style="background: linear-gradient(135deg, #FFB74D, #FF8A65)">
+                                <i class="bi bi-heart"></i>
+                            </div>
+                            <h4 class="text-white fw-bold mb-3">Mouvement Doux</h4>
+                            <p class="text-secondary">
+                                Activités adaptées à votre niveau : marche active, yoga doux, 
+                                exercices au poids du corps. Progressivité garantie.
+                            </p>
+                            <div class="mt-3">
+                                <small style="color: #FFB74D"><i class="bi bi-check-circle me-1"></i> Pas de matériel requis</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pilier 2 -->
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="wellness-card p-4 h-100">
+                            <div class="wellness-icon bouncing-icon mb-3" style="background: linear-gradient(135deg, #4CAF50, #8BC34A)">
+                                <i class="bi bi-egg-fried"></i>
+                            </div>
+                            <h4 class="text-white fw-bold mb-3">Alimentation Équilibrée</h4>
+                            <p class="text-secondary">
+                                Réapprendre à manger sans régime strict. Des conseils pratiques 
+                                pour une alimentation saine et plaisante au quotidien.
+                            </p>
+                            <div class="mt-3">
+                                <small style="color: #4CAF50"><i class="bi bi-check-circle me-1"></i> Sans privation</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pilier 3 -->
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="wellness-card p-4 h-100">
+                            <div class="wellness-icon bouncing-icon mb-3" style="background: linear-gradient(135deg, #2196F3, #03A9F4)">
+                                <i class="bi bi-moon-stars"></i>
+                            </div>
+                            <h4 class="text-white fw-bold mb-3">Bien-être Mental</h4>
+                            <p class="text-secondary">
+                                Gestion du stress, qualité du sommeil, pensée positive. 
+                                Des outils simples pour un équilibre mental retrouvé.
+                            </p>
+                            <div class="mt-3">
+                                <small style="color: #2196F3"><i class="bi bi-check-circle me-1"></i> Mindfulness intégré</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTIVITÉS DOUCES -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Des activités <span style="color: #FF8A65">accessibles</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Des exercices doux qui s'adaptent à votre niveau et à votre rythme
+                    </p>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- Marche active -->
+                    <div class="col-md-4" data-aos="zoom-in">
+                        <div class="gentle-activity-card rounded-4 p-0 h-100">
+                            <span class="gentle-badge">DÉBUTANT</span>
+                            <img src="dist/img/activities/walking.jpg" alt="Marche active" class="gentle-activity-img w-100 rounded-top">
+                            <div class="p-4">
+                                <h5 class="text-white fw-bold mb-3">Marche Active</h5>
+                                <p class="text-secondary small mb-3">
+                                    L'exercice parfait pour commencer. Brûle des calories, 
+                                    améliore la circulation et ne stress pas les articulations.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small style="color: #FFB74D"><i class="bi bi-clock me-1"></i> 30-45 min</small>
+                                    <small style="color: #FF8A65"><i class="bi bi-calendar me-1"></i> 3-4x/semaine</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Yoga doux -->
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="gentle-activity-card rounded-4 p-0 h-100">
+                            <span class="gentle-badge">DOUX</span>
+                            <img src="dist/img/activities/yoga.jpg" alt="Yoga doux" class="gentle-activity-img w-100 rounded-top">
+                            <div class="p-4">
+                                <h5 class="text-white fw-bold mb-3">Yoga Doux</h5>
+                                <p class="text-secondary small mb-3">
+                                    Améliore la flexibilité, réduit le stress et renforce 
+                                    en profondeur. Parfait pour la posture et la détente.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small style="color: #FFB74D"><i class="bi bi-droplet me-1"></i> Détente</small>
+                                    <small style="color: #FF8A65"><i class="bi bi-heart me-1"></i> Souplesse</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Exercices au sol -->
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="gentle-activity-card rounded-4 p-0 h-100">
+                            <span class="gentle-badge">TONIFICATION</span>
+                            <img src="dist/img/activities/bodyweight.jpg" alt="Exercices au sol" class="gentle-activity-img w-100 rounded-top">
+                            <div class="p-4">
+                                <h5 class="text-white fw-bold mb-3">Renforcement Doux</h5>
+                                <p class="text-secondary small mb-3">
+                                    Exercices au poids du corps pour tonifier en douceur. 
+                                    Pas besoin d'équipement, faisable à la maison.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small style="color: #FFB74D"><i class="bi bi-house me-1"></i> À domicile</small>
+                                    <small style="color: #FF8A65"><i class="bi bi-person me-1"></i> Poids du corps</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAMME HEBDOMADAIRE -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Votre semaine <span style="color: #FFB74D">Glow Up</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Un programme équilibré qui respecte votre rythme
+                    </p>
+                </div>
+                
+                <div class="glowup-timeline" data-aos="fade-up">
+                    <!-- Semaine 1-4 -->
+                    <div class="glowup-timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge me-3" style="background: #FFB74D">Phase 1</span>
+                                <h4 class="text-white fw-bold mb-0">Découverte (Semaines 1-4)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Prise de contact avec votre corps. Activités très douces, 
+                                focus sur la régularité plutôt que l'intensité.
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small style="color: #FFB74D" class="d-block"><i class="bi bi-heart me-1"></i> Écoute du corps</small>
+                                </div>
+                                <div class="col-6">
+                                    <small style="color: #FF8A65" class="d-block"><i class="bi bi-calendar me-1"></i> 2-3 séances/semaine</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Semaine 5-8 -->
+                    <div class="glowup-timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge me-3" style="background: #FF8A65">Phase 2</span>
+                                <h4 class="text-white fw-bold mb-0">Progression (Semaines 5-8)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Augmentation progressive de l'intensité. Votre corps s'habitue, 
+                                vous gagnez en énergie et en confiance.
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small style="color: #FFB74D" class="d-block"><i class="bi bi-arrow-up me-1"></i> Intensité +</small>
+                                </div>
+                                <div class="col-6">
+                                    <small style="color: #FF8A65" class="d-block"><i class="bi bi-calendar me-1"></i> 3-4 séances/semaine</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Semaine 9-12 -->
+                    <div class="glowup-timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge me-3" style="background: #4CAF50">Phase 3</span>
+                                <h4 class="text-white fw-bold mb-0">Autonomie (Semaines 9-12)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Vous maîtrisez les bases. L'activité physique devient 
+                                un plaisir et une habitude ancrée dans votre routine.
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small style="color: #4CAF50" class="d-block"><i class="bi bi-check-circle me-1"></i> Autonomie</small>
+                                </div>
+                                <div class="col-6">
+                                    <small style="color: #FF8A65" class="d-block"><i class="bi bi-emoji-smile me-1"></i> Plaisir</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jour de repos actif -->
+                <div class="text-center mt-5" data-aos="fade-up">
+                    <div class="d-inline-flex align-items-center p-3 rounded" style="background: rgba(255, 138, 101, 0.1); border: 2px dashed #FF8A65">
+                        <i class="bi bi-cloud-sun fs-4 me-3" style="color: #FF8A65"></i>
+                        <div class="text-start">
+                            <h5 class="text-white fw-bold mb-0">Repos actif recommandé</h5>
+                            <small class="text-white">Étirements doux, marche légère ou méditation les jours de repos</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TÉMOIGNAGES -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Elles ont fait leur <span style="color: #FFB74D">Glow Up</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Découvrez les transformations de celles qui ont osé commencer
+                    </p>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- Témoignage 1 -->
+                    <div class="col-md-6" data-aos="fade-right">
+                        <div class="gentle-transformation-card h-100">
+                            <img src="dist/img/transformations/glowup-1.jpg" alt="Transformation Marie" class="w-100" style="height: 300px; object-fit: cover;">
+                            <div class="transformation-overlay">
+                                <h5 class="fw-bold mb-1">Marie, 42 ans</h5>
+                                <small class="d-block mb-2" style="color: #FFB74D">Maman de 2 enfants</small>
+                                <p class="small mb-0">
+                                    "Après 10 ans sans sport, je pensais que c'était trop tard. 
+                                    Glow Up m'a redonné confiance et énergie. Je me sens revivre !"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Témoignage 2 -->
+                    <div class="col-md-6" data-aos="fade-left">
+                        <div class="gentle-transformation-card h-100">
+                            <img src="dist/img/transformations/glowup-2.jpg" alt="Transformation Sophie" class="w-100" style="height: 300px; object-fit: cover;">
+                            <div class="transformation-overlay">
+                                <h5 class="fw-bold mb-1">Sophie, 35 ans</h5>
+                                <small class="d-block mb-2" style="color: #FFB74D">Débutante complète</small>
+                                <p class="small mb-0">
+                                    "Jamais je n'aurais cru pouvoir aimer le sport. 
+                                    La bienveillance du programme a tout changé. -7kg et un moral au top !"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Statistiques de réussite -->
+                <div class="row g-4 mt-4">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="wellness-card p-4 text-center">
+                            <div class="display-4 fw-bold" style="color: #FFB74D">96%</div>
+                            <small class="text-secondary">Des participantes recommandent</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="wellness-card p-4 text-center">
+                            <div class="display-4 fw-bold" style="color: #FF8A65">-6.2kg</div>
+                            <small class="text-secondary">Perte de poids moyenne</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="wellness-card p-4 text-center">
+                            <div class="display-4 fw-bold" style="color: #4CAF50">89%</div>
+                            <small class="text-secondary">Continuent le sport après</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ALIMENTATION GLOW UP -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h2 class="display-5 fw-bold text-white mb-4">
+                            Nutrition <span style="color: #FF8A65">sans frustration</span>
+                        </h2>
+                        
+                        <div class="wellness-card p-4 mb-4">
+                            <h5 class="text-white fw-bold mb-3">
+                                <i class="bi bi-egg-fried" style="color: #FFB74D" class="me-2"></i>
+                                Les principes Glow Up
+                            </h5>
+                            <ul class="text-white mb-0">
+                                <li class="mb-2">Pas de régime strict, pas de comptage de calories</li>
+                                <li class="mb-2">Réapprendre à écouter sa faim et sa satiété</li>
+                                <li class="mb-2">Priorité aux aliments nourrissants et énergisants</li>
+                                <li class="mb-2">Place au plaisir et aux petits écarts</li>
+                                <li>Éducation nutritionnelle pour l'autonomie</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="text-center p-3 rounded" style="background: rgba(255, 183, 77, 0.1)">
+                                    <small class="text-white d-block fw-bold">+ Écoute</small>
+                                    <small class="text-secondary">De son corps</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-center p-3 rounded" style="background: rgba(255, 138, 101, 0.1)">
+                                    <small class="text-white d-block fw-bold">- Stress</small>
+                                    <small class="text-secondary">Alimentaire</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="wellness-card p-5">
+                            <h4 class="text-white fw-bold mb-4">
+                                <i class="bi bi-cup-straw" style="color: #FF8A65" class="me-2"></i>
+                                Exemple de journée type
+                            </h4>
+                            
+                            <div class="mb-3">
+                                <small class="text-white d-block fw-bold mb-1">Petit-déjeuner</small>
+                                <small class="text-secondary">Porridge aux fruits + amandes + miel</small>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <small class="text-white d-block fw-bold mb-1">Déjeuner</small>
+                                <small class="text-secondary">Salade complète avec protéines + vinaigrette maison</small>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <small class="text-white d-block fw-bold mb-1">Collation</small>
+                                <small class="text-secondary">Fruit + fromage blanc ou poignée d'oléagineux</small>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <small class="text-white d-block fw-bold mb-1">Dîner</small>
+                                <small class="text-secondary">Légumes + protéines légères + féculents complets</small>
+                            </div>
+                            
+                            <div class="mt-4 p-3 rounded" style="background: rgba(76, 175, 80, 0.1)">
+                                <small class="text-white">
+                                    <i class="bi bi-info-circle" style="color: #4CAF50" class="me-2"></i>
+                                    Tous les plans alimentaires sont personnalisés selon vos goûts et contraintes
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TARIFS ET RÉSERVATION -->
+        <section class="py-5" id="reservation">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Programme <span style="color: #FFB74D">Glow Up</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        12 semaines pour retrouver votre énergie et votre bien-être
+                    </p>
+                </div>
+                
+                <div class="row g-4 justify-content-center">
+                    <!-- Formule Online -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="card h-100 bg-dark border-secondary text-white p-4">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">Glow Up Online</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold" style="color: #FFB74D">360€</div>
+                                    <small class="text-secondary">12 semaines de programme</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Programme personnalisé 12 semaines</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Guide nutrition sans frustration</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Vidéos d'exercices débutantes</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Journal de bord bien-être</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Groupe d'entraide privé</li>
+                                </ul>
+                                <a href="reservation.html?program=glowup&type=online" 
+                                   class="btn btn-outline-primary rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formule Présentiel -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="card h-100 bg-dark border-2 text-white p-4 position-relative" style="border-color: #FFB74D !important">
+                            <span class="position-absolute top-0 end-0 badge m-3" style="background: linear-gradient(135deg, #FFB74D, #FF8A65)">IDÉAL DÉBUTANTES</span>
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">Glow Up Présentiel</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold" style="color: #FFB74D">540€</div>
+                                    <small class="text-secondary">12 semaines avec coach</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-star-fill" style="color: #FFB74D" class="me-2"></i>Tout le pack Online</li>
+                                    <li class="mb-3"><i class="bi bi-star-fill" style="color: #FFB74D" class="me-2"></i>2 séances/semaine avec coach</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Correction personnalisée en direct</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Ateliers bien-être mensuels</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Suivi mensuel personnalisé</li>
+                                </ul>
+                                <a href="reservation.html?program=glowup&type=presentiel" 
+                                   class="btn btn-glowup rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formule VIP -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="card h-100 bg-dark border-secondary text-white p-4">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">Glow Up Premium</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold" style="color: #FFB74D">720€</div>
+                                    <small class="text-secondary">12 semaines complètes</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-star-fill" style="color: #FFB74D" class="me-2"></i>Tout le pack Présentiel</li>
+                                    <li class="mb-3"><i class="bi bi-star-fill" style="color: #FFB74D" class="me-2"></i>3 séances/semaine</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Coaching nutrition individuel</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Suivi du sommeil et du stress</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle" style="color: #FFB74D" class="me-2"></i>Accès illimité aux cours collectifs</li>
+                                </ul>
+                                <a href="reservation.html?program=glowup&type=premium" 
+                                   class="btn btn-outline-primary rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Note importante -->
+                <div class="text-center mt-5" data-aos="fade-up">
+                    <div class="card bg-dark border-secondary p-4 mx-auto" style="max-width: 800px;">
+                        <h5 class="text-white mb-3">
+                            <i class="bi bi-info-circle" style="color: #FFB74D" class="me-2"></i>
+                            Engagement en douceur
+                        </h5>
+                        <p class="text-secondary mb-0">
+                            Le programme Glow Up est conçu pour les débutantes. Premier mois sans engagement. 
+                            Paiement en 4 fois sans frais. Consultation découverte gratuite et sans obligation.
+                            Espace exclusivement féminin pour les programmes présentiels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="p-5 rounded-4 text-center" data-aos="zoom-in"
+                     style="background: linear-gradient(135deg, #FFB74D 0%, #FF8A65 100%);">
+                    <h2 class="display-5 fw-bold text-white mb-4">
+                        Prête à briller de nouveau ?
+                    </h2>
+                    <p class="lead text-white mb-5 opacity-90">
+                        Prenez rendez-vous pour une consultation découverte gratuite
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <a href="reservation.html?program=glowup" class="btn btn-light btn-lg rounded-pill px-5 fw-bold">
+                            <i class="bi bi-calendar-check me-2"></i>Réserver ma consultation
+                        </a>
+                        <a href="https://wa.me/33613578119?text=Bonjour%20!%20Je%20suis%20intéressée%20par%20le%20programme%20GLOW%20UP%20pour%20débutantes."
+                           target="_blank" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                            <i class="bi bi-whatsapp me-2"></i>Poser mes questions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/js/script.js"></script>
+    
+    <script>
+        // Initialisation AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Animation pour les éléments Glow Up
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation des icônes étincelantes
+            const sparkleIcons = document.querySelectorAll('.sparkle');
+            sparkleIcons.forEach(icon => {
+                icon.style.animationDelay = Math.random() * 2 + 's';
+            });
+            
+            // Animation des icônes rebondissantes
+            const bouncingIcons = document.querySelectorAll('.bouncing-icon');
+            bouncingIcons.forEach(icon => {
+                icon.style.animationDelay = Math.random() * 2 + 's';
+            });
+            
+            // Effet de hover sur les cartes d'activités
+            const activityCards = document.querySelectorAll('.gentle-activity-card');
+            activityCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const badge = this.querySelector('.gentle-badge');
+                    if (badge) {
+                        badge.style.transform = 'scale(1.2) rotate(5deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const badge = this.querySelector('.gentle-badge');
+                    if (badge) {
+                        badge.style.transform = 'scale(1) rotate(0)';
+                    }
+                });
+            });
+            
+            // Animation des cartes de transformation
+            const transformationCards = document.querySelectorAll('.gentle-transformation-card');
+            transformationCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const overlay = this.querySelector('.transformation-overlay');
+                    if (overlay) {
+                        overlay.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const overlay = this.querySelector('.transformation-overlay');
+                    if (overlay) {
+                        overlay.style.transform = 'translateY(100%)';
+                    }
+                });
+            });
+            
+            // Animation des cartes qui brillent
+            const glowingCards = document.querySelectorAll('.glowing-card');
+            glowingCards.forEach(card => {
+                card.style.animationDelay = Math.random() * 3 + 's';
+            });
+        });
+        
+        // Animation des barres de progression
+        function animateGlowUpProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-glowup .progress-bar');
+            progressBars.forEach((bar, index) => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                
+                setTimeout(() => {
+                    bar.style.transition = 'width 2s ease-in-out';
+                    bar.style.transitionDelay = (index * 0.4) + 's';
+                    bar.style.width = width;
+                }, 500);
+            });
+        }
+        
+        // Lancer l'animation quand la section est visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateGlowUpProgressBars();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        const philosophySection = document.querySelector('#philosophy');
+        if (philosophySection) observer.observe(philosophySection);
+        
+        // Effet de scintillement aléatoire pour les badges
+        function createRandomSparkles() {
+            const sparkles = ['✨', '🌟', '💫', '⭐', '☀️'];
+            const containers = document.querySelectorAll('.glowup-stat-card');
+            
+            containers.forEach(container => {
+                setInterval(() => {
+                    const sparkle = document.createElement('span');
+                    sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+                    sparkle.style.position = 'absolute';
+                    sparkle.style.left = Math.random() * 80 + 10 + '%';
+                    sparkle.style.top = Math.random() * 60 + 20 + '%';
+                    sparkle.style.opacity = '0';
+                    sparkle.style.fontSize = Math.random() * 20 + 10 + 'px';
+                    sparkle.style.animation = 'sparkle 1s ease-in-out';
+                    
+                    container.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1000);
+                }, 2000);
+            });
+        }
+        
+        // Démarrer les étincelles après le chargement
+        setTimeout(createRandomSparkles, 1000);
+    </script>
+
+</body>
+</html>
