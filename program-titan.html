@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Programme TITAN - Force et Volume extrême. Développez une musculature imposante avec notre programme de force maximal. Coaching personnalisé pour prise de masse sèche.">
+    <meta name="keywords"
+        content="programme titan, force, volume, prise de masse, musculation, powerlifting, hypertrophie">
+    <title>TITAN | Programme Force & Volume - Y Coaching</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="dist/css/style.css">
+    
+    <!-- Additional Styles for Titan Page -->
+    <style>
+        /* Hero spécifique Titan */
+        .titan-hero {
+            min-height: 70vh;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)),
+                        url('dist/img/programs/titan-hero.jpg') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .titan-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 87, 34, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* Badge Titan */
+        .titan-badge {
+            background: linear-gradient(135deg, #FF5722 0%, #FF9800 100%);
+            color: white;
+            font-weight: 800;
+            letter-spacing: 3px;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0 20px 20px 0;
+            position: relative;
+            left: -2rem;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            background: rgba(255, 87, 34, 0.1);
+            border-left: 4px solid #FF5722;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 87, 34, 0.15);
+        }
+
+        /* Programme Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #FF5722, transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #FF5722;
+            border: 3px solid rgba(255, 87, 34, 0.3);
+        }
+
+        /* Transformation Card */
+        .transformation-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .transformation-card .before,
+        .transformation-card .after {
+            transition: all 0.8s ease;
+        }
+
+        .transformation-card:hover .before {
+            opacity: 0.3;
+            transform: scale(1.1);
+        }
+
+        .transformation-card:hover .after {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Exercise Card */
+        .exercise-card {
+            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+            border: 1px solid rgba(255, 87, 34, 0.2);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-10px);
+            border-color: #FF5722;
+            box-shadow: 0 15px 30px rgba(255, 87, 34, 0.2);
+        }
+
+        .exercise-img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .exercise-card:hover .exercise-img {
+            transform: scale(1.1);
+        }
+
+        /* CTA Button Titan */
+        .btn-titan {
+            background: linear-gradient(135deg, #FF5722 0%, #FF9800 100%);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 3rem;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-titan::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-titan:hover::before {
+            left: 100%;
+        }
+
+        .btn-titan:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 87, 34, 0.4);
+        }
+
+        /* Progress Bar */
+        .progress-titan {
+            height: 8px;
+            background: rgba(255, 87, 34, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-titan .progress-bar {
+            background: linear-gradient(90deg, #FF5722, #FF9800);
+            border-radius: 4px;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            border-left: 4px solid #FF5722;
+            background: rgba(255, 87, 34, 0.05);
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(255, 87, 34, 0.1);
+            font-family: serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .titan-badge {
+                left: -1rem;
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .titan-hero {
+                min-height: 50vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-placeholder"></div>
+
+    <main>
+
+        <!-- HERO TITAN -->
+        <section class="titan-hero d-flex align-items-center">
+            <div class="container position-relative z-2">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="titan-badge mb-4" data-aos="fade-right">
+                            PROGRAMME EXCLUSIF
+                        </div>
+                        
+                        <h1 class="display-2 fw-bold text-white mb-4" data-aos="fade-right" data-aos-delay="100">
+                            <span class="text-primary">TITAN</span><br>
+                            Force & Volume
+                        </h1>
+                        
+                        <p class="lead text-white mb-5" data-aos="fade-right" data-aos-delay="200" style="max-width: 600px;">
+                            Programme intensif pour développer une force brute et une masse musculaire imposante. 
+                            Pour ceux qui veulent repousser leurs limites physiques.
+                        </p>
+                        
+                        <div class="d-flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+                            <a href="#reservation" class="btn btn-titan rounded-pill">
+                                <i class="bi bi-lightning-charge me-2"></i>Devenir un Titan
+                            </a>
+                            <a href="#details" class="btn btn-outline-light rounded-pill px-4">
+                                <i class="bi bi-info-circle me-2"></i>En savoir plus
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS RAPIDES -->
+        <section class="py-5 bg-darker" id="stats">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-3" data-aos="fade-up">
+                        <div class="stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="bi bi-activity text-primary fs-2"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">+25%</h3>
+                                    <small class="text-secondary">Force moyenne</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="bi bi-calendar-week text-primary fs-2"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">12</h3>
+                                    <small class="text-secondary">Semaines</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="bi bi-bar-chart text-primary fs-2"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">5 kg</h3>
+                                    <small class="text-secondary">Masse sèche moyenne</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-card p-4 rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="bi bi-people text-primary fs-2"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold text-white mb-0">1/1</h3>
+                                    <small class="text-secondary">Coaching personnalisé</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DÉTAILS DU PROGRAMME -->
+        <section class="py-5" id="details">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h2 class="display-5 fw-bold text-white mb-4">
+                            Pour qui est fait ce <span class="text-primary">programme</span> ?
+                        </h2>
+                        
+                        <div class="quote-box p-4 mb-4">
+                            <p class="text-white mb-0">
+                                "Le programme TITAN est conçu pour les hommes qui veulent construire une base solide, 
+                                dépasser leurs records et transformer leur physique de manière spectaculaire."
+                            </p>
+                        </div>
+                        
+                        <ul class="list-unstyled text-white mb-4">
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                Vous avez déjà une base en musculation (6+ mois)
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                Vous voulez augmenter vos performances maximales
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                Vous êtes prêt à suivre un programme intensif
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                Vous cherchez à prendre de la masse sèche et qualitative
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="card bg-dark border-primary border-2 p-4">
+                            <h4 class="text-white fw-bold mb-4">
+                                <i class="bi bi-list-check text-primary me-2"></i>
+                                Ce que vous allez accomplir
+                            </h4>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Force maximale</span>
+                                    <span class="text-primary">+90%</span>
+                                </div>
+                                <div class="progress-titan">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Masse musculaire</span>
+                                    <span class="text-primary">+5-7kg</span>
+                                </div>
+                                <div class="progress-titan">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Endurance</span>
+                                    <span class="text-primary">+75%</span>
+                                </div>
+                                <div class="progress-titan">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-white">Technique</span>
+                                    <span class="text-primary">Parfaite</span>
+                                </div>
+                                <div class="progress-titan">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRUCTURE DU PROGRAMME -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Structure du <span class="text-primary">programme</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        12 semaines de transformation intensive, divisées en 3 phases progressives
+                    </p>
+                </div>
+                
+                <div class="timeline" data-aos="fade-up">
+                    <!-- Phase 1 -->
+                    <div class="timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-primary me-3">Phase 1</span>
+                                <h4 class="text-white fw-bold mb-0">Fondations (Semaines 1-4)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Construction des bases techniques et adaptation progressive aux charges lourdes. 
+                                Focus sur la forme parfaite et la préparation articulaire.
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small class="text-primary d-block"><i class="bi bi-clock me-1"></i> 4 séances/semaine</small>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-primary d-block"><i class="bi bi-activity me-1"></i> 70% 1RM</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 2 -->
+                    <div class="timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-primary me-3">Phase 2</span>
+                                <h4 class="text-white fw-bold mb-0">Intensification (Semaines 5-8)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Augmentation progressive des charges et du volume d'entraînement. 
+                                Introduction des techniques d'intensification (drop sets, supersets).
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small class="text-primary d-block"><i class="bi bi-clock me-1"></i> 5 séances/semaine</small>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-primary d-block"><i class="bi bi-activity me-1"></i> 85% 1RM</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 3 -->
+                    <div class="timeline-item">
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-primary me-3">Phase 3</span>
+                                <h4 class="text-white fw-bold mb-0">Peaking (Semaines 9-12)</h4>
+                            </div>
+                            <p class="text-secondary">
+                                Phase maximale avec charges lourdes et faible volume. 
+                                Préparation aux records personnels et optimisation de la récupération.
+                            </p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <small class="text-primary d-block"><i class="bi bi-clock me-1"></i> 4 séances/semaine</small>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-primary d-block"><i class="bi bi-activity me-1"></i> 90-95% 1RM</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXERCICES PHARES -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Exercices <span class="text-primary">phares</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Les mouvements qui feront la différence dans votre transformation
+                    </p>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- Squat -->
+                    <div class="col-md-4" data-aos="zoom-in">
+                        <div class="exercise-card rounded-4 p-0 h-100">
+                            <img src="dist/img/exercises/squat.jpg" alt="Squat lourd" class="exercise-img w-100 rounded-top">
+                            <div class="p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="text-white fw-bold mb-0">Squat Lourd</h5>
+                                    <span class="badge bg-primary">King</span>
+                                </div>
+                                <p class="text-secondary small">
+                                    Le roi des exercices pour développer la force globale et la masse des jambes.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-primary"><i class="bi bi-arrow-up-right me-1"></i> Quadriceps</small>
+                                    <small class="text-primary"><i class="bi bi-arrow-up-right me-1"></i> Fessiers</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Développé couché -->
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="exercise-card rounded-4 p-0 h-100">
+                            <img src="dist/img/exercises/bench-press.jpg" alt="Développé couché" class="exercise-img w-100 rounded-top">
+                            <div class="p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="text-white fw-bold mb-0">Développé Couché</h5>
+                                    <span class="badge bg-primary">Power</span>
+                                </div>
+                                <p class="text-secondary small">
+                                    Pour une poitrine imposante et des triceps en acier.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-primary"><i class="bi bi-arrow-up-right me-1"></i> Pectoraux</small>
+                                    <small class="text-primary"><i class="bi bi-arrow-up-right me-1"></i> Triceps</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Soulevé de terre -->
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="exercise-card rounded-4 p-0 h-100">
+                            <img src="dist/img/exercises/deadlift.jpg" alt="Soulevé de terre" class="exercise-img w-100 rounded-top">
+                            <div class="p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="text-white fw-bold mb-0">Soulevé de Terre</h5>
+                                    <span class="badge bg-primary">Beast</span>
+                                </div>
+                                <p class="text-secondary small">
+                                    Développez une force animale et un dos en V spectaculaire.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-primary"><i class="bi bi-arrow-up-right me-1"></i> Dos</small>
+                                    <small class="text-primary"><i class="bi bi-arrow-up-right me-1"></i> Ischios</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSFORMATIONS -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Transformations <span class="text-primary">TITAN</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Les résultats parlent d'eux-mêmes. Voici ce que nos clients ont accompli
+                    </p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-6" data-aos="fade-right">
+                        <div class="transformation-card">
+                            <div class="position-relative" style="height: 400px;">
+                                <div class="before position-absolute w-100 h-100" style="background: url('dist/img/transformations/before-1.jpg') center/cover;"></div>
+                                <div class="after position-absolute w-100 h-100" style="background: url('dist/img/transformations/after-1.jpg') center/cover; opacity: 0;"></div>
+                                <div class="position-absolute bottom-0 start-0 p-4">
+                                    <h5 class="text-white fw-bold mb-1">Marc, 32 ans</h5>
+                                    <small class="text-primary">+12kg sur le développé couché</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6" data-aos="fade-left">
+                        <div class="transformation-card">
+                            <div class="position-relative" style="height: 400px;">
+                                <div class="before position-absolute w-100 h-100" style="background: url('dist/img/transformations/before-2.jpg') center/cover;"></div>
+                                <div class="after position-absolute w-100 h-100" style="background: url('dist/img/transformations/after-2.jpg') center/cover; opacity: 0;"></div>
+                                <div class="position-absolute bottom-0 start-0 p-4">
+                                    <h5 class="text-white fw-bold mb-1">Thomas, 28 ans</h5>
+                                    <small class="text-primary">+6kg de masse sèche</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TARIFS ET RÉSERVATION -->
+        <section class="py-5" id="reservation">
+            <div class="container py-5">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white mb-3">
+                        Devenez un <span class="text-primary">TITAN</span>
+                    </h2>
+                    <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                        Choisissez votre formule et démarrez votre transformation aujourd'hui
+                    </p>
+                </div>
+                
+                <div class="row g-4 justify-content-center">
+                    <!-- Formule Online -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="card h-100 bg-dark border-secondary text-white p-4">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">TITAN Online</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold text-primary">480€</div>
+                                    <small class="text-secondary">12 semaines de programme</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Programme personnalisé</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Suivi vidéo hebdomadaire</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>App mobile dédiée</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Plan nutrition TITAN</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Support WhatsApp 7j/7</li>
+                                </ul>
+                                <a href="reservation.html?program=titan&type=online" 
+                                   class="btn btn-outline-primary rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formule Présentiel -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="card h-100 bg-dark border-primary border-2 text-white p-4 position-relative">
+                            <span class="position-absolute top-0 end-0 badge bg-primary m-3">POPULAIRE</span>
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">TITAN Présentiel</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold text-primary">720€</div>
+                                    <small class="text-secondary">12 semaines (24 séances)</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-star-fill text-primary me-2"></i>Tout le pack Online</li>
+                                    <li class="mb-3"><i class="bi bi-star-fill text-primary me-2"></i>2 séances/semaine avec coach</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Correction technique en direct</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Matériel fourni</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Garantie résultats</li>
+                                </ul>
+                                <a href="reservation.html?program=titan&type=presentiel" 
+                                   class="btn btn-primary rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formule VIP -->
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="card h-100 bg-dark border-secondary text-white p-4">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="fw-bold mb-3">TITAN Elite</h4>
+                                <div class="mb-4">
+                                    <div class="display-5 fw-bold text-primary">960€</div>
+                                    <small class="text-secondary">12 semaines intensives</small>
+                                </div>
+                                <ul class="list-unstyled mb-4 flex-grow-1">
+                                    <li class="mb-3"><i class="bi bi-star-fill text-primary me-2"></i>Tout le pack Présentiel</li>
+                                    <li class="mb-3"><i class="bi bi-star-fill text-primary me-2"></i>3 séances/semaine</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Nutrition 100% personnalisée</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Analyses corporelles complètes</li>
+                                    <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i>Suivi 24/7 prioritaire</li>
+                                </ul>
+                                <a href="reservation.html?program=titan&type=elite" 
+                                   class="btn btn-outline-primary rounded-pill py-2 fw-bold mt-auto">
+                                    Choisir cette formule
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Note importante -->
+                <div class="text-center mt-5" data-aos="fade-up">
+                    <div class="card bg-dark border-secondary p-4 mx-auto" style="max-width: 800px;">
+                        <h5 class="text-white mb-3">
+                            <i class="bi bi-info-circle text-primary me-2"></i>
+                            Important à savoir
+                        </h5>
+                        <p class="text-secondary mb-0">
+                            Tous les programmes TITAN commencent par une évaluation complète gratuite. 
+                            Engagement de 12 semaines minimum requis pour des résultats optimaux. 
+                            Possibilité de paiement en 3 fois sans frais.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="py-5 bg-darker">
+            <div class="container py-5">
+                <div class="bg-gradient-primary p-5 rounded-4 text-center" data-aos="zoom-in"
+                     style="background: linear-gradient(135deg, #FF5722 0%, #FF8A65 100%);">
+                    <h2 class="display-5 fw-bold text-white mb-4">
+                        Prêt à devenir un TITAN ?
+                    </h2>
+                    <p class="lead text-white mb-5 opacity-90">
+                        Réservez votre évaluation gratuite et démarrez votre transformation
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <a href="reservation.html?program=titan" class="btn btn-light btn-lg rounded-pill px-5 fw-bold">
+                            <i class="bi bi-calendar-check me-2"></i>Réserver mon évaluation
+                        </a>
+                        <a href="https://wa.me/33613578119?text=Bonjour%20!%20Je%20suis%20intéressé%20par%20le%20programme%20TITAN."
+                           target="_blank" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                            <i class="bi bi-whatsapp me-2"></i>Discuter sur WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/js/script.js"></script>
+    
+    <script>
+        // Initialisation AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Animation pour les cartes de transformation
+        document.addEventListener('DOMContentLoaded', function() {
+            const transformationCards = document.querySelectorAll('.transformation-card');
+            
+            transformationCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const after = this.querySelector('.after');
+                    after.style.opacity = '1';
+                    after.style.transform = 'scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const after = this.querySelector('.after');
+                    after.style.opacity = '0';
+                    after.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Lazy loading des images
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
