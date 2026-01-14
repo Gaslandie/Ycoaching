@@ -1,88 +1,198 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-3" id="mainNavbar">
     <div class="container-fluid px-lg-5">
-        
-        <!-- Logo avec SVG inline -->
+
         <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="45" height="45" class="me-2">
                 <g transform="translate(100, 100)">
-                    <path d="M -30 -40 L -10 0" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none"/>
-                    <path d="M 30 -40 L 10 0" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none"/>
-                    <path d="M 0 0 L 0 50" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none"/>
-                    <circle cx="0" cy="0" r="6" fill="#FF5722"/>
+                    <path d="M -30 -40 L -10 0" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none" />
+                    <path d="M 30 -40 L 10 0" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none" />
+                    <path d="M 0 0 L 0 50" stroke="#FF5722" stroke-width="12" stroke-linecap="round" fill="none" />
+                    <circle cx="0" cy="0" r="6" fill="#FF5722" />
                 </g>
             </svg>
             <span class="logo-text text-uppercase" style="letter-spacing: 2px; font-size: 1.3rem;">Coaching</span>
         </a>
 
-        <!-- Burger menu mobile -->
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Menu principal -->
         <div class="collapse navbar-collapse" id="navMain">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="programmes.html">Programmes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
 
-            <!-- CTA + Réseaux sociaux -->
             <div class="d-flex align-items-center gap-3">
-                <!-- Instagram -->
-                <a href="https://instagram.com/ycoaching" target="_blank" class="text-light fs-5" title="Instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                
-                <!-- WhatsApp -->
-                <a href="https://wa.me/33613578119" target="_blank" class="text-light fs-5" title="WhatsApp">
-                    <i class="bi bi-whatsapp"></i>
-                </a>
-
-                <!-- Bouton CTA principal -->
-                <a href="reservation.html" class="btn btn-primary fw-bold px-4 rounded-pill">
-                    Réserver une séance
-                </a>
+                <a href="https://instagram.com/ycoaching" target="_blank" class="text-light fs-5"><i
+                        class="bi bi-instagram"></i></a>
+                <a href="https://wa.me/33613578119" target="_blank" class="text-light fs-5"><i
+                        class="bi bi-whatsapp"></i></a>
+                <a href="reservation.html" class="btn btn-primary fw-bold px-4 rounded-pill">Réserver</a>
             </div>
         </div>
     </div>
 </nav>
 
-<!-- Script pour effet scroll navbar -->
+<!-- BARRE DE CATÉGORIES AVEC MEGA MENU -->
+<div class="category-nav bg-white border-bottom d-none d-lg-block">
+    <div class="container">
+        <ul class="nav justify-content-center position-relative">
+
+            <!-- PROGRAMMES HOMME -->
+            <li class="nav-item has-megamenu">
+                <a class="nav-link fw-bold text-dark py-3" href="#">
+                    PROGRAMMES HOMME <i class="bi bi-chevron-down small"></i>
+                </a>
+                <div class="megamenu shadow-lg megamenu-homme">
+                    <div class="container py-4">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-md-3">
+                                <a href="program-titan.html" class="megamenu-link text-decoration-none">
+                                    <div class="program-card-mini">
+                                        <img src="src/img/men-1.jpg" alt="Titan - Force & Volume">
+                                        <div class="overlay">
+                                            <h5>TITAN</h5>
+                                            <p>Force & Volume</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="program-shred.html" class="megamenu-link text-decoration-none">
+                                    <div class="program-card-mini">
+                                        <img src="src/img/men-2.jpg" alt="Shred 90 - Définition Extrême">
+                                        <div class="overlay">
+                                            <h5>SHRED 90</h5>
+                                            <p>Définition Extrême</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="program-hybrid.html" class="megamenu-link text-decoration-none">
+                                    <div class="program-card-mini">
+                                        <img src="src/img/men-3.jpg" alt="Hybrid Athlete - Polyvalence Totale">
+                                        <div class="overlay">
+                                            <h5>HYBRID ATHLETE</h5>
+                                            <p>Polyvalence Totale</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- PROGRAMMES FEMME -->
+            <li class="nav-item has-megamenu ms-5">
+                <a class="nav-link fw-bold text-dark py-3" href="#">
+                    PROGRAMMES FEMME <i class="bi bi-chevron-down small"></i>
+                </a>
+                <div class="megamenu shadow-lg megamenu-femme">
+                    <div class="container py-4">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-md-3">
+                                <a href="program-athena.html" class="megamenu-link text-decoration-none">
+                                    <div class="program-card-mini">
+                                        <img src="src/img/women-1.jpg" alt="Athena - Galbe & Posture">
+                                        <div class="overlay">
+                                            <h5>ATHENA</h5>
+                                            <p>Galbe & Posture</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="program-glow.html" class="megamenu-link text-decoration-none">
+                                    <div class="program-card-mini">
+                                        <img src="src/img/women-2.jpg" alt="Glow Up - Remise en forme">
+                                        <div class="overlay">
+                                            <h5>GLOW UP</h5>
+                                            <p>Remise en forme</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="program-strong.html" class="megamenu-link text-decoration-none">
+                                    <div class="program-card-mini">
+                                        <img src="src/img/women-3.jpg" alt="Strong Girl - Force au féminin">
+                                        <div class="overlay">
+                                            <h5>STRONG GIRL</h5>
+                                            <p>Force au féminin</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Script pour le megamenu avec délai de fermeture -->
 <script>
-window.addEventListener('scroll', function() {
-    const navbar = document.getElementById('mainNavbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
+    // Version SIMPLIFIÉE du script pour le megamenu
+    document.addEventListener('DOMContentLoaded', function () {
+        const megamenuTriggers = document.querySelectorAll('.has-megamenu');
+
+        megamenuTriggers.forEach(trigger => {
+            const megamenu = trigger.querySelector('.megamenu');
+            const chevron = trigger.querySelector('.nav-link i');
+
+            // Au survol du trigger
+            trigger.addEventListener('mouseenter', () => {
+                // Fermer tous les autres menus
+                document.querySelectorAll('.megamenu').forEach(m => {
+                    if (m !== megamenu) {
+                        m.style.cssText = 'visibility:hidden;opacity:0;transform:translateY(-20px);pointer-events:none;max-height:0;overflow:hidden;';
+                    }
+                });
+
+                // Réinitialiser les autres chevrons
+                document.querySelectorAll('.has-megamenu .nav-link i').forEach(c => {
+                    if (c !== chevron) {
+                        c.style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // Ouvrir CE menu
+                megamenu.style.cssText = 'visibility:visible;opacity:1;transform:translateY(0);pointer-events:auto;max-height:500px;overflow:visible;';
+
+                // Tourner le chevron
+                if (chevron) {
+                    chevron.style.transform = 'rotate(180deg)';
+                }
+            });
+
+            // Au survol du menu lui-même (le garder ouvert)
+            megamenu.addEventListener('mouseenter', () => {
+                megamenu.style.cssText = 'visibility:visible;opacity:1;transform:translateY(0);pointer-events:auto;max-height:500px;overflow:visible;';
+            });
+
+            // En quittant le menu
+            megamenu.addEventListener('mouseleave', () => {
+                megamenu.style.cssText = 'visibility:hidden;opacity:0;transform:translateY(-20px);pointer-events:none;max-height:0;overflow:hidden;';
+                if (chevron) {
+                    chevron.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    });
+
+    // Scroll navbar (garder celui-ci)
+    window.addEventListener('scroll', function () {
+        const navbar = document.getElementById('mainNavbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
 </script>
-
-<style>
-/* Effet scroll navbar */
-#mainNavbar {
-    transition: all 0.3s ease;
-}
-
-#mainNavbar.scrolled {
-    background-color: rgba(18, 18, 18, 0.98) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-/* Active link state */
-.nav-link.active {
-    color: #FF5722 !important;
-    opacity: 1 !important;
-}
-</style>
