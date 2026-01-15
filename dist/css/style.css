@@ -12016,7 +12016,7 @@ html {
 }
 .hero-section {
   min-height: 85vh;
-  background: linear-gradient(rgba(18, 18, 18, 0.6), rgba(18, 18, 18, 0.6)), url("../img/hero-bg.jpg") center/cover no-repeat;
+  background: linear-gradient(rgba(18, 18, 18, 0.6), rgba(18, 18, 18, 0.6)), url("../img/hero-bg1.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   position: relative;
