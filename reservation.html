@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Réserve ton créneau de coaching avec Y Coaching. Choisis ton programme, ta date et ton horaire en ligne.">
+    <meta name="description"
+        content="Réserve ton créneau de coaching avec Y Coaching. Choisis ton programme, ta date et ton horaire en ligne.">
     <title>Réservation | Y Coaching</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Flatpickr pour le calendrier -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="dist/css/style.css">
-    
+
     <style>
         /* Styles spécifiques à la réservation */
         .program-choice {
@@ -20,40 +25,316 @@
             cursor: pointer;
             border: 2px solid transparent;
         }
+
         .program-choice:hover {
             transform: translateY(-5px);
         }
+
         .program-choice.selected {
             border-color: var(--bs-primary) !important;
             box-shadow: 0 10px 25px rgba(var(--bs-primary-rgb), 0.2);
         }
-        .day-btn, .time-btn {
+
+        .day-btn,
+        .time-btn {
             transition: all 0.2s ease;
         }
-        .day-btn:hover:not(.disabled), .time-btn:hover:not(.disabled) {
+
+        .day-btn:hover:not(.disabled),
+        .time-btn:hover:not(.disabled) {
             transform: scale(1.05);
         }
+
         .booking-step {
             animation: fadeIn 0.5s ease;
+            opacity: 1;
+            transform: translateY(0);
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .program-badge {
             font-size: 0.7rem;
             padding: 0.2rem 0.5rem;
         }
+
+        /* Barre de progression améliorée */
+        .progress-steps {
+            padding: 2rem 0;
+        }
+
+        .progress-steps .step-circle {
+            width: 40px;
+            height: 40px;
+            background-color: #1e1e1e;
+            border: 2px solid #6c757d;
+            color: #6c757d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-steps .step-circle.active {
+            background-color: #FF5722;
+            border-color: #FF5722;
+            color: #ffffff;
+            transform: scale(1.1);
+            box-shadow: 0 0 0 8px rgba(255, 87, 34, 0.1);
+        }
+
+        .progress-steps .step-circle.completed {
+            background-color: #FF5722;
+            border-color: #FF5722;
+            color: #ffffff;
+        }
+
+        .progress-steps .step-circle.completed::after {
+            content: '✓';
+            font-size: 1.2rem;
+        }
+
+        .progress-steps .step-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .progress-steps .step-label.active {
+            color: #FF5722;
+            font-weight: 600;
+        }
+
+        .progress-steps .progress-connector {
+            height: 2px;
+            background-color: #6c757d;
+            position: relative;
+            top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-steps .progress-connector.active {
+            background-color: #FF5722;
+        }
+
+        /* Styles spécifiques pour Flatpickr dans le thème sombre */
+        .flatpickr-calendar {
+            background: #1e1e1e !important;
+            color: #ffffff !important;
+            border: 1px solid #444 !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .flatpickr-months .flatpickr-month {
+            background: #1e1e1e !important;
+            color: #ffffff !important;
+            fill: #ffffff !important;
+        }
+
+        .flatpickr-weekdays {
+            background: #1e1e1e !important;
+        }
+
+        .flatpickr-weekday {
+            color: #FF5722 !important;
+            font-weight: 600 !important;
+        }
+
+        .flatpickr-day {
+            color: #ffffff !important;
+            background: #1e1e1e !important;
+            border: 1px solid #333 !important;
+        }
+
+        .flatpickr-day:hover {
+            background: #333 !important;
+            border-color: #444 !important;
+        }
+
+        .flatpickr-day.selected {
+            background: #FF5722 !important;
+            border-color: #FF5722 !important;
+            color: #ffffff !important;
+            font-weight: bold !important;
+        }
+
+        .flatpickr-day.today {
+            border-color: #FF5722 !important;
+        }
+
+        .flatpickr-day.disabled {
+            color: #666 !important;
+            background: #2a2a2a !important;
+        }
+
+        .flatpickr-day.disabled:hover {
+            background: #2a2a2a !important;
+        }
+
+        .flatpickr-current-month .flatpickr-monthDropdown-months {
+            background: #1e1e1e !important;
+            color: #ffffff !important;
+            border: 1px solid #444 !important;
+        }
+
+        .flatpickr-current-month .flatpickr-monthDropdown-months option {
+            background: #1e1e1e !important;
+            color: #ffffff !important;
+        }
+
+        .flatpickr-current-month input.cur-year {
+            background: #1e1e1e !important;
+            color: #ffffff !important;
+            border: 1px solid #444 !important;
+        }
+
+        .numInputWrapper:hover {
+            background: #333 !important;
+        }
+
+        .flatpickr-prev-month,
+        .flatpickr-next-month {
+            color: #ffffff !important;
+            fill: #ffffff !important;
+        }
+
+        .flatpickr-prev-month:hover,
+        .flatpickr-next-month:hover {
+            color: #FF5722 !important;
+            fill: #FF5722 !important;
+        }
+
+        /* Style pour les années dans le dropdown */
+        .flatpickr-monthDropdown-months {
+            color: #ffffff !important;
+        }
+
+        .flatpickr-monthDropdown-months option {
+            color: #ffffff !important;
+            background: #1e1e1e !important;
+        }
+
+        /* Style pour le champ d'entrée de l'année */
+        .flatpickr-current-month input.cur-year {
+            color: #ffffff !important;
+        }
+
+        /* Toast notifications */
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            max-width: 350px;
+            border-left: 4px solid #FF5722;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toast-notification.toast-success {
+            border-left-color: #28a745;
+        }
+
+        .toast-notification.toast-error {
+            border-left-color: #dc3545;
+        }
+
+        .toast-notification.toast-warning {
+            border-left-color: #ffc107;
+        }
+
+        /* Animation pour les cartes sélectionnées */
+        .selected-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 87, 34, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 87, 34, 0);
+            }
+        }
+
+        /* Badge prix en évidence */
+        .price-badge {
+            font-size: 0.9rem;
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, #FF5722, #FF8A65);
+            border: none;
+        }
+
+        /* Indicateur de champ requis */
+        .required-field::after {
+            content: " *";
+            color: #FF5722;
+        }
+
+        /* Styles pour les créneaux horaires */
+        .time-slot {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-slot.booked::before {
+            content: "COMPLET";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            background: rgba(220, 53, 69, 0.9);
+            color: white;
+            padding: 0.2rem 2rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
     </style>
 </head>
+
 <body>
 
     <div id="navbar-placeholder"></div>
 
     <main>
-        
+
         <!-- HERO -->
-        <section class="hero-section-sm d-flex align-items-center" style="min-height: 30vh; background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('dist/img/hero-bg.jpg') center/cover;">
+        <section class="hero-section-sm d-flex align-items-center"
+            style="min-height: 30vh; background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('dist/img/hero-bg.jpg') center/cover;">
             <div class="container text-center">
                 <h1 class="display-4 fw-bold text-white mb-3" data-aos="fade-down">
                     <i class="bi bi-calendar-check text-primary me-3"></i>Réserve ta transformation
@@ -64,11 +345,66 @@
             </div>
         </section>
 
+        <!-- BARRE DE PROGRESSION -->
+        <section class="py-4 bg-darker" id="progressSection">
+            <div class="container">
+                <!-- Version desktop -->
+                <div class="progress-steps d-none d-lg-block">
+                    <div class="row align-items-center">
+                        <div class="col text-center position-relative">
+                            <div class="step-circle active" id="stepCircle1">1</div>
+                            <div class="step-label mt-2 active" id="stepLabel1">Programme</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress-connector" id="connector1"></div>
+                        </div>
+                        <div class="col text-center position-relative">
+                            <div class="step-circle" id="stepCircle2">2</div>
+                            <div class="step-label mt-2" id="stepLabel2">Type</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress-connector" id="connector2"></div>
+                        </div>
+                        <div class="col text-center position-relative">
+                            <div class="step-circle" id="stepCircle3">3</div>
+                            <div class="step-label mt-2" id="stepLabel3">Date</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress-connector" id="connector3"></div>
+                        </div>
+                        <div class="col text-center position-relative">
+                            <div class="step-circle" id="stepCircle4">4</div>
+                            <div class="step-label mt-2" id="stepLabel4">Horaire</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress-connector" id="connector4"></div>
+                        </div>
+                        <div class="col text-center position-relative">
+                            <div class="step-circle" id="stepCircle5">5</div>
+                            <div class="step-label mt-2" id="stepLabel5">Informations</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version mobile -->
+                <div class="d-lg-none text-center">
+                    <div class="badge bg-primary px-3 py-2">
+                        Étape <span id="currentStepBadge">1</span>/5 -
+                        <span id="currentStepText">Choix du programme</span>
+                    </div>
+                    <div class="progress mt-2" style="height: 6px; background-color: #333;">
+                        <div class="progress-bar bg-primary" id="mobileProgressBar"
+                            style="width: 20%; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SYSTÈME DE RÉSERVATION -->
         <section class="py-5">
             <div class="container py-5">
                 <div class="row g-5">
-                    
+
                     <!-- Étape 1 : Choix du programme -->
                     <div class="col-lg-10 mx-auto">
                         <div id="step1" class="booking-step">
@@ -78,15 +414,16 @@
                                 </h3>
                                 <p class="text-secondary">Sélectionne le programme qui correspond à tes objectifs</p>
                             </div>
-                            
+
                             <div class="row g-4">
                                 <!-- Programmes Homme -->
                                 <div class="col-12">
-                                    <h5 class="text-white mb-3" style="border-bottom: 2px solid #FF5722; padding-bottom: 0.5rem;">
+                                    <h5 class="text-white mb-3"
+                                        style="border-bottom: 2px solid #FF5722; padding-bottom: 0.5rem;">
                                         <i class="bi bi-gender-male text-primary me-2"></i>Programmes Homme
                                     </h5>
                                 </div>
-                                
+
                                 <!-- TITAN -->
                                 <div class="col-md-6 col-lg-4" data-aos="zoom-in">
                                     <div class="program-choice card bg-dark text-white p-4 h-100" data-program="titan">
@@ -96,14 +433,19 @@
                                             </div>
                                             <div>
                                                 <h5 class="fw-bold mb-1">TITAN</h5>
-                                                <span class="badge program-badge" style="background: #FF5722">FORCE & VOLUME</span>
+                                                <span class="badge program-badge" style="background: #FF5722">FORCE &
+                                                    VOLUME</span>
                                             </div>
                                         </div>
                                         <p class="text-secondary small mb-3">
-                                            Programme intensif pour développer une force brute et une masse musculaire imposante.
+                                            Programme intensif pour développer une force brute et une masse musculaire
+                                            imposante.
                                         </p>
                                         <div class="mt-auto">
-                                            <small class="text-primary"><i class="bi bi-clock me-1"></i> 12 semaines</small>
+                                            <small class="text-primary"><i class="bi bi-clock me-1"></i> 12
+                                                semaines</small>
+                                            <small class="text-secondary d-block mt-1"><i class="bi bi-cash me-1"></i> À
+                                                partir de 120€/mois</small>
                                         </div>
                                     </div>
                                 </div>
@@ -117,14 +459,19 @@
                                             </div>
                                             <div>
                                                 <h5 class="fw-bold mb-1">SHRED 90</h5>
-                                                <span class="badge program-badge" style="background: #009688">DÉFINITION EXTRÊME</span>
+                                                <span class="badge program-badge" style="background: #009688">DÉFINITION
+                                                    EXTRÊME</span>
                                             </div>
                                         </div>
                                         <p class="text-secondary small mb-3">
-                                            90 jours pour éliminer la graisse et révéler une définition musculaire maximale.
+                                            90 jours pour éliminer la graisse et révéler une définition musculaire
+                                            maximale.
                                         </p>
                                         <div class="mt-auto">
-                                            <small style="color: #009688"><i class="bi bi-clock me-1"></i> 90 jours</small>
+                                            <small style="color: #009688"><i class="bi bi-clock me-1"></i> 90
+                                                jours</small>
+                                            <small class="text-secondary d-block mt-1"><i class="bi bi-cash me-1"></i> À
+                                                partir de 95€/mois</small>
                                         </div>
                                     </div>
                                 </div>
@@ -138,22 +485,27 @@
                                             </div>
                                             <div>
                                                 <h5 class="fw-bold mb-1">HYBRID ATHLETE</h5>
-                                                <span class="badge program-badge" style="background: #673AB7">POLYVALENCE TOTALE</span>
+                                                <span class="badge program-badge"
+                                                    style="background: #673AB7">POLYVALENCE TOTALE</span>
                                             </div>
                                         </div>
                                         <p class="text-secondary small mb-3">
                                             Développez simultanément force, endurance, vitesse et mobilité.
                                         </p>
                                         <div class="mt-auto">
-                                            <small style="color: #673AB7"><i class="bi bi-clock me-1"></i> 16 semaines</small>
+                                            <small style="color: #673AB7"><i class="bi bi-clock me-1"></i> 16
+                                                semaines</small>
+                                            <small class="text-secondary d-block mt-1"><i class="bi bi-cash me-1"></i> À
+                                                partir de 140€/mois</small>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Programmes Femme -->
                                 <div class="col-12 mt-5">
-                                    <h5 class="text-white mb-3" style="border-bottom: 2px solid #E91E63; padding-bottom: 0.5rem;">
-                                        <i class="bi bi-gender-female" style="color: #E91E63" class="me-2"></i>Programmes Femme
+                                    <h5 class="text-white mb-3"
+                                        style="border-bottom: 2px solid #E91E63; padding-bottom: 0.5rem;">
+                                        <i class="bi bi-gender-female me-2" style="color: #E91E63"></i>Programmes Femme
                                     </h5>
                                 </div>
 
@@ -166,14 +518,19 @@
                                             </div>
                                             <div>
                                                 <h5 class="fw-bold mb-1">ATHENA</h5>
-                                                <span class="badge program-badge" style="background: #E91E63">GALBE & POSTURE</span>
+                                                <span class="badge program-badge" style="background: #E91E63">GALBE &
+                                                    POSTURE</span>
                                             </div>
                                         </div>
                                         <p class="text-secondary small mb-3">
-                                            Sculptez une silhouette harmonieuse et améliorez votre posture naturellement.
+                                            Sculptez une silhouette harmonieuse et améliorez votre posture
+                                            naturellement.
                                         </p>
                                         <div class="mt-auto">
-                                            <small style="color: #E91E63"><i class="bi bi-clock me-1"></i> 8 semaines</small>
+                                            <small style="color: #E91E63"><i class="bi bi-clock me-1"></i> 8
+                                                semaines</small>
+                                            <small class="text-secondary d-block mt-1"><i class="bi bi-cash me-1"></i> À
+                                                partir de 85€/mois</small>
                                         </div>
                                     </div>
                                 </div>
@@ -187,42 +544,54 @@
                                             </div>
                                             <div>
                                                 <h5 class="fw-bold mb-1">GLOW UP</h5>
-                                                <span class="badge program-badge" style="background: #FFB74D">REMISE EN FORME</span>
+                                                <span class="badge program-badge" style="background: #FFB74D">REMISE EN
+                                                    FORME</span>
                                             </div>
                                         </div>
                                         <p class="text-secondary small mb-3">
                                             Programme doux et progressif pour retrouver énergie, vitalité et confiance.
                                         </p>
                                         <div class="mt-auto">
-                                            <small style="color: #FFB74D"><i class="bi bi-clock me-1"></i> 12 semaines</small>
+                                            <small style="color: #FFB74D"><i class="bi bi-clock me-1"></i> 12
+                                                semaines</small>
+                                            <small class="text-secondary d-block mt-1"><i class="bi bi-cash me-1"></i> À
+                                                partir de 80€/mois</small>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- STRONG GIRL -->
                                 <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="500">
-                                    <div class="program-choice card bg-dark text-white p-4 h-100" data-program="stronggirl">
+                                    <div class="program-choice card bg-dark text-white p-4 h-100"
+                                        data-program="stronggirl">
                                         <div class="d-flex align-items-start mb-3">
                                             <div class="p-3 rounded-3 me-3" style="background: rgba(183, 28, 28, 0.1)">
-                                                <i class="bi bi-dumbbell" style="color: #B71C1C; font-size: 1.5rem;"></i>
+                                                <i class="bi bi-dumbbell"
+                                                    style="color: #B71C1C; font-size: 1.5rem;"></i>
                                             </div>
                                             <div>
                                                 <h5 class="fw-bold mb-1">STRONG GIRL</h5>
-                                                <span class="badge program-badge" style="background: #B71C1C">FORCE AU FÉMININ</span>
+                                                <span class="badge program-badge" style="background: #B71C1C">FORCE AU
+                                                    FÉMININ</span>
                                             </div>
                                         </div>
                                         <p class="text-secondary small mb-3">
-                                            Développez votre puissance et redéfinissez les standards de la force féminine.
+                                            Développez votre puissance et redéfinissez les standards de la force
+                                            féminine.
                                         </p>
                                         <div class="mt-auto">
-                                            <small style="color: #B71C1C"><i class="bi bi-clock me-1"></i> 16 semaines</small>
+                                            <small style="color: #B71C1C"><i class="bi bi-clock me-1"></i> 16
+                                                semaines</small>
+                                            <small class="text-secondary d-block mt-1"><i class="bi bi-cash me-1"></i> À
+                                                partir de 110€/mois</small>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Consultation découverte -->
                                 <div class="col-12 mt-4" data-aos="fade-up">
-                                    <div class="program-choice card bg-dark border-2 text-white p-4" data-program="discovery" style="border-color: #6c757d !important">
+                                    <div class="program-choice card bg-dark border-2 text-white p-4"
+                                        data-program="discovery" style="border-color: #6c757d !important">
                                         <div class="d-flex align-items-center">
                                             <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
                                                 <i class="bi bi-chat-dots text-primary fs-3"></i>
@@ -230,8 +599,12 @@
                                             <div class="flex-grow-1">
                                                 <h5 class="fw-bold mb-1">Consultation Découverte</h5>
                                                 <p class="text-secondary mb-0 small">
-                                                    Pas sûr de quel programme choisir ? Réserve un appel gratuit de 30 minutes pour discuter de tes objectifs.
+                                                    Pas sûr de quel programme choisir ? Réserve un appel gratuit de 30
+                                                    minutes pour discuter de tes objectifs.
                                                 </p>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="badge bg-success">GRATUIT</span>
                                             </div>
                                         </div>
                                     </div>
@@ -250,7 +623,8 @@
 
                             <div class="row g-4">
                                 <div class="col-md-6" data-aos="zoom-in">
-                                    <div class="program-choice card bg-dark text-white p-4 h-100" data-type="presentiel">
+                                    <div class="program-choice card bg-dark text-white p-4 h-100"
+                                        data-type="presentiel">
                                         <div class="d-flex align-items-start mb-3">
                                             <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
                                                 <i class="bi bi-geo-alt text-primary fs-3"></i>
@@ -261,13 +635,21 @@
                                             </div>
                                         </div>
                                         <ul class="text-secondary small mb-3">
-                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>Séances en salle ou à domicile</li>
-                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>Correction technique en direct</li>
-                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>Matériel fourni</li>
-                                            <li><i class="bi bi-check-circle text-primary me-2"></i>Minimum 2 séances/semaine</li>
+                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>Séances
+                                                en salle ou à domicile</li>
+                                            <li class="mb-1"><i
+                                                    class="bi bi-check-circle text-primary me-2"></i>Correction
+                                                technique en direct</li>
+                                            <li class="mb-1"><i
+                                                    class="bi bi-check-circle text-primary me-2"></i>Matériel fourni
+                                            </li>
+                                            <li><i class="bi bi-check-circle text-primary me-2"></i>Minimum 2
+                                                séances/semaine</li>
                                         </ul>
                                         <div class="mt-auto">
-                                            <small class="text-primary"><i class="bi bi-cash-coin me-1"></i> À partir de 560€/mois</small>
+                                            <small class="text-primary fw-bold" id="pricePresentiel">
+                                                <i class="bi bi-cash-coin me-1"></i> À partir de 560€/mois
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
@@ -284,13 +666,20 @@
                                             </div>
                                         </div>
                                         <ul class="text-secondary small mb-3">
-                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>Programme personnalisé</li>
-                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>Suivi vidéo hebdomadaire</li>
-                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>App mobile dédiée</li>
-                                            <li><i class="bi bi-check-circle text-primary me-2"></i>Support WhatsApp 7j/7</li>
+                                            <li class="mb-1"><i
+                                                    class="bi bi-check-circle text-primary me-2"></i>Programme
+                                                personnalisé</li>
+                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>Suivi
+                                                vidéo hebdomadaire</li>
+                                            <li class="mb-1"><i class="bi bi-check-circle text-primary me-2"></i>App
+                                                mobile dédiée</li>
+                                            <li><i class="bi bi-check-circle text-primary me-2"></i>Support WhatsApp
+                                                7j/7</li>
                                         </ul>
                                         <div class="mt-auto">
-                                            <small class="text-primary"><i class="bi bi-cash-coin me-1"></i> À partir de 80€/mois</small>
+                                            <small class="text-primary fw-bold" id="priceOnline">
+                                                <i class="bi bi-cash-coin me-1"></i> À partir de 80€/mois
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
@@ -307,17 +696,13 @@
                             </div>
 
                             <div class="card bg-dark border-secondary p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <button class="btn btn-outline-light btn-sm" id="prevMonth">
-                                        <i class="bi bi-chevron-left"></i>
-                                    </button>
-                                    <h5 class="text-white mb-0" id="currentMonth">Janvier 2025</h5>
-                                    <button class="btn btn-outline-light btn-sm" id="nextMonth">
-                                        <i class="bi bi-chevron-right"></i>
-                                    </button>
+                                <div id="selectedDateDisplay" class="mb-3 text-center">
+                                    <small class="text-secondary"><i class="bi bi-calendar me-1"></i>Aucune date
+                                        sélectionnée</small>
                                 </div>
-
-                                <div id="calendar" class="calendar-grid"></div>
+                                <input type="text" id="datePicker"
+                                    class="form-control bg-transparent text-white text-center py-3"
+                                    placeholder="Cliquez pour choisir une date" readonly>
                             </div>
                         </div>
 
@@ -331,6 +716,10 @@
                             </div>
 
                             <div class="card bg-dark border-secondary p-4">
+                                <div id="selectedTimeDisplay" class="mb-3 text-center">
+                                    <small class="text-secondary"><i class="bi bi-clock me-1"></i>Aucun horaire
+                                        sélectionné</small>
+                                </div>
                                 <div class="row g-2" id="timeSlots"></div>
                             </div>
                         </div>
@@ -348,71 +737,110 @@
                                 <form id="bookingForm">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label class="form-label text-secondary">Nom complet *</label>
-                                            <input type="text" class="form-control bg-transparent border-secondary text-white py-2" required>
+                                            <label class="form-label text-secondary required-field">Nom complet</label>
+                                            <input type="text"
+                                                class="form-control bg-transparent border-secondary text-white py-2"
+                                                id="fullName" name="fullName" required>
+                                            <div class="invalid-feedback">Veuillez entrer votre nom complet</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label text-secondary">Email *</label>
-                                            <input type="email" class="form-control bg-transparent border-secondary text-white py-2" required>
+                                            <label class="form-label text-secondary required-field">Email</label>
+                                            <input type="email"
+                                                class="form-control bg-transparent border-secondary text-white py-2"
+                                                id="email" name="email" required>
+                                            <div class="invalid-feedback">Veuillez entrer une adresse email valide</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label text-secondary">Téléphone *</label>
-                                            <input type="tel" class="form-control bg-transparent border-secondary text-white py-2" required>
+                                            <label class="form-label text-secondary required-field">Téléphone</label>
+                                            <input type="tel"
+                                                class="form-control bg-transparent border-secondary text-white py-2"
+                                                id="phone" name="phone" required placeholder="06 12 34 56 78">
+                                            <div class="invalid-feedback">Veuillez entrer un numéro de téléphone valide
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label text-secondary">Âge</label>
-                                            <input type="number" class="form-control bg-transparent border-secondary text-white py-2" min="16" max="80">
+                                            <input type="number"
+                                                class="form-control bg-transparent border-secondary text-white py-2"
+                                                id="age" name="age" min="16" max="80">
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label text-secondary">Ton expérience sportive</label>
-                                            <select class="form-select bg-transparent border-secondary text-white py-2">
+                                            <select class="form-select bg-transparent border-secondary text-white py-2"
+                                                id="experience" name="experience">
                                                 <option value="" class="bg-dark">Sélectionne...</option>
-                                                <option value="debutant" class="bg-dark">Débutant(e) - Moins de 6 mois</option>
-                                                <option value="intermediaire" class="bg-dark">Intermédiaire - 6 mois à 2 ans</option>
-                                                <option value="avance" class="bg-dark">Avancé(e) - Plus de 2 ans</option>
-                                                <option value="reprise" class="bg-dark">Reprise après longue pause</option>
+                                                <option value="debutant" class="bg-dark">Débutant(e) - Moins de 6 mois
+                                                </option>
+                                                <option value="intermediaire" class="bg-dark">Intermédiaire - 6 mois à 2
+                                                    ans</option>
+                                                <option value="avance" class="bg-dark">Avancé(e) - Plus de 2 ans
+                                                </option>
+                                                <option value="reprise" class="bg-dark">Reprise après longue pause
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-12">
-                                            <label class="form-label text-secondary">Ton objectif principal *</label>
-                                            <select class="form-select bg-transparent border-secondary text-white py-2" required>
+                                            <label class="form-label text-secondary required-field">Ton objectif
+                                                principal</label>
+                                            <select class="form-select bg-transparent border-secondary text-white py-2"
+                                                id="goal" name="goal" required>
                                                 <option value="" class="bg-dark">Sélectionne...</option>
-                                                <option value="perte-poids" class="bg-dark">Perte de poids / graisse</option>
-                                                <option value="prise-masse" class="bg-dark">Prise de masse musculaire</option>
+                                                <option value="perte-poids" class="bg-dark">Perte de poids / graisse
+                                                </option>
+                                                <option value="prise-masse" class="bg-dark">Prise de masse musculaire
+                                                </option>
                                                 <option value="force" class="bg-dark">Développement de la force</option>
-                                                <option value="definition" class="bg-dark">Définition musculaire</option>
+                                                <option value="definition" class="bg-dark">Définition musculaire
+                                                </option>
                                                 <option value="sante" class="bg-dark">Santé & bien-être général</option>
-                                                <option value="performance" class="bg-dark">Performance sportive</option>
+                                                <option value="performance" class="bg-dark">Performance sportive
+                                                </option>
                                                 <option value="posture" class="bg-dark">Amélioration posture</option>
                                                 <option value="confiance" class="bg-dark">Confiance en soi</option>
                                             </select>
+                                            <div class="invalid-feedback">Veuillez sélectionner un objectif</div>
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label text-secondary">Message (optionnel)</label>
-                                            <textarea class="form-control bg-transparent border-secondary text-white" rows="3" placeholder="Dis-moi en plus sur toi, tes disponibilités, tes contraintes..."></textarea>
+                                            <textarea class="form-control bg-transparent border-secondary text-white"
+                                                id="message" name="message" rows="3"
+                                                placeholder="Dis-moi en plus sur toi, tes disponibilités, tes contraintes..."></textarea>
                                         </div>
                                     </div>
 
                                     <hr class="my-4 border-secondary">
 
                                     <div class="bg-primary bg-opacity-10 p-4 rounded mb-4">
-                                        <h6 class="text-white mb-3">Récapitulatif de ta réservation</h6>
-                                        <div class="row g-2">
+                                        <h6 class="text-white mb-3"><i
+                                                class="bi bi-clipboard-check me-2"></i>Récapitulatif de ta réservation
+                                        </h6>
+                                        <div class="row g-3">
                                             <div class="col-md-6">
-                                                <small class="text-secondary d-block"><i class="bi bi-trophy text-primary me-2"></i>Programme</small>
+                                                <small class="text-secondary d-block"><i
+                                                        class="bi bi-trophy text-primary me-2"></i>Programme</small>
                                                 <strong class="text-white" id="summaryProgram">-</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <small class="text-secondary d-block"><i class="bi bi-gear text-primary me-2"></i>Type</small>
+                                                <small class="text-secondary d-block"><i
+                                                        class="bi bi-gear text-primary me-2"></i>Type</small>
                                                 <strong class="text-white" id="summaryType">-</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <small class="text-secondary d-block"><i class="bi bi-calendar3 text-primary me-2"></i>Date</small>
+                                                <small class="text-secondary d-block"><i
+                                                        class="bi bi-calendar3 text-primary me-2"></i>Date</small>
                                                 <strong class="text-white" id="summaryDate">-</strong>
                                             </div>
                                             <div class="col-md-6">
-                                                <small class="text-secondary d-block"><i class="bi bi-clock text-primary me-2"></i>Horaire</small>
+                                                <small class="text-secondary d-block"><i
+                                                        class="bi bi-clock text-primary me-2"></i>Horaire</small>
                                                 <strong class="text-white" id="summaryTime">-</strong>
+                                            </div>
+                                            <div class="col-12 mt-2 pt-2 border-top border-secondary"
+                                                id="summaryPriceContainer" style="display: none;">
+                                                <small class="text-secondary d-block"><i
+                                                        class="bi bi-credit-card text-primary me-2"></i>Tarif mensuel
+                                                    estimé</small>
+                                                <strong class="text-white fs-5" id="summaryPrice">-</strong>
                                             </div>
                                         </div>
                                     </div>
@@ -420,12 +848,28 @@
                                     <div class="alert alert-dark border-secondary mb-4">
                                         <small class="text-secondary">
                                             <i class="bi bi-info-circle text-primary me-2"></i>
-                                            Après confirmation, tu recevras un email avec tous les détails. 
-                                            Pour le coaching présentiel, je te confirmerai le lieu exact (salle ou domicile) dans les 24h.
+                                            Après confirmation, tu recevras un email avec tous les détails.
+                                            Pour le coaching présentiel, je te confirmerai le lieu exact (salle ou
+                                            domicile) dans les 24h.
+                                            <br><br>
+                                            <i class="bi bi-shield-check text-primary me-2"></i>
+                                            <strong>Garantie satisfait ou remboursé</strong> : Si après la première
+                                            séance tu n'es pas convaincu, je te rembourse intégralement.
                                         </small>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill">
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" id="terms" name="terms"
+                                            required>
+                                        <label class="form-check-label text-secondary small" for="terms">
+                                            J'accepte les <a href="#" class="text-primary">conditions générales</a> et
+                                            la <a href="#" class="text-primary">politique de confidentialité</a>
+                                        </label>
+                                        <div class="invalid-feedback">Vous devez accepter les conditions</div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill"
+                                        id="submitBtn">
                                         <i class="bi bi-check-circle me-2"></i>Confirmer ma réservation
                                     </button>
                                 </form>
@@ -434,18 +878,21 @@
 
                         <!-- Navigation entre étapes -->
                         <div class="d-flex justify-content-between align-items-center mt-5">
-                            <button class="btn btn-outline-light rounded-pill px-4" id="btnBack" style="visibility: hidden;">
+                            <button class="btn btn-outline-light rounded-pill px-4" id="btnBack"
+                                style="visibility: hidden;">
                                 <i class="bi bi-arrow-left me-2"></i>Retour
                             </button>
-                            <div class="text-center">
+                            <div class="text-center d-none d-md-block">
                                 <div class="text-secondary small mb-1">
                                     Étape <span id="currentStep">1</span> / 5
                                 </div>
-                                <div class="progress" style="height: 4px; width: 200px;">
-                                    <div class="progress-bar bg-primary" id="progressBar" style="width: 20%"></div>
+                                <div class="progress" style="height: 4px; width: 200px; background-color: #333;">
+                                    <div class="progress-bar bg-primary" id="progressBar"
+                                        style="width: 20%; transition: width 0.5s ease;"></div>
                                 </div>
                             </div>
-                            <button class="btn btn-outline-primary rounded-pill px-4" id="btnNext" style="visibility: hidden;">
+                            <button class="btn btn-outline-primary rounded-pill px-4" id="btnNext"
+                                style="visibility: hidden;">
                                 Suivant <i class="bi bi-arrow-right ms-2"></i>
                             </button>
                         </div>
@@ -488,15 +935,21 @@
 
     <div id="footer-placeholder"></div>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Flatpickr pour le calendrier -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
     <script src="src/js/script.js"></script>
 
     <script>
+        // Code JavaScript amélioré (~400 lignes)
         // Initialisation AOS
         AOS.init({
             duration: 800,
-            once: true
+            once: true,
+            offset: 50
         });
 
         // État de la réservation
@@ -505,52 +958,63 @@
             type: null,
             date: null,
             time: null,
-            currentStep: 1
+            currentStep: 1,
+            formData: {},
+            price: null,
+            bookingId: null
         };
 
-        // Détection du programme depuis l'URL
-        function detectProgramFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const program = urlParams.get('program');
-            const type = urlParams.get('type');
-            
-            const programNames = {
-                'titan': 'TITAN - Force & Volume',
-                'shred': 'SHRED 90 - Définition Extrême',
-                'hybrid': 'HYBRID ATHLETE - Polyvalence Totale',
-                'athena': 'ATHENA - Galbe & Posture',
-                'glowup': 'GLOW UP - Remise en Forme',
-                'stronggirl': 'STRONG GIRL - Force au Féminin'
-            };
-            
-            if (program && programNames[program]) {
-                bookingState.program = program;
-                // Pré-sélectionner le programme
-                setTimeout(() => {
-                    const programCard = document.querySelector(`[data-program="${program}"]`);
-                    if (programCard) {
-                        programCard.click();
-                    }
-                }, 500);
+        // Détails des programmes
+        const programDetails = {
+            'titan': {
+                name: 'TITAN - Force & Volume',
+                duration: '12 semaines',
+                color: '#FF5722',
+                presentiel: 680,
+                online: 120
+            },
+            'shred': {
+                name: 'SHRED 90 - Définition Extrême',
+                duration: '90 jours',
+                color: '#009688',
+                presentiel: 590,
+                online: 95
+            },
+            'hybrid': {
+                name: 'HYBRID ATHLETE - Polyvalence Totale',
+                duration: '16 semaines',
+                color: '#673AB7',
+                presentiel: 720,
+                online: 140
+            },
+            'athena': {
+                name: 'ATHENA - Galbe & Posture',
+                duration: '8 semaines',
+                color: '#E91E63',
+                presentiel: 560,
+                online: 85
+            },
+            'glowup': {
+                name: 'GLOW UP - Remise en Forme',
+                duration: '12 semaines',
+                color: '#FFB74D',
+                presentiel: 520,
+                online: 80
+            },
+            'stronggirl': {
+                name: 'STRONG GIRL - Force au Féminin',
+                duration: '16 semaines',
+                color: '#B71C1C',
+                presentiel: 610,
+                online: 110
+            },
+            'discovery': {
+                name: 'Consultation Découverte',
+                duration: '30 minutes',
+                color: '#6c757d',
+                presentiel: 0,
+                online: 0
             }
-            
-            if (type && (type === 'presentiel' || type === 'online')) {
-                bookingState.type = type;
-            }
-        }
-
-        // Appel initial
-        detectProgramFromURL();
-
-        // Noms complets des programmes
-        const programFullNames = {
-            'titan': 'TITAN - Force & Volume',
-            'shred': 'SHRED 90 - Définition Extrême',
-            'hybrid': 'HYBRID ATHLETE - Polyvalence Totale',
-            'athena': 'ATHENA - Galbe & Posture',
-            'glowup': 'GLOW UP - Remise en Forme',
-            'stronggirl': 'STRONG GIRL - Force au Féminin',
-            'discovery': 'Consultation Découverte'
         };
 
         // Noms des types
@@ -559,210 +1023,435 @@
             'online': 'Coaching Online'
         };
 
+        // Détection du programme depuis l'URL
+        function detectProgramFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const program = urlParams.get('program');
+            const type = urlParams.get('type');
+
+            if (program && programDetails[program]) {
+                bookingState.program = program;
+                // Pré-sélectionner le programme
+                setTimeout(() => {
+                    const programCard = document.querySelector(`[data-program="${program}"]`);
+                    if (programCard) {
+                        programCard.click();
+                        if (type) {
+                            setTimeout(() => {
+                                const typeCard = document.querySelector(`[data-type="${type}"]`);
+                                if (typeCard) typeCard.click();
+                            }, 300);
+                        }
+                    }
+                }, 500);
+            }
+        }
+
         // Étape 1 : Choix du programme
         document.querySelectorAll('.program-choice[data-program]').forEach(card => {
-            card.addEventListener('click', function() {
-                bookingState.program = this.dataset.program;
-                
+            card.addEventListener('click', function () {
+                const program = this.dataset.program;
+                bookingState.program = program;
+
+                // Reset tous les programmes
                 document.querySelectorAll('.program-choice[data-program]').forEach(c => {
-                    c.classList.remove('selected', 'border-primary', 'border-2');
+                    c.classList.remove('selected', 'border-primary', 'border-2', 'selected-pulse');
                     c.classList.add('border-transparent');
+                    c.style.transform = 'translateY(0)';
+                    c.style.boxShadow = 'none';
                 });
-                
+
+                // Style pour le programme sélectionné
                 this.classList.remove('border-transparent');
-                this.classList.add('selected', 'border-primary', 'border-2');
-                
+                this.classList.add('selected', 'border-2', 'selected-pulse');
+                this.style.transform = 'translateY(-8px)';
+                this.style.boxShadow = '0 15px 35px rgba(255, 87, 34, 0.15)';
+
+                // Appliquer la couleur du programme
+                const programColor = programDetails[program]?.color || '#FF5722';
+                this.style.borderColor = programColor;
+
+                // Afficher le bouton suivant
                 document.getElementById('btnNext').style.visibility = 'visible';
+
+                // Mettre à jour les prix si on a déjà sélectionné un type
+                if (bookingState.type) {
+                    updatePriceDisplay();
+                }
+
+                // Mettre à jour la progression
+                updateProgress(1);
             });
         });
 
         // Étape 2 : Choix du type
         document.querySelectorAll('.program-choice[data-type]').forEach(card => {
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function () {
                 bookingState.type = this.dataset.type;
-                
+
+                // Reset tous les types
                 document.querySelectorAll('.program-choice[data-type]').forEach(c => {
                     c.classList.remove('selected', 'border-primary', 'border-2');
                     c.classList.add('border-transparent');
                 });
-                
+
+                // Style pour le type sélectionné
                 this.classList.remove('border-transparent');
                 this.classList.add('selected', 'border-primary', 'border-2');
-                
+
+                // Mettre à jour le prix
+                updatePriceDisplay();
+
+                // Aller à l'étape suivante
                 setTimeout(() => goToStep(3), 500);
             });
         });
 
-        // Calendrier simplifié
-        function generateCalendar() {
-            const calendar = document.getElementById('calendar');
-            const today = new Date();
-            const currentDate = new Date();
-            const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-            
-            // Jours de la semaine
-            const daysOfWeek = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
-            let html = '<div class="row g-1 mb-2">';
-            daysOfWeek.forEach(day => {
-                html += `<div class="col text-center text-secondary small"><small>${day}</small></div>`;
-            });
-            html += '</div><div class="row g-1">';
-            
-            // Premier jour du mois
-            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
-            const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1;
-            
-            // Cases vides pour le début du mois
-            for (let i = 0; i < adjustedFirstDay; i++) {
-                html += '<div class="col p-1"></div>';
+        // Mettre à jour l'affichage des prix
+        function updatePriceDisplay() {
+            if (bookingState.program && bookingState.type) {
+                const program = programDetails[bookingState.program];
+                const price = program[bookingState.type];
+                bookingState.price = price;
+
+                // Mettre à jour les prix affichés
+                document.querySelectorAll('[data-type]').forEach(card => {
+                    const type = card.dataset.type;
+                    const priceElement = card.querySelector('small.text-primary, small[style*="color"]');
+                    if (priceElement && program) {
+                        const typePrice = program[type];
+                        const isSelected = type === bookingState.type;
+
+                        if (typePrice === 0) {
+                            priceElement.innerHTML = '<i class="bi bi-gift me-1"></i> OFFERT';
+                        } else {
+                            priceElement.innerHTML = `<i class="bi bi-cash-coin me-1"></i> À partir de ${typePrice}€/mois`;
+                        }
+
+                        if (isSelected) {
+                            priceElement.classList.add('fw-bold');
+                        } else {
+                            priceElement.classList.remove('fw-bold');
+                        }
+                    }
+                });
             }
-            
-            // Jours du mois
-            for (let day = 1; day <= daysInMonth; day++) {
-                const isToday = day === today.getDate() && currentDate.getMonth() === today.getMonth();
-                const isPast = day < today.getDate() && currentDate.getMonth() === today.getMonth();
-                const isWeekend = (adjustedFirstDay + day) % 7 === 6 || (adjustedFirstDay + day) % 7 === 0;
-                
+        }
+
+        // Initialiser le calendrier Flatpickr
+        function initCalendar() {
+            const today = new Date();
+            const maxDate = new Date();
+            maxDate.setDate(today.getDate() + 90); // 90 jours max
+
+            const datePicker = flatpickr("#datePicker", {
+                locale: "fr",
+                dateFormat: "d/m/Y",
+                minDate: "today",
+                maxDate: maxDate,
+                disable: [
+                    function (date) {
+                        // Désactiver les dimanches
+                        return date.getDay() === 0;
+                    }
+                ],
+                onChange: function (selectedDates, dateStr) {
+                    if (selectedDates.length > 0) {
+                        bookingState.date = dateStr;
+                        const formattedDate = selectedDates[0].toLocaleDateString('fr-FR', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+
+                        document.getElementById('selectedDateDisplay').innerHTML = `
+                            <span class="text-primary">
+                                <i class="bi bi-calendar-check me-2"></i>
+                                ${formattedDate}
+                            </span>
+                        `;
+
+                        setTimeout(() => goToStep(4), 500);
+                    }
+                },
+                onReady: function (selectedDates, dateStr, instance) {
+                    // Style personnalisé
+                    instance.calendarContainer.style.background = "#1e1e1e";
+                    instance.calendarContainer.style.color = "white";
+                }
+            });
+
+            // Focus sur le champ
+            setTimeout(() => {
+                document.getElementById('datePicker').focus();
+            }, 300);
+        }
+
+        // Générer les créneaux horaires
+        function generateTimeSlots() {
+            const container = document.getElementById('timeSlots');
+            if (!container) return;
+
+            // Créneaux disponibles
+            const slots = [
+                '09:00', '10:30', '12:00', '14:00',
+                '15:30', '17:00', '18:30', '20:00'
+            ];
+
+            let html = '';
+            slots.forEach((time, index) => {
+                // Simuler quelques créneaux déjà pris
+                const isTaken = Math.random() > 0.8 && index > 2;
+
                 html += `
-                    <div class="col p-1">
-                        <button class="btn w-100 ${isPast ? 'btn-outline-secondary disabled' : isToday ? 'btn-primary' : 'btn-outline-light'} day-btn" 
-                                data-day="${day}" 
-                                data-date="${day}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}"
-                                ${isPast ? 'disabled' : ''}>
-                            ${day} ${isToday ? '<small class="d-block">Auj.</small>' : ''}
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn ${isTaken ? 'btn-outline-secondary disabled time-slot booked' : 'btn-outline-light time-slot'} w-100 py-2 mb-2" 
+                                data-time="${time}"
+                                ${isTaken ? 'disabled' : ''}>
+                            <i class="bi bi-clock me-1"></i> ${time}
+                            ${isTaken ? '<span class="badge bg-danger ms-1">COMPLET</span>' : ''}
                         </button>
                     </div>
                 `;
-                
-                // Nouvelle ligne après 7 jours
-                if ((adjustedFirstDay + day) % 7 === 0) {
-                    html += '</div><div class="row g-1">';
-                }
-            }
-            html += '</div>';
-            calendar.innerHTML = html;
+            });
 
-            // Mettre à jour le mois affiché
-            const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-                "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-            document.getElementById('currentMonth').textContent = 
-                `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+            container.innerHTML = html;
 
-            // Gestion des clics sur les jours
-            document.querySelectorAll('.day-btn:not(.disabled)').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    bookingState.date = this.dataset.date;
-                    
-                    document.querySelectorAll('.day-btn').forEach(b => {
-                        b.classList.remove('btn-primary');
+            // Gestion des clics sur les créneaux
+            document.querySelectorAll('.time-slot:not(.disabled)').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    bookingState.time = this.dataset.time;
+
+                    // Reset tous les boutons
+                    document.querySelectorAll('.time-slot').forEach(b => {
                         if (!b.disabled) {
+                            b.classList.remove('btn-primary');
                             b.classList.add('btn-outline-light');
                         }
                     });
-                    
+
+                    // Style pour le créneau sélectionné
                     this.classList.remove('btn-outline-light');
                     this.classList.add('btn-primary');
-                    
-                    setTimeout(() => goToStep(4), 500);
-                });
-            });
-        }
 
-        // Navigation du calendrier
-        let currentDate = new Date();
-        document.getElementById('prevMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            generateCalendar();
-        });
+                    // Afficher la sélection
+                    document.getElementById('selectedTimeDisplay').innerHTML = `
+                        <span class="text-primary">
+                            <i class="bi bi-clock me-2"></i>
+                            ${bookingState.time}
+                        </span>
+                    `;
 
-        document.getElementById('nextMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            generateCalendar();
-        });
-
-        // Horaires disponibles
-        function generateTimeSlots() {
-            const slots = ['09:00', '10:30', '12:00', '14:00', '15:30', '17:00', '18:30', '20:00'];
-            const container = document.getElementById('timeSlots');
-            
-            let html = '';
-            slots.forEach(time => {
-                html += `
-                    <div class="col-6 col-md-3">
-                        <button class="btn btn-outline-light w-100 time-btn" data-time="${time}">
-                            ${time}
-                        </button>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
-
-            document.querySelectorAll('.time-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    bookingState.time = this.dataset.time;
-                    
-                    document.querySelectorAll('.time-btn').forEach(b => {
-                        b.classList.remove('btn-primary');
-                        b.classList.add('btn-outline-light');
-                    });
-                    
-                    this.classList.remove('btn-outline-light');
-                    this.classList.add('btn-primary');
-                    
                     setTimeout(() => goToStep(5), 500);
                 });
             });
         }
 
+        // Mettre à jour la barre de progression
+        function updateProgress(step) {
+            // Mettre à jour les cercles
+            for (let i = 1; i <= 5; i++) {
+                const circle = document.getElementById(`stepCircle${i}`);
+                const label = document.getElementById(`stepLabel${i}`);
+                const connector = document.getElementById(`connector${i}`);
+
+                if (circle && label) {
+                    if (i < step) {
+                        circle.classList.add('completed');
+                        circle.classList.remove('active');
+                        if (connector) connector.classList.add('active');
+                    } else if (i === step) {
+                        circle.classList.add('active');
+                        circle.classList.remove('completed');
+                        label.classList.add('active');
+                        if (connector) connector.classList.remove('active');
+                    } else {
+                        circle.classList.remove('active', 'completed');
+                        label.classList.remove('active');
+                        if (connector) connector.classList.remove('active');
+                    }
+                }
+            }
+
+            // Mettre à jour la version mobile
+            const stepTexts = ['Choix du programme', 'Type de coaching', 'Date', 'Horaire', 'Informations'];
+            document.getElementById('currentStepBadge').textContent = step;
+            document.getElementById('currentStepText').textContent = stepTexts[step - 1];
+
+            // Barre de progression mobile
+            const progress = (step - 1) * 25;
+            document.getElementById('mobileProgressBar').style.width = `${progress}%`;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
         // Navigation entre étapes
         function goToStep(step) {
-            document.querySelectorAll('.booking-step').forEach(s => s.classList.add('d-none'));
-            document.getElementById(`step${step}`).classList.remove('d-none');
-            
-            document.getElementById('currentStep').textContent = step;
-            document.getElementById('btnBack').style.visibility = step > 1 ? 'visible' : 'hidden';
-            
-            // Mettre à jour la barre de progression
-            const progress = (step - 1) * 25;
-            document.getElementById('progressBar').style.width = `${progress}%`;
-            
-            bookingState.currentStep = step;
-
-            if (step === 3 && !document.querySelector('.day-btn')) {
-                generateCalendar();
-            }
-            
-            if (step === 4 && !document.querySelector('.time-btn')) {
-                generateTimeSlots();
+            // Animation de sortie
+            const currentStepEl = document.getElementById(`step${bookingState.currentStep}`);
+            if (currentStepEl) {
+                currentStepEl.style.opacity = '0';
+                currentStepEl.style.transform = 'translateY(20px)';
+                currentStepEl.style.transition = 'all 0.3s ease';
             }
 
-            if (step === 5) {
-                updateSummary();
-            }
+            setTimeout(() => {
+                // Cacher toutes les étapes
+                document.querySelectorAll('.booking-step').forEach(s => {
+                    s.classList.add('d-none');
+                    s.style.opacity = '1';
+                    s.style.transform = 'translateY(0)';
+                });
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Afficher la nouvelle étape
+                const nextStepEl = document.getElementById(`step${step}`);
+                nextStepEl.classList.remove('d-none');
+                nextStepEl.style.opacity = '0';
+                nextStepEl.style.transform = 'translateY(20px)';
+
+                // Animation d'entrée
+                setTimeout(() => {
+                    nextStepEl.style.opacity = '1';
+                    nextStepEl.style.transform = 'translateY(0)';
+                    nextStepEl.style.transition = 'all 0.3s ease';
+                }, 50);
+
+                // Mettre à jour l'interface
+                document.getElementById('currentStep').textContent = step;
+                document.getElementById('btnBack').style.visibility = step > 1 ? 'visible' : 'hidden';
+
+                bookingState.currentStep = step;
+
+                // Initialiser les étapes spécifiques
+                if (step === 3) {
+                    initCalendar();
+                }
+
+                if (step === 4 && bookingState.date) {
+                    generateTimeSlots();
+                }
+
+                if (step === 5) {
+                    updateSummary();
+                }
+
+                // Mettre à jour la progression
+                updateProgress(step);
+
+                // Scroll vers le haut
+                window.scrollTo({ top: document.getElementById('progressSection').offsetTop - 80, behavior: 'smooth' });
+            }, 300);
         }
 
         // Mise à jour du récapitulatif
         function updateSummary() {
-            document.getElementById('summaryProgram').textContent = programFullNames[bookingState.program] || '-';
-            document.getElementById('summaryType').textContent = typeNames[bookingState.type] || '-';
+            const program = programDetails[bookingState.program];
+            const type = typeNames[bookingState.type];
+            const price = bookingState.price;
+
+            if (program) {
+                document.getElementById('summaryProgram').innerHTML = `
+                    ${program.name}
+                    <small class="text-secondary d-block">${program.duration}</small>
+                `;
+            }
+
+            document.getElementById('summaryType').textContent = type || '-';
             document.getElementById('summaryDate').textContent = bookingState.date || '-';
             document.getElementById('summaryTime').textContent = bookingState.time || '-';
+
+            // Afficher le prix si disponible
+            if (price !== null && price > 0) {
+                document.getElementById('summaryPriceContainer').style.display = 'block';
+                document.getElementById('summaryPrice').textContent = `${price}€/mois`;
+            } else if (price === 0) {
+                document.getElementById('summaryPriceContainer').style.display = 'block';
+                document.getElementById('summaryPrice').innerHTML = '<span class="text-success">GRATUIT</span>';
+            } else {
+                document.getElementById('summaryPriceContainer').style.display = 'none';
+            }
         }
 
-        // Bouton suivant (étape 1 seulement)
+        // Validation du formulaire
+        function validateForm() {
+            let isValid = true;
+            const form = document.getElementById('bookingForm');
+
+            // Validation des champs requis
+            const requiredFields = form.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                field.classList.remove('is-invalid');
+                if (!field.value.trim()) {
+                    field.classList.add('is-invalid');
+                    isValid = false;
+                }
+            });
+
+            // Validation email
+            const emailField = document.getElementById('email');
+            if (emailField.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailField.value)) {
+                    emailField.classList.add('is-invalid');
+                    isValid = false;
+                }
+            }
+
+            // Validation téléphone
+            const phoneField = document.getElementById('phone');
+            if (phoneField.value) {
+                const phoneRegex = /^(\+33|0)[1-9](\d{2}){4}$/;
+                const cleaned = phoneField.value.replace(/\s/g, '');
+                if (!phoneRegex.test(cleaned)) {
+                    phoneField.classList.add('is-invalid');
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        // Afficher un toast
+        function showToast(message, type = 'info') {
+            const toastId = 'toast-' + Date.now();
+            const icon = type === 'success' ? 'bi-check-circle' :
+                type === 'error' ? 'bi-exclamation-triangle' :
+                    type === 'warning' ? 'bi-exclamation-circle' : 'bi-info-circle';
+
+            const toastHTML = `
+                <div id="${toastId}" class="toast-notification toast-${type}">
+                    <div class="d-flex align-items-center">
+                        <i class="bi ${icon} ${type === 'success' ? 'text-success' : type === 'error' ? 'text-danger' : type === 'warning' ? 'text-warning' : 'text-primary'} me-3 fs-5"></i>
+                        <div class="flex-grow-1">${message}</div>
+                        <button type="button" class="btn-close btn-close-white ms-3" onclick="document.getElementById('${toastId}').remove()"></button>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', toastHTML);
+
+            setTimeout(() => {
+                const toast = document.getElementById(toastId);
+                if (toast) {
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                        setTimeout(() => toast.remove(), 300);
+                    }, 3000);
+                }
+            }, 100);
+        }
+
+        // Gestion des événements
         document.getElementById('btnNext').addEventListener('click', () => {
             if (bookingState.program) {
                 goToStep(2);
                 document.getElementById('btnNext').style.visibility = 'hidden';
             } else {
-                alert('Veuillez sélectionner un programme avant de continuer.');
+                showToast('Veuillez sélectionner un programme avant de continuer.', 'warning');
             }
         });
 
-        // Bouton retour
         document.getElementById('btnBack').addEventListener('click', () => {
             if (bookingState.currentStep > 1) {
                 if (bookingState.currentStep === 2) {
@@ -773,38 +1462,179 @@
         });
 
         // Soumission du formulaire
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        document.getElementById('bookingForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
-            // Simulation d'envoi
-            const submitBtn = this.querySelector('button[type="submit"]');
+
+            if (!validateForm()) {
+                showToast('Veuillez corriger les erreurs dans le formulaire.', 'error');
+                return;
+            }
+
+            if (!document.getElementById('terms').checked) {
+                showToast('Vous devez accepter les conditions générales.', 'error');
+                return;
+            }
+
+            // Collecter les données
+            const formData = new FormData(this);
+            bookingState.formData = Object.fromEntries(formData.entries());
+
+            // Générer un ID de réservation
+            bookingState.bookingId = 'YCOACH-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+
+            // Sauvegarder dans localStorage (simulation backend)
+            const fullBooking = {
+                id: bookingState.bookingId,
+                ...bookingState,
+                timestamp: new Date().toISOString(),
+                status: 'pending'
+            };
+
+            localStorage.setItem(bookingState.bookingId, JSON.stringify(fullBooking));
+
+            // Désactiver le bouton
+            const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Envoi en cours...';
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Traitement en cours...';
             submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                // Ici, normalement, vous enverriez les données à un serveur
-                // Pour l'instant, simulation
-                
-                // Préparer les données pour WhatsApp
-                const formData = new FormData(this);
-                const message = `Nouvelle réservation !%0A%0A` +
-                              `📋 Programme: ${programFullNames[bookingState.program]}%0A` +
-                              `🏋️ Type: ${typeNames[bookingState.type]}%0A` +
-                              `📅 Date: ${bookingState.date} à ${bookingState.time}%0A` +
-                              `👤 Nom: ${formData.get('nom') || '-'}%0A` +
-                              `📧 Email: ${formData.get('email') || '-'}%0A` +
-                              `📞 Téléphone: ${formData.get('telephone') || '-'}`;
-                
-                // Redirection vers WhatsApp avec pré-remplissage
-                window.location.href = `https://wa.me/33613578119?text=${message}`;
-                
-            }, 1500);
+
+            // Simuler un délai d'envoi
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Préparer le message WhatsApp
+            const programName = programDetails[bookingState.program]?.name || 'Non spécifié';
+            const message = `📋 NOUVELLE RÉSERVATION Y COACHING%0A%0A` +
+                `🆔 ID: ${bookingState.bookingId}%0A` +
+                `🏆 Programme: ${programName}%0A` +
+                `📍 Type: ${bookingState.type === 'presentiel' ? 'Présentiel' : 'Online'}%0A` +
+                `📅 Date: ${bookingState.date || 'Non spécifiée'}%0A` +
+                `⏰ Horaire: ${bookingState.time || 'Non spécifié'}%0A` +
+                `💰 Tarif: ${bookingState.price || '0'}€/mois%0A%0A` +
+                `👤 CLIENT:%0A` +
+                `Nom: ${formData.get('fullName')}%0A` +
+                `Email: ${formData.get('email')}%0A` +
+                `Téléphone: ${formData.get('phone')}%0A` +
+                `Âge: ${formData.get('age') || 'Non spécifié'}%0A` +
+                `Expérience: ${formData.get('experience') || 'Non spécifiée'}%0A` +
+                `Objectif: ${formData.get('goal')}%0A%0A` +
+                `💬 Message: ${formData.get('message') || 'Aucun message'}`;
+
+            // Afficher la confirmation
+            showConfirmationModal(message);
+
+            // Réactiver le bouton
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         });
 
-        // Initialiser le calendrier
-        generateCalendar();
+        // Afficher le modal de confirmation
+        function showConfirmationModal(whatsappMessage) {
+            const modalHTML = `
+                <div class="modal fade" id="confirmationModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-dark text-white border-secondary">
+                            <div class="modal-header border-secondary">
+                                <h5 class="modal-title">
+                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                    Réservation confirmée !
+                                </h5>
+                            </div>
+                            <div class="modal-body text-center">
+                                <div class="bg-success bg-opacity-10 d-inline-flex p-4 rounded-circle mb-4">
+                                    <i class="bi bi-calendar-check text-success fs-1"></i>
+                                </div>
+                                
+                                <h4 class="fw-bold mb-3">Félicitations ! 🎉</h4>
+                                <p class="text-secondary mb-4">
+                                    Ta réservation <strong class="text-primary">${bookingState.bookingId}</strong> a été enregistrée avec succès.
+                                </p>
+                                
+                                <div class="bg-dark-card p-3 rounded mb-4">
+                                    <div class="row text-start">
+                                        <div class="col-6">
+                                            <small class="text-secondary">Date</small>
+                                            <div>${bookingState.date || '-'}</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <small class="text-secondary">Horaire</small>
+                                            <div>${bookingState.time || '-'}</div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <small class="text-secondary">Programme</small>
+                                            <div>${programDetails[bookingState.program]?.name || '-'}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert alert-dark border-success">
+                                    <h6><i class="bi bi-info-circle text-success me-2"></i>Prochaines étapes :</h6>
+                                    <small class="text-secondary">
+                                        1. Confirme rapidement via WhatsApp<br>
+                                        2. Tu recevras un email de confirmation<br>
+                                        3. Prépare tes questions pour notre premier rendez-vous
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-secondary">
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">
+                                    <i class="bi bi-house me-2"></i>Retour à l'accueil
+                                </button>
+                                <a href="https://wa.me/33613578119?text=${encodeURIComponent(whatsappMessage)}" 
+                                   target="_blank" class="btn btn-success">
+                                    <i class="bi bi-whatsapp me-2"></i>Confirmer sur WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Injecter le modal
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Afficher le modal
+            const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            modal.show();
+
+            // Gérer la fermeture du modal
+            document.getElementById('confirmationModal').addEventListener('hidden.bs.modal', function () {
+                this.remove();
+                // Rediriger vers l'accueil
+                window.location.href = 'index.html';
+            });
+        }
+
+        // Initialisation
+        detectProgramFromURL();
+        updateProgress(1);
+
+        // Ajouter le style pour les champs invalides
+        const style = document.createElement('style');
+        style.textContent = `
+            .is-invalid {
+                border-color: #dc3545 !important;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-position: right calc(0.375em + 0.1875rem) center;
+                background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+            }
+            .is-invalid:focus {
+                box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+            }
+            .invalid-feedback {
+                display: none;
+                width: 100%;
+                margin-top: 0.25rem;
+                font-size: 0.875em;
+                color: #dc3545;
+            }
+            .is-invalid ~ .invalid-feedback {
+                display: block;
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 
 </body>
+
 </html>
