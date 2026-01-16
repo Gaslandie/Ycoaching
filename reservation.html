@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Réserve ton créneau de coaching avec Y Coaching. Choisis ton programme, ta date et ton horaire en ligne.">
+        content="Réserve ton créneau de coaching avec Y Coaching. choisir ton programme, ta date et ton horaire en ligne.">
     <title>Réservation | Y Coaching</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -205,6 +205,16 @@
             border: 1px solid #444 !important;
         }
 
+        .flatpickr-calendar {
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+        }
+
+        .flatpickr-calendar.static {
+            position: static !important;
+            transform: none !important;
+        }
+
         .numInputWrapper:hover {
             background: #333 !important;
         }
@@ -340,7 +350,7 @@
                     <i class="bi bi-calendar-check text-primary me-3"></i>Réserve ta transformation
                 </h1>
                 <p class="lead text-secondary" data-aos="fade-up">
-                    Choisis ton programme, ton créneau et démarre ton aventure dès maintenant
+                    choisir ton programme, ton créneau et démarre ton aventure dès maintenant
                 </p>
             </div>
         </section>
@@ -410,7 +420,7 @@
                         <div id="step1" class="booking-step">
                             <div class="text-center mb-5" data-aos="fade-up">
                                 <h3 class="fw-bold text-white mb-2">
-                                    <span class="badge bg-primary me-2">1</span> Choisis ton programme
+                                    <span class="badge bg-primary me-2">1</span> choisir ton programme
                                 </h3>
                                 <p class="text-secondary">Sélectionne le programme qui correspond à tes objectifs</p>
                             </div>
@@ -616,7 +626,7 @@
                         <div id="step2" class="booking-step d-none">
                             <div class="text-center mb-5" data-aos="fade-up">
                                 <h3 class="fw-bold text-white mb-2">
-                                    <span class="badge bg-primary me-2">2</span> Choisis ton type de coaching
+                                    <span class="badge bg-primary me-2">2</span> choisir ton type de coaching
                                 </h3>
                                 <p class="text-secondary">Comment veux-tu être accompagné ?</p>
                             </div>
@@ -690,7 +700,7 @@
                         <div id="step3" class="booking-step d-none">
                             <div class="text-center mb-5" data-aos="fade-up">
                                 <h3 class="fw-bold text-white mb-2">
-                                    <span class="badge bg-primary me-2">3</span> Choisis une date
+                                    <span class="badge bg-primary me-2">3</span> choisir une date
                                 </h3>
                                 <p class="text-secondary">Sélectionne la date pour ton premier rendez-vous</p>
                             </div>
@@ -710,7 +720,7 @@
                         <div id="step4" class="booking-step d-none">
                             <div class="text-center mb-5" data-aos="fade-up">
                                 <h3 class="fw-bold text-white mb-2">
-                                    <span class="badge bg-primary me-2">4</span> Choisis un horaire
+                                    <span class="badge bg-primary me-2">4</span> choisir un horaire
                                 </h3>
                                 <p class="text-secondary">Sélectionne l'horaire qui te convient le mieux</p>
                             </div>
@@ -1149,6 +1159,8 @@
                 dateFormat: "d/m/Y",
                 minDate: "today",
                 maxDate: maxDate,
+                static: true, // <-- Ajoutez cette ligne pour positionnement statique
+                positionElement: document.getElementById("datePicker"),
                 disable: [
                     function (date) {
                         // Désactiver les dimanches
@@ -1179,6 +1191,11 @@
                     // Style personnalisé
                     instance.calendarContainer.style.background = "#1e1e1e";
                     instance.calendarContainer.style.color = "white";
+
+                    instance.calendarContainer.style.position = "relative";
+                    instance.calendarContainer.style.margin = "auto";
+                    instance.calendarContainer.style.width = "fit-content";
+                    instance.calendarContainer.style.marginTop = "20px";
                 }
             });
 
