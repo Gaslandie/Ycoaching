@@ -288,17 +288,17 @@ html {
         }
     }
 
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 150px;
-        background: linear-gradient(to bottom, transparent, $bg-darker);
-        z-index: 1;
-        pointer-events: none;
-    }
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     bottom: 0;
+    //     left: 0;
+    //     right: 0;
+    //     height: 150px;
+    //     background: linear-gradient(to bottom, transparent, $bg-darker);
+    //     z-index: 1;
+    //     pointer-events: none;
+    // }
 }
 
 // ============================================
@@ -308,7 +308,7 @@ html {
     background-color: $bg-darker;
     position: relative;
     z-index: 10;
-    margin-top: -1px;
+    // margin-top: -1px;
 }
 
 section {
