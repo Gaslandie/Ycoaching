@@ -317,32 +317,24 @@ section {
     }
 }
 
-#services {
+#services, #programmes, #process {
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)), url('/dist/img/service-bg.png') center top/cover no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../img/service-bg.png') center/contain no-repeat;
 }
+
 #programmes {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)), url('/dist/img/programmes.png') center top/cover no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../img/programmes.png') center/contain no-repeat;
 }
 
 #process {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)), url('/dist/img/process.png') center top/cover no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../img/process.png') center/contain no-repeat;
 }
-
 
 
 // ============================================
