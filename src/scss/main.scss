@@ -334,6 +334,17 @@ section {
     background-repeat: no-repeat;
 }
 
+#process {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)), url('/dist/img/process.png') center top/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+
 // ============================================
 // 10. FIX POUR DÉFILEMENT
 // ============================================
