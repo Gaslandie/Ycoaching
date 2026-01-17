@@ -27,10 +27,10 @@
         <section class="hero-section-sm d-flex align-items-center"
             style="min-height: 40vh; background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('dist/img/hero-bg1.jpg') center/cover;">
             <div class="container text-center">
-                <h1 class="display-4 fw-bold text-white mb-3" data-aos="fade-down">
+                <h1 class="display-4 fw-bold mb-3 text-primary" data-aos="fade-down">
                     Mes <span class="text-primary">Programmes</span>
                 </h1>
-                <p class="lead text-white" data-aos="fade-up">
+                <p class="lead text-primary" data-aos="fade-up">
                     Choisis la formule qui correspond à tes objectifs et ton rythme de vie
                 </p>
             </div>
@@ -480,37 +480,41 @@
     <script src="src/js/script.js"></script>
 
     <script>
-        // Gestion du toggle de durée pour le coaching online
-        document.querySelectorAll('.duration-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                // Retirer l'état actif de tous les boutons
-                document.querySelectorAll('.duration-btn').forEach(b => b.classList.remove('active'));
+    // Gestion du toggle de durée pour le coaching online
+    document.querySelectorAll('.duration-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            // 1. Gestion de l'apparence des boutons
+            document.querySelectorAll('.duration-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
 
-                // Activer le bouton cliqué
-                this.classList.add('active');
+            const duration = this.getAttribute('data-duration');
 
-                const duration = this.dataset.duration;
-
-                // Mettre à jour les prix
-                document.querySelectorAll('.price-display span').forEach(priceEl => {
-                    const newPrice = priceEl.dataset[`price${duration}`];
+            // 2. Mise à jour des prix (Correction du bug undefined)
+            document.querySelectorAll('.price-display span').forEach(priceEl => {
+                // On récupère la valeur de data-price-3, data-price-6, etc.
+                const newPrice = priceEl.getAttribute('data-price-' + duration);
+                if (newPrice) {
                     priceEl.textContent = newPrice + '€';
-                });
+                }
+            });
 
-                // Mettre à jour les labels
-                const monthlyPrices = {
-                    3: ['80€/mois', '120€/mois', '60€/mois'],
-                    6: ['72€/mois (-10%)', '108€/mois (-10%)', '54€/mois (-10%)'],
-                    9: ['66€/mois (-18%)', '99€/mois (-18%)', '51€/mois (-18%)'],
-                    12: ['60€/mois (-25%)', '90€/mois (-25%)', '50€/mois (-25%)']
-                };
+            // 3. Mise à jour des labels (mensualités)
+            const monthlyPrices = {
+                '3': ['80€/mois', '120€/mois', '60€/mois'],
+                '6': ['72€/mois (-10%)', '108€/mois (-10%)', '54€/mois (-10%)'],
+                '9': ['66€/mois (-18%)', '99€/mois (-18%)', '51€/mois (-18%)'],
+                '12': ['60€/mois (-25%)', '90€/mois (-25%)', '50€/mois (-25%)']
+            };
 
-                document.querySelectorAll('.duration-label').forEach((label, index) => {
-                    label.textContent = `pour ${duration} mois (${monthlyPrices[duration][index]})`;
-                });
+            document.querySelectorAll('.duration-label').forEach((label, index) => {
+                const config = monthlyPrices[duration];
+                if (config && config[index]) {
+                    label.textContent = `pour ${duration} mois (${config[index]})`;
+                }
             });
         });
-    </script>
+    });
+</script>
 
 </body>
 

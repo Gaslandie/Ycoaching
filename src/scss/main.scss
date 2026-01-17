@@ -3,19 +3,57 @@
 // Version 2.0 - Site Multi-pages Professionnel
 // ============================================
 
-// 1. VARIABLES
-$primary: #FF5722;
-$dark: #121212;
-$dark-card: #1e1e1e;
-$bg-darker: #0b0b0b;
-$white: #ffffff;
-$gray-light: #e0e0e0;
-$secondary: #6c757d;
+// Couleurs principales (ADN Orange remplacé par Bleu Stylé)
+$primary: #007AFF;               // Bleu électrique premium
+$primary-dark: #0056b3;
+$primary-light: #4dabff;
+$primary-opacity-10: rgba(0, 122, 255, 0.1);
+$primary-opacity-15: rgba(0, 122, 255, 0.15);
+$primary-opacity-20: rgba(0, 122, 255, 0.2);
+$primary-opacity-25: rgba(0, 122, 255, 0.25);
+$primary-opacity-30: rgba(0, 122, 255, 0.3);
 
+// Couleurs de fond (Gris Clair)
+$dark: #F8F9FA;                  // Fond principal gris clair high-tech
+$dark-card: #FFFFFF;             // Cartes en blanc pur pour le relief
+$bg-darker: #E9ECEF;             // Gris pour les alternances de sections
+
+// Couleurs de texte (Adaptation pour fond clair)
+$white: #212529;                 // Devient ton texte sombre principal (Anthracite)
+$gray-light: #495057;            // Texte secondaire gris foncé
+$secondary: #555E64;             // Gris moyen (ajusté pour le contraste Bootstrap)
+
+// Couleurs pour les programmes (Ajustées sur le Bleu)
+$titan-color: #007AFF;           // Titan s'aligne sur le bleu primaire
+$shred-color: #087F5B;           // Vert profond
+$hybrid-color: #5F3DC4;          // Violet profond
+$athena-color: #C2255C;          // Rose/Rouge profond
+$stronggirl-color: #A61E1E;      // Rouge profond
+
+// Couleurs avec opacité (Adaptées pour ombres et overlays sur fond clair)
+$white-opacity-30: rgba(0, 0, 0, 0.08); 
+$white-opacity-90: rgba(255, 255, 255, 0.9);
+$black-opacity-10: rgba(0, 0, 0, 0.1);
+$black-opacity-30: rgba(0, 0, 0, 0.3);
+$black-opacity-50: rgba(0, 0, 0, 0.5);   // Indispensable pour tes text-shadows
+$black-opacity-60: rgba(0, 0, 0, 0.6);   // Pour garder le Hero intense
+$black-opacity-95: rgba(0, 0, 0, 0.95);  // Pour le menu noir si besoin
+
+// Couleurs de succès/erreur
+$success-color: #2F9E44;
+$error-color: #E03131;
+
+// Couleurs de bordure
+$border-light: #DEE2E6;
+
+// ============================================
 // 2. IMPORT BOOTSTRAP
+// ============================================
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
+// ============================================
 // 3. STYLES GLOBAUX
+// ============================================
 * {
     margin: 0;
     padding: 0;
@@ -41,14 +79,14 @@ html {
 }
 
 // ============================================
-// BARRE DE CATÉGORIES ET MEGA MENU - CORRIGÉ
+// 4. BARRE DE CATÉGORIES ET MEGA MENU
 // ============================================
 
 .category-nav {
     position: relative;
-    z-index: 1100 !important; // AUGMENTÉ - doit être au-dessus du hero
+    z-index: 1100 !important;
     background-color: $white;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid $border-light;
 
     .nav-link {
         font-size: 0.9rem;
@@ -90,13 +128,12 @@ html {
             transform: translateY(-20px);
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             pointer-events: none;
-            z-index: 1101 !important; // AUGMENTÉ
+            z-index: 1101 !important;
             max-height: 0;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px $black-opacity-10;
         }
 
-        // AFFICHAGE AU SURVOL
         &:hover .megamenu {
             visibility: visible;
             opacity: 1;
@@ -106,7 +143,6 @@ html {
             overflow: visible;
         }
 
-        // Garde ouvert quand on survole le contenu
         .megamenu:hover {
             visibility: visible;
             opacity: 1;
@@ -119,7 +155,7 @@ html {
 }
 
 // ============================================
-// CARTES DANS LE MEGA MENU - AMÉLIORÉES
+// 5. CARTES DANS LE MEGA MENU
 // ============================================
 
 .program-card-mini {
@@ -128,7 +164,7 @@ html {
     height: 280px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px $black-opacity-10;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     background: $dark;
 
@@ -145,7 +181,7 @@ html {
         left: 0;
         right: 0;
         padding: 25px 20px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+        background: linear-gradient(to top, $black-opacity-95 0%, $black-opacity-60 50%, transparent 100%);
         color: $white;
         text-align: center;
         transform: translateY(0);
@@ -167,7 +203,6 @@ html {
         }
     }
 
-    // Effet au survol
     &:hover {
         transform: translateY(-10px) scale(1.02);
         box-shadow: 0 15px 35px rgba($primary, 0.15);
@@ -184,26 +219,24 @@ html {
 }
 
 // ============================================
-// CORRECTION DU Z-INDEX GLOBAL
+// 6. CORRECTION DU Z-INDEX GLOBAL
 // ============================================
 
-// La navbar principale doit être en dessous
 .navbar {
     z-index: 1090 !important;
 }
 
-// Le hero ne doit PAS couvrir le mega menu
 .hero-section {
     position: relative;
-    z-index: 1 !important; // Réduit
+    z-index: 1 !important;
 }
 
 .hero-section::after {
-    z-index: 1 !important; // Réduit
+    z-index: 1 !important;
 }
 
 // ============================================
-// RESPONSIVE POUR LE MEGA MENU
+// 7. RESPONSIVE POUR LE MEGA MENU
 // ============================================
 
 @media (max-width: 992px) {
@@ -213,35 +246,38 @@ html {
 }
 
 // ============================================
-// 5. HERO SECTION - CORRIGÉ
+// 8. HERO SECTION
 // ============================================
 .hero-section {
     min-height: 85vh;
-    background: linear-gradient(rgba(18, 18, 18, 0.6), rgba(18, 18, 18, 0.6)),
-        url('../img/hero-bg1.jpg') center/cover no-repeat;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.7), 
+        rgba(0, 0, 0, 0.7)
+    ), 
+    url('../img/hero-bg1.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden !important; // IMPORTANT : Empêche le débordement
+    overflow: hidden !important;
 
     h1 {
-        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        text-shadow: 2px 2px 10px $black-opacity-50;
         line-height: 1.2;
+        color: white;
     }
 
     .lead {
-        color: $gray-light !important;
+        color: white;
         font-weight: 400;
     }
 
     .container {
         position: relative;
         z-index: 2;
-        transform: none !important; // IMPORTANT : Désactive les transformations
-        will-change: auto; // Optimise les performances
+        transform: none !important;
+        will-change: auto;
     }
 
-    // Animation bounce pour la flèche
     .animate-bounce {
         animation: bounce 2s infinite ease-in-out;
         transition: transform 0.3s ease;
@@ -252,7 +288,6 @@ html {
         }
     }
 
-    // Overlay pour transition fluide vers la section suivante
     &::after {
         content: '';
         position: absolute;
@@ -267,77 +302,573 @@ html {
 }
 
 // ============================================
-// 6. SECTIONS - CORRIGÉ
+// 9. SECTIONS
 // ============================================
 .bg-darker {
     background-color: $bg-darker;
     position: relative;
-    z-index: 10; // Assure que cette section est au-dessus du gradient
-    margin-top: -1px; // Élimine l'espace entre les sections
+    z-index: 10;
+    margin-top: -1px;
 }
 
 section {
     position: relative;
 
-    // Assure une transition propre entre sections
     &:not(.hero-section) {
         z-index: 5;
     }
 }
 
 // ============================================
-// NOUVELLE SECTION : FIX POUR DÉFILEMENT
+// 10. FIX POUR DÉFILEMENT
 // ============================================
 
-// Fix pour empêcher les transformations indésirables
 .hero-section * {
     transform-style: preserve-3d;
     backface-visibility: hidden;
 }
 
-// Animation bounce améliorée (version finale)
-@keyframes bounce {
+// ============================================
+// 11. ANIMATIONS
+// ============================================
 
-    0%,
-    100% {
+@keyframes bounce {
+    0%, 100% {
         transform: translateY(0) scale(1);
     }
-
     25% {
         transform: translateY(-8px) scale(1.05);
     }
-
     50% {
         transform: translateY(-4px) scale(1.1);
     }
-
     75% {
         transform: translateY(-6px) scale(1.05);
     }
 }
 
-// Nouvelle animation flottante (alternative)
 @keyframes float {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateX(-50%) translateY(0);
     }
-
     50% {
         transform: translateX(-50%) translateY(-10px);
     }
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease;
+}
+
 // ============================================
-// 17. RESPONSIVE DESIGN - AJOUTS
+// 12. CARDS & PRICING
+// ============================================
+.card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.pricing-card {
+    background-color: $dark-card;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border-width: 1px;
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px $black-opacity-50;
+        border-color: $primary !important;
+    }
+
+    &.featured {
+        transform: scale(1.05);
+        border-width: 2px;
+        box-shadow: 0 0 20px $primary-opacity-10;
+
+        &:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px $primary-opacity-20;
+        }
+    }
+
+    ul li {
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
+}
+
+.service-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+        transform: translateY(-5px);
+        border-color: $primary !important;
+        box-shadow: 0 10px 30px $primary-opacity-10;
+    }
+
+    &.featured {
+        border-color: $primary !important;
+    }
+}
+
+// ============================================
+// 13. BUTTONS
+// ============================================
+.btn {
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    font-weight: 600;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px $primary-opacity-30;
+    }
+
+    &.btn-primary {
+        background-color: $primary;
+        border-color: $primary;
+
+        &:hover {
+            background-color: $primary-dark;
+            border-color: $primary-dark;
+        }
+    }
+}
+
+.duration-btn {
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid $secondary;
+    background: transparent;
+    color: $white;
+    transition: all 0.3s ease;
+
+    &.active,
+    &:hover {
+        background-color: $primary;
+        border-color: $primary;
+        color: $white;
+    }
+}
+
+// ============================================
+// 14. FORMS
+// ============================================
+.form-control,
+.form-select {
+    &:focus {
+        background-color: rgba($primary, 0.05);
+        border-color: $primary;
+        box-shadow: 0 0 0 0.25rem $primary-opacity-10;
+        color: $white;
+    }
+
+    &::placeholder {
+        color: $white-opacity-30;
+    }
+}
+
+.form-check-input {
+    &:checked {
+        background-color: $primary;
+        border-color: $primary;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.25rem $primary-opacity-25;
+    }
+}
+
+// ============================================
+// 15. ACCORDION (FAQ)
+// ============================================
+.accordion-button {
+    &:not(.collapsed) {
+        background-color: $primary-opacity-10;
+        color: $primary;
+        box-shadow: none;
+    }
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+// ============================================
+// 16. BADGES & LABELS
+// ============================================
+.badge {
+    font-weight: 600;
+    padding: 0.5em 1em;
+}
+
+.badge.category-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    font-weight: 500;
+    
+    &.homme {
+        background: $primary-opacity-15;
+        color: $primary;
+        border: 1px solid $primary-opacity-30;
+    }
+    
+    &.femme {
+        background: rgba($athena-color, 0.15);
+        color: $athena-color;
+        border: 1px solid rgba($athena-color, 0.3);
+    }
+}
+
+// ============================================
+// 17. FOOTER
+// ============================================
+footer {
+    .hover-primary {
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $primary !important;
+        }
+    }
+
+    .btn-outline-light {
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: $primary;
+            border-color: $primary;
+            transform: translateY(-3px);
+        }
+    }
+}
+
+// ============================================
+// 18. SCROLL TO TOP BUTTON
+// ============================================
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: $primary;
+    color: $white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px $primary-opacity-30;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba($primary, 0.5);
+    }
+
+    i {
+        font-size: 1.2rem;
+    }
+}
+
+// ============================================
+// 19. TOAST NOTIFICATIONS
+// ============================================
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: $dark-card;
+    color: $white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px $black-opacity-30;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+
+    &.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    &.toast-success {
+        border-left: 4px solid $success-color;
+    }
+
+    &.toast-error {
+        border-left: 4px solid $error-color;
+    }
+}
+
+// ============================================
+// 20. CALENDRIER (Réservation)
+// ============================================
+.calendar-grid {
+    .btn {
+        transition: all 0.2s ease;
+
+        &:not(.disabled):hover {
+            transform: scale(1.1);
+            background-color: $primary !important;
+        }
+    }
+}
+
+// ============================================
+// 21. TRANSFORMATIONS
+// ============================================
+
+.transformation-card {
+    transition: all 0.3s ease;
+    animation: reveal 0.8s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        
+        img {
+            transform: scale(1.05);
+        }
+    }
+    
+    img {
+        transition: transform 0.3s ease;
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+    
+    .position-relative {
+        border: 2px solid $primary-opacity-10;
+        border-radius: 12px;
+    }
+}
+
+// ============================================
+// 22. PROGRAMMES
+// ============================================
+
+.program-card {
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        
+        li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            
+            &:before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: $primary;
+                font-weight: bold;
+            }
+        }
+    }
+    
+    .btn-outline-primary {
+        border-width: 2px;
+        padding: 0.4rem 1rem;
+        font-weight: 500;
+        
+        &:hover {
+            background: linear-gradient(135deg, $primary, $primary-dark);
+        }
+    }
+}
+
+// Icônes de programmes avec couleurs spécifiques
+.program-icon {
+    &.titan {
+        background: rgba($titan-color, 0.1);
+        i {
+            color: $titan-color;
+        }
+    }
+    
+    &.shred {
+        background: rgba($shred-color, 0.1);
+        i {
+            color: $shred-color;
+        }
+    }
+    
+    &.athena {
+        background: rgba($athena-color, 0.1);
+        i {
+            color: $athena-color;
+        }
+    }
+    
+    &.stronggirl {
+        background: rgba($stronggirl-color, 0.1);
+        i {
+            color: $stronggirl-color;
+        }
+    }
+}
+
+// ============================================
+// 23. MÉTHODOLOGIE
+// ============================================
+
+.bg-darker .text-center {
+    position: relative;
+    
+    .bg-primary.bg-opacity-10 {
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background: $primary-opacity-20 !important;
+            transform: scale(1.1);
+        }
+    }
+}
+
+// ============================================
+// 24. UTILITIES
+// ============================================
+.text-gradient {
+    background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.border-gradient {
+    border: 2px solid;
+    border-image: linear-gradient(135deg, $primary, $primary-light) 1;
+}
+
+.shadow-primary {
+    box-shadow: 0 10px 30px $primary-opacity-20;
+}
+
+// Image hover effects
+img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: $dark;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $primary;
+    border-radius: 5px;
+
+    &:hover {
+        background: $primary-dark;
+    }
+}
+
+// ============================================
+// 25. LOADING SPINNER
+// ============================================
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid $white-opacity-30;
+    border-top-color: $white;
+    border-radius: 50%;
+    animation: spinner 0.6s linear infinite;
+}
+
+// ============================================
+// 26. EFFETS HOVER POUR ICÔNES
+// ============================================
+
+.bg-primary.bg-opacity-10 {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    i {
+        transition: transform 0.3s ease;
+    }
+    
+    &:hover {
+        i {
+            transform: scale(1.2);
+        }
+    }
+}
+
+// ============================================
+// 27. SECTIONS - GRADIENT
+// ============================================
+
+section:not(.hero-section) {
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, $primary-opacity-30, transparent);
+    }
+}
+
+// ============================================
+// 28. RESPONSIVE DESIGN
 // ============================================
 @media (max-width: 768px) {
     .hero-section {
         min-height: 70vh;
 
         &::after {
-            height: 80px; // Réduit le gradient sur mobile
+            height: 80px;
         }
 
         h1 {
@@ -369,501 +900,7 @@ section {
         bottom: 20px;
         right: 20px;
     }
-}
-
-// ============================================
-// 7. CARDS & PRICING
-// ============================================
-.card {
-    transition: all 0.3s ease;
-    overflow: hidden;
-}
-
-.pricing-card {
-    background-color: $dark-card;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    border-width: 1px;
-
-    &:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        border-color: $primary !important;
-    }
-
-    &.featured {
-        transform: scale(1.05);
-        border-width: 2px;
-        box-shadow: 0 0 20px rgba($primary, 0.1);
-
-        &:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 40px rgba($primary, 0.2);
-        }
-    }
-
-    ul li {
-        font-size: 0.95rem;
-        opacity: 0.9;
-    }
-}
-
-.service-card {
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-
-    &:hover {
-        transform: translateY(-5px);
-        border-color: $primary !important;
-        box-shadow: 0 10px 30px rgba($primary, 0.1);
-    }
-
-    &.featured {
-        border-color: $primary !important;
-    }
-}
-
-// ============================================
-// 8. BUTTONS
-// ============================================
-.btn {
-    transition: all 0.3s ease;
-    border-radius: 50px;
-    font-weight: 600;
-
-    &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba($primary, 0.3);
-    }
-
-    &.btn-primary {
-        background-color: $primary;
-        border-color: $primary;
-
-        &:hover {
-            background-color: darken($primary, 10%);
-            border-color: darken($primary, 10%);
-        }
-    }
-}
-
-.duration-btn {
-    padding: 8px 20px;
-    border-radius: 50px;
-    border: 1px solid $secondary;
-    background: transparent;
-    color: $white;
-    transition: all 0.3s ease;
-
-    &.active,
-    &:hover {
-        background-color: $primary;
-        border-color: $primary;
-        color: $white;
-    }
-}
-
-// ============================================
-// 9. FORMS
-// ============================================
-.form-control,
-.form-select {
-    &:focus {
-        background-color: rgba($primary, 0.05);
-        border-color: $primary;
-        box-shadow: 0 0 0 0.25rem rgba($primary, 0.1);
-        color: $white;
-    }
-
-    &::placeholder {
-        color: rgba(255, 255, 255, 0.3);
-    }
-}
-
-.form-check-input {
-    &:checked {
-        background-color: $primary;
-        border-color: $primary;
-    }
-
-    &:focus {
-        box-shadow: 0 0 0 0.25rem rgba($primary, 0.25);
-    }
-}
-
-// ============================================
-// 10. ACCORDION (FAQ)
-// ============================================
-.accordion-button {
-    &:not(.collapsed) {
-        background-color: rgba($primary, 0.1);
-        color: $primary;
-        box-shadow: none;
-    }
-
-    &:focus {
-        box-shadow: none;
-    }
-}
-
-// ============================================
-// 11. BADGES & LABELS
-// ============================================
-.badge {
-    font-weight: 600;
-    padding: 0.5em 1em;
-}
-
-// ============================================
-// 12. FOOTER
-// ============================================
-footer {
-    .hover-primary {
-        transition: color 0.3s ease;
-
-        &:hover {
-            color: $primary !important;
-        }
-    }
-
-    .btn-outline-light {
-        width: 40px;
-        height: 40px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background-color: $primary;
-            border-color: $primary;
-            transform: translateY(-3px);
-        }
-    }
-}
-
-// ============================================
-// 13. ANIMATIONS PERSONNALISÉES
-// ============================================
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in-up {
-    animation: fadeInUp 0.6s ease;
-}
-
-// ============================================
-// 14. SCROLL TO TOP BUTTON
-// ============================================
-.scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background-color: $primary;
-    color: $white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 15px rgba($primary, 0.3);
-    transition: all 0.3s ease;
-    animation: fadeInUp 0.3s ease;
-
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba($primary, 0.5);
-    }
-
-    i {
-        font-size: 1.2rem;
-    }
-}
-
-// ============================================
-// 15. TOAST NOTIFICATIONS
-// ============================================
-.toast-notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: $dark-card;
-    color: $white;
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    z-index: 9999;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.3s ease;
-
-    &.show {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    &.toast-success {
-        border-left: 4px solid #28a745;
-    }
-
-    &.toast-error {
-        border-left: 4px solid #dc3545;
-    }
-}
-
-// ============================================
-// 16. CALENDRIER (Réservation)
-// ============================================
-.calendar-grid {
-    .btn {
-        transition: all 0.2s ease;
-
-        &:not(.disabled):hover {
-            transform: scale(1.1);
-            background-color: $primary !important;
-        }
-    }
-}
-
-// ============================================
-// 17. RESPONSIVE DESIGN
-// ============================================
-@media (max-width: 768px) {
-    .hero-section {
-        min-height: 70vh;
-
-        h1 {
-            font-size: 2rem !important;
-        }
-
-        .lead {
-            font-size: 1rem;
-        }
-    }
-
-    .display-3,
-    .display-4,
-    .display-5 {
-        font-size: 2rem !important;
-    }
-
-    .pricing-card.featured {
-        transform: scale(1) !important;
-    }
-
-    .scroll-to-top {
-        width: 45px;
-        height: 45px;
-        bottom: 20px;
-        right: 20px;
-    }
-}
-
-// ============================================
-// 18. UTILITIES
-// ============================================
-.text-gradient {
-    background: linear-gradient(135deg, $primary 0%, #FF8A65 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.border-gradient {
-    border: 2px solid;
-    border-image: linear-gradient(135deg, $primary, #FF8A65) 1;
-}
-
-.shadow-primary {
-    box-shadow: 0 10px 30px rgba($primary, 0.2);
-}
-
-// Image hover effects
-img {
-    transition: transform 0.3s ease, filter 0.3s ease;
-
-    &:hover {
-        transform: scale(1.02);
-    }
-}
-
-// Custom scrollbar
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: $dark;
-}
-
-::-webkit-scrollbar-thumb {
-    background: $primary;
-    border-radius: 5px;
-
-    &:hover {
-        background: darken($primary, 10%);
-    }
-}
-
-// ============================================
-// 19. LOADING SPINNER
-// ============================================
-.loading-spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba($white, 0.3);
-    border-top-color: $white;
-    border-radius: 50%;
-    animation: spinner 0.6s linear infinite;
-}
-
-@keyframes spinner {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-// ============================================
-// 20. PRINT STYLES
-// ============================================
-@media print {
-
-    .navbar,
-    footer,
-    .scroll-to-top,
-    .btn {
-        display: none !important;
-    }
-
-    body {
-        background-color: white;
-        color: black;
-    }
-}
-
-// ============================================
-// TRANSFORMATIONS - Page d'accueil
-// ============================================
-
-.transformation-card {
-    transition: all 0.3s ease;
     
-    &:hover {
-        transform: translateY(-5px);
-        
-        img {
-            transform: scale(1.05);
-        }
-    }
-    
-    img {
-        transition: transform 0.3s ease;
-        height: 200px;
-        object-fit: cover;
-        width: 100%;
-    }
-    
-    .position-relative {
-        border: 2px solid rgba($primary, 0.1);
-        border-radius: 12px;
-    }
-}
-
-// Styles pour les badges dans les programmes
-.badge.category-badge {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
-    font-weight: 500;
-    
-    &.homme {
-        background: rgba($primary, 0.15);
-        color: $primary;
-        border: 1px solid rgba($primary, 0.3);
-    }
-    
-    &.femme {
-        background: rgba(#E91E63, 0.15);
-        color: #E91E63;
-        border: 1px solid rgba(#E91E63, 0.3);
-    }
-}
-
-// Amélioration des cards programmes
-.program-card {
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-        
-        li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            
-            &:before {
-                content: "✓";
-                position: absolute;
-                left: 0;
-                color: $primary;
-                font-weight: bold;
-            }
-        }
-    }
-    
-    .btn-outline-primary {
-        border-width: 2px;
-        padding: 0.4rem 1rem;
-        font-weight: 500;
-        
-        &:hover {
-            background: linear-gradient(135deg, $primary, darken($primary, 10%));
-        }
-    }
-}
-
-// Animation pour les transformations
-@keyframes reveal {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.transformation-card {
-    animation: reveal 0.8s ease;
-}
-
-// Section méthodologie
-.bg-darker .text-center {
-    position: relative;
-    
-    .bg-primary.bg-opacity-10 {
-        transition: all 0.3s ease;
-        
-        &:hover {
-            background: rgba($primary, 0.2) !important;
-            transform: scale(1.1);
-        }
-    }
-}
-
-// Responsive improvements
-@media (max-width: 768px) {
     .transformation-card {
         img {
             height: 150px;
@@ -883,33 +920,19 @@ img {
     }
 }
 
-// Effet de gradient pour les sections
-section:not(.hero-section) {
-    position: relative;
-    
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba($primary, 0.3), transparent);
+// ============================================
+// 29. PRINT STYLES
+// ============================================
+@media print {
+    .navbar,
+    footer,
+    .scroll-to-top,
+    .btn {
+        display: none !important;
     }
-}
 
-// Hover effect pour les icônes
-.bg-primary.bg-opacity-10 {
-    cursor: pointer;
-    transition: all 0.3s ease;
-    
-    i {
-        transition: transform 0.3s ease;
-    }
-    
-    &:hover {
-        i {
-            transform: scale(1.2);
-        }
+    body {
+        background-color: $white;
+        color: $dark;
     }
 }
