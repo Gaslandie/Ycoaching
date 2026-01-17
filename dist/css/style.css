@@ -12059,17 +12059,43 @@ section:not(.hero-section) {
   z-index: 5;
 }
 
-#services, #programmes, #process {
+#services,
+#programmes,
+#process {
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/service-bg.png") center/contain no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/service-bg.png") center top/cover no-repeat;
+}
+@media (max-width: 768px) {
+  #services,
+  #programmes,
+  #process {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/service-bg.png") center/cover no-repeat;
+    background-position: center 30%;
+    background-attachment: scroll;
+    min-height: 400px;
+  }
 }
 
 #programmes {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/programmes.png") center/contain no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/programmes.png") center top/cover no-repeat;
+}
+@media (max-width: 768px) {
+  #programmes {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/programmes.png") center/cover no-repeat;
+    background-position: center 25%;
+    min-height: 500px;
+  }
 }
 
 #process {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/process.png") center/contain no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/process.png") center top/cover no-repeat;
+}
+@media (max-width: 768px) {
+  #process {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/process.png") center/cover no-repeat;
+    background-position: center 20%;
+    min-height: 400px;
+  }
 }
 
 .hero-section * {

@@ -317,24 +317,54 @@ section {
     }
 }
 
-#services, #programmes, #process {
+#services,
+#programmes,
+#process {
     position: relative;
-    background: 
+    background:
         linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('../img/service-bg.png') center/contain no-repeat;
+        url('../img/service-bg.png') center top/cover no-repeat;
+
+    @media (max-width: 768px) {
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+            url('../img/service-bg.png') center/cover no-repeat;
+
+        // OU si vous n'avez pas d'image mobile :
+        background-position: center 30%; // Ajuste la partie visible
+        background-attachment: scroll; // Évite le parallaxe fixe sur mobile
+        min-height: 400px; // Hauteur minimale pour mobile
+    }
 }
 
 #programmes {
-    background: 
+    background:
         linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('../img/programmes.png') center/contain no-repeat;
+        url('../img/programmes.png') center top/cover no-repeat;
+
+    @media (max-width: 768px) {
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+            url('../img/programmes.png') center/cover no-repeat;
+        background-position: center 25%;
+        min-height: 500px; // Section programmes plus haute sur mobile
+    }
 }
 
 #process {
-    background: 
+    background:
         linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('../img/process.png') center/contain no-repeat;
+        url('../img/process.png') center top/cover no-repeat;
+
+    @media (max-width: 768px) {
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+            url('../img/process.png') center/cover no-repeat;
+        background-position: center 20%;
+        min-height: 400px;
+    }
 }
+
 
 
 // ============================================
