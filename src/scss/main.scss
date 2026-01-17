@@ -4,7 +4,7 @@
 // ============================================
 
 // Couleurs principales (ADN Orange remplacé par Bleu Stylé)
-$primary: #007AFF;               // Bleu électrique premium
+$primary: #007AFF; // Bleu électrique premium
 $primary-dark: #0056b3;
 $primary-light: #4dabff;
 $primary-opacity-10: rgba(0, 122, 255, 0.1);
@@ -14,30 +14,30 @@ $primary-opacity-25: rgba(0, 122, 255, 0.25);
 $primary-opacity-30: rgba(0, 122, 255, 0.3);
 
 // Couleurs de fond (Gris Clair)
-$dark: #F8F9FA;                  // Fond principal gris clair high-tech
-$dark-card: #FFFFFF;             // Cartes en blanc pur pour le relief
-$bg-darker: #E9ECEF;             // Gris pour les alternances de sections
+$dark: #F8F9FA; // Fond principal gris clair high-tech
+$dark-card: #FFFFFF; // Cartes en blanc pur pour le relief
+$bg-darker: #E9ECEF; // Gris pour les alternances de sections
 
 // Couleurs de texte (Adaptation pour fond clair)
-$white: #212529;                 // Devient ton texte sombre principal (Anthracite)
-$gray-light: #495057;            // Texte secondaire gris foncé
-$secondary: #555E64;             // Gris moyen (ajusté pour le contraste Bootstrap)
+$white: #212529; // Devient ton texte sombre principal (Anthracite)
+$gray-light: #495057; // Texte secondaire gris foncé
+$secondary: #555E64; // Gris moyen (ajusté pour le contraste Bootstrap)
 
 // Couleurs pour les programmes (Ajustées sur le Bleu)
-$titan-color: #007AFF;           // Titan s'aligne sur le bleu primaire
-$shred-color: #087F5B;           // Vert profond
-$hybrid-color: #5F3DC4;          // Violet profond
-$athena-color: #C2255C;          // Rose/Rouge profond
-$stronggirl-color: #A61E1E;      // Rouge profond
+$titan-color: #007AFF; // Titan s'aligne sur le bleu primaire
+$shred-color: #087F5B; // Vert profond
+$hybrid-color: #5F3DC4; // Violet profond
+$athena-color: #C2255C; // Rose/Rouge profond
+$stronggirl-color: #A61E1E; // Rouge profond
 
 // Couleurs avec opacité (Adaptées pour ombres et overlays sur fond clair)
-$white-opacity-30: rgba(0, 0, 0, 0.08); 
+$white-opacity-30: rgba(0, 0, 0, 0.08);
 $white-opacity-90: rgba(255, 255, 255, 0.9);
 $black-opacity-10: rgba(0, 0, 0, 0.1);
 $black-opacity-30: rgba(0, 0, 0, 0.3);
-$black-opacity-50: rgba(0, 0, 0, 0.5);   // Indispensable pour tes text-shadows
-$black-opacity-60: rgba(0, 0, 0, 0.6);   // Pour garder le Hero intense
-$black-opacity-95: rgba(0, 0, 0, 0.95);  // Pour le menu noir si besoin
+$black-opacity-50: rgba(0, 0, 0, 0.5); // Indispensable pour tes text-shadows
+$black-opacity-60: rgba(0, 0, 0, 0.6); // Pour garder le Hero intense
+$black-opacity-95: rgba(0, 0, 0, 0.95); // Pour le menu noir si besoin
 
 // Couleurs de succès/erreur
 $success-color: #2F9E44;
@@ -250,11 +250,9 @@ html {
 // ============================================
 .hero-section {
     min-height: 85vh;
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.7), 
-        rgba(0, 0, 0, 0.7)
-    ), 
-    url('../img/hero-bg1.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)),
+        url('../img/hero-bg1.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     position: relative;
@@ -319,6 +317,23 @@ section {
     }
 }
 
+#services {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)), url('/dist/img/service-bg.png') center top/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#programmes {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)), url('/dist/img/programmes.png') center top/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 // ============================================
 // 10. FIX POUR DÉFILEMENT
 // ============================================
@@ -333,24 +348,32 @@ section {
 // ============================================
 
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0) scale(1);
     }
+
     25% {
         transform: translateY(-8px) scale(1.05);
     }
+
     50% {
         transform: translateY(-4px) scale(1.1);
     }
+
     75% {
         transform: translateY(-6px) scale(1.05);
     }
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(-50%) translateY(0);
     }
+
     50% {
         transform: translateX(-50%) translateY(-10px);
     }
@@ -361,6 +384,7 @@ section {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -378,6 +402,7 @@ section {
         opacity: 0;
         transform: translateY(20px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -534,13 +559,13 @@ section {
     font-size: 0.7rem;
     padding: 0.2rem 0.6rem;
     font-weight: 500;
-    
+
     &.homme {
         background: $primary-opacity-15;
         color: $primary;
         border: 1px solid $primary-opacity-30;
     }
-    
+
     &.femme {
         background: rgba($athena-color, 0.15);
         color: $athena-color;
@@ -660,22 +685,22 @@ footer {
 .transformation-card {
     transition: all 0.3s ease;
     animation: reveal 0.8s ease;
-    
+
     &:hover {
         transform: translateY(-5px);
-        
+
         img {
             transform: scale(1.05);
         }
     }
-    
+
     img {
         transition: transform 0.3s ease;
         height: 200px;
         object-fit: cover;
         width: 100%;
     }
-    
+
     .position-relative {
         border: 2px solid $primary-opacity-10;
         border-radius: 12px;
@@ -690,12 +715,12 @@ footer {
     ul {
         list-style-type: none;
         padding-left: 0;
-        
+
         li {
             position: relative;
             padding-left: 1.5rem;
             margin-bottom: 0.5rem;
-            
+
             &:before {
                 content: "✓";
                 position: absolute;
@@ -705,12 +730,12 @@ footer {
             }
         }
     }
-    
+
     .btn-outline-primary {
         border-width: 2px;
         padding: 0.4rem 1rem;
         font-weight: 500;
-        
+
         &:hover {
             background: linear-gradient(135deg, $primary, $primary-dark);
         }
@@ -721,27 +746,31 @@ footer {
 .program-icon {
     &.titan {
         background: rgba($titan-color, 0.1);
+
         i {
             color: $titan-color;
         }
     }
-    
+
     &.shred {
         background: rgba($shred-color, 0.1);
+
         i {
             color: $shred-color;
         }
     }
-    
+
     &.athena {
         background: rgba($athena-color, 0.1);
+
         i {
             color: $athena-color;
         }
     }
-    
+
     &.stronggirl {
         background: rgba($stronggirl-color, 0.1);
+
         i {
             color: $stronggirl-color;
         }
@@ -754,10 +783,10 @@ footer {
 
 .bg-darker .text-center {
     position: relative;
-    
+
     .bg-primary.bg-opacity-10 {
         transition: all 0.3s ease;
-        
+
         &:hover {
             background: $primary-opacity-20 !important;
             transform: scale(1.1);
@@ -830,11 +859,11 @@ img {
 .bg-primary.bg-opacity-10 {
     cursor: pointer;
     transition: all 0.3s ease;
-    
+
     i {
         transition: transform 0.3s ease;
     }
-    
+
     &:hover {
         i {
             transform: scale(1.2);
@@ -848,7 +877,7 @@ img {
 
 section:not(.hero-section) {
     position: relative;
-    
+
     &::before {
         content: '';
         position: absolute;
@@ -900,19 +929,19 @@ section:not(.hero-section) {
         bottom: 20px;
         right: 20px;
     }
-    
+
     .transformation-card {
         img {
             height: 150px;
         }
     }
-    
+
     .program-card {
         .d-flex {
             flex-direction: column;
             align-items: start;
         }
-        
+
         .btn-outline-primary {
             width: 100%;
             margin-top: 1rem;
@@ -924,6 +953,7 @@ section:not(.hero-section) {
 // 29. PRINT STYLES
 // ============================================
 @media print {
+
     .navbar,
     footer,
     .scroll-to-top,
