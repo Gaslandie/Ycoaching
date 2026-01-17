@@ -91,16 +91,16 @@
         }
 
         .progress-steps .step-circle.active {
-            background-color: #FF5722;
-            border-color: #FF5722;
+            background-color: #007AFF;
+            border-color: #007AFF;
             color: #ffffff;
             transform: scale(1.1);
             box-shadow: 0 0 0 8px rgba(255, 87, 34, 0.1);
         }
 
         .progress-steps .step-circle.completed {
-            background-color: #FF5722;
-            border-color: #FF5722;
+            background-color: #007AFF;
+            border-color: #007AFF;
             color: #ffffff;
         }
 
@@ -333,6 +333,30 @@
             font-weight: bold;
             z-index: 1;
         }
+
+        /* Correction pour le champ de date Flatpickr */
+#datePicker::placeholder {
+    color: #6c757d !important; /* Gris pour être visible sur fond sombre */
+    opacity: 1;
+}
+
+#datePicker::-webkit-input-placeholder {
+    color: #6c757d !important;
+}
+
+#datePicker::-moz-placeholder {
+    color: #6c757d !important;
+    opacity: 1;
+}
+
+#datePicker:-ms-input-placeholder {
+    color: #6c757d !important;
+}
+
+#datePicker:-moz-placeholder {
+    color: #6c757d !important;
+    opacity: 1;
+}
     </style>
 </head>
 
@@ -346,10 +370,10 @@
         <section class="hero-section-sm d-flex align-items-center"
             style="min-height: 30vh; background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.7)), url('dist/img/hero-bg1.jpg') center/cover;">
             <div class="container text-center">
-                <h1 class="display-4 fw-bold text-white mb-3" data-aos="fade-down">
-                    <i class="bi bi-calendar-check text-primary me-3"></i>Réserve ta transformation
+                <h1 class="display-4 fw-bold text-light mb-3" data-aos="fade-down">
+                    <i class="bi bi-calendar-check text-light me-3"></i>Réserve ta transformation
                 </h1>
-                <p class="lead text-secondary" data-aos="fade-up">
+                <p class="lead text-light" data-aos="fade-up">
                     choisir ton programme, ton créneau et démarre ton aventure dès maintenant
                 </p>
             </div>
@@ -1205,65 +1229,65 @@
             }, 300);
         }
 
-        // Générer les créneaux horaires
-        function generateTimeSlots() {
-            const container = document.getElementById('timeSlots');
-            if (!container) return;
+       // Générer les créneaux horaires - VERSION CORRIGÉE
+function generateTimeSlots() {
+    const container = document.getElementById('timeSlots');
+    if (!container) return;
 
-            // Créneaux disponibles
-            const slots = [
-                '09:00', '10:30', '12:00', '14:00',
-                '15:30', '17:00', '18:30', '20:00'
-            ];
+    // Créneaux disponibles
+    const slots = [
+        '09:00', '10:30', '12:00', '14:00',
+        '15:30', '17:00', '18:30', '20:00'
+    ];
 
-            let html = '';
-            slots.forEach((time, index) => {
-                // Simuler quelques créneaux déjà pris
-                const isTaken = Math.random() > 0.8 && index > 2;
+    let html = '';
+    slots.forEach((time, index) => {
+        // Simuler quelques créneaux déjà pris
+        const isTaken = Math.random() > 0.8 && index > 2;
 
-                html += `
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <button class="btn ${isTaken ? 'btn-outline-secondary disabled time-slot booked' : 'btn-outline-light time-slot'} w-100 py-2 mb-2" 
-                                data-time="${time}"
-                                ${isTaken ? 'disabled' : ''}>
-                            <i class="bi bi-clock me-1"></i> ${time}
-                            ${isTaken ? '<span class="badge bg-danger ms-1">COMPLET</span>' : ''}
-                        </button>
-                    </div>
-                `;
+        html += `
+            <div class="col-6 col-md-4 col-lg-3">
+                <button class="btn ${isTaken ? 'btn-outline-secondary disabled time-slot booked' : 'btn-outline-primary time-slot'} w-100 py-2 mb-2" 
+                        data-time="${time}"
+                        ${isTaken ? 'disabled' : ''}>
+                    <i class="bi bi-clock me-1"></i> ${time}
+                    ${isTaken ? '<span class="badge bg-danger ms-1">COMPLET</span>' : ''}
+                </button>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+
+    // Gestion des clics sur les créneaux
+    document.querySelectorAll('.time-slot:not(.disabled)').forEach(btn => {
+        btn.addEventListener('click', function () {
+            bookingState.time = this.dataset.time;
+
+            // Reset tous les boutons
+            document.querySelectorAll('.time-slot').forEach(b => {
+                if (!b.disabled) {
+                    b.classList.remove('btn-primary');
+                    b.classList.add('btn-outline-primary'); // CHANGÉ ICI
+                }
             });
 
-            container.innerHTML = html;
+            // Style pour le créneau sélectionné
+            this.classList.remove('btn-outline-primary'); // CHANGÉ ICI
+            this.classList.add('btn-primary');
 
-            // Gestion des clics sur les créneaux
-            document.querySelectorAll('.time-slot:not(.disabled)').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    bookingState.time = this.dataset.time;
+            // Afficher la sélection
+            document.getElementById('selectedTimeDisplay').innerHTML = `
+                <span class="text-primary">
+                    <i class="bi bi-clock me-2"></i>
+                    ${bookingState.time}
+                </span>
+            `;
 
-                    // Reset tous les boutons
-                    document.querySelectorAll('.time-slot').forEach(b => {
-                        if (!b.disabled) {
-                            b.classList.remove('btn-primary');
-                            b.classList.add('btn-outline-light');
-                        }
-                    });
-
-                    // Style pour le créneau sélectionné
-                    this.classList.remove('btn-outline-light');
-                    this.classList.add('btn-primary');
-
-                    // Afficher la sélection
-                    document.getElementById('selectedTimeDisplay').innerHTML = `
-                        <span class="text-primary">
-                            <i class="bi bi-clock me-2"></i>
-                            ${bookingState.time}
-                        </span>
-                    `;
-
-                    setTimeout(() => goToStep(5), 500);
-                });
-            });
-        }
+            setTimeout(() => goToStep(5), 500);
+        });
+    });
+}
 
         // Mettre à jour la barre de progression
         function updateProgress(step) {
