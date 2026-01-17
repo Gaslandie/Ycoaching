@@ -752,3 +752,164 @@ img {
         color: black;
     }
 }
+
+// ============================================
+// TRANSFORMATIONS - Page d'accueil
+// ============================================
+
+.transformation-card {
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        
+        img {
+            transform: scale(1.05);
+        }
+    }
+    
+    img {
+        transition: transform 0.3s ease;
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+    
+    .position-relative {
+        border: 2px solid rgba($primary, 0.1);
+        border-radius: 12px;
+    }
+}
+
+// Styles pour les badges dans les programmes
+.badge.category-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    font-weight: 500;
+    
+    &.homme {
+        background: rgba($primary, 0.15);
+        color: $primary;
+        border: 1px solid rgba($primary, 0.3);
+    }
+    
+    &.femme {
+        background: rgba(#E91E63, 0.15);
+        color: #E91E63;
+        border: 1px solid rgba(#E91E63, 0.3);
+    }
+}
+
+// Amélioration des cards programmes
+.program-card {
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        
+        li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            
+            &:before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: $primary;
+                font-weight: bold;
+            }
+        }
+    }
+    
+    .btn-outline-primary {
+        border-width: 2px;
+        padding: 0.4rem 1rem;
+        font-weight: 500;
+        
+        &:hover {
+            background: linear-gradient(135deg, $primary, darken($primary, 10%));
+        }
+    }
+}
+
+// Animation pour les transformations
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.transformation-card {
+    animation: reveal 0.8s ease;
+}
+
+// Section méthodologie
+.bg-darker .text-center {
+    position: relative;
+    
+    .bg-primary.bg-opacity-10 {
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background: rgba($primary, 0.2) !important;
+            transform: scale(1.1);
+        }
+    }
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+    .transformation-card {
+        img {
+            height: 150px;
+        }
+    }
+    
+    .program-card {
+        .d-flex {
+            flex-direction: column;
+            align-items: start;
+        }
+        
+        .btn-outline-primary {
+            width: 100%;
+            margin-top: 1rem;
+        }
+    }
+}
+
+// Effet de gradient pour les sections
+section:not(.hero-section) {
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba($primary, 0.3), transparent);
+    }
+}
+
+// Hover effect pour les icônes
+.bg-primary.bg-opacity-10 {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    i {
+        transition: transform 0.3s ease;
+    }
+    
+    &:hover {
+        i {
+            transform: scale(1.2);
+        }
+    }
+}
