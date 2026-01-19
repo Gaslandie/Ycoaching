@@ -12000,11 +12000,26 @@ html {
   z-index: 1090 !important;
 }
 
-.hero-section {
-  position: relative;
-  z-index: 1 !important;
+@media (max-width: 992px) {
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+  /* Cacher WhatsApp et Instagram dans le menu mobile */
+  .navbar-collapse .d-flex.align-items-center.gap-3 {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .navbar-collapse .d-flex.align-items-center.gap-3 a:not(.btn) {
+    display: none;
+    /* Cache WhatsApp et Instagram */
+  }
+  /* Ajuster le bouton Réserver */
+  .navbar-collapse .btn {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
 }
-
 .hero-section::after {
   z-index: 1 !important;
 }
@@ -12046,6 +12061,31 @@ html {
   transform: scale(1.2);
 }
 
+.hero-section {
+  position: relative;
+  z-index: 1 !important;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    text-align: center !important;
+    padding: 40px 0 !important;
+    min-height: auto !important;
+  }
+  .hero-section h1, .hero-section .h1 {
+    font-size: 2.2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .hero-section .lead {
+    font-size: 1.1rem !important;
+    margin-bottom: 2rem !important;
+    text-align: center !important;
+  }
+  .hero-section .d-flex.flex-wrap {
+    justify-content: center !important;
+    gap: 1rem !important;
+  }
+}
 .bg-darker {
   background-color: #E9ECEF;
   position: relative;
@@ -12072,7 +12112,8 @@ section:not(.hero-section) {
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/service-bg.png") center/cover no-repeat;
     background-position: center 30%;
     background-attachment: scroll;
-    min-height: 400px;
+    min-height: auto;
+    padding: 80px 0;
   }
 }
 
@@ -12083,7 +12124,8 @@ section:not(.hero-section) {
   #programmes {
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/programmes.png") center/cover no-repeat;
     background-position: center 25%;
-    min-height: 500px;
+    min-height: auto;
+    padding: 80px 0;
   }
 }
 
@@ -12094,10 +12136,65 @@ section:not(.hero-section) {
   #process {
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/process.png") center/cover no-repeat;
     background-position: center 20%;
-    min-height: 400px;
+    min-height: auto;
+    padding: 80px 0;
   }
 }
 
+@media (max-width: 768px) {
+  #parcours .col-lg-6 {
+    text-align: center !important;
+  }
+  #parcours .btn {
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+  }
+  #parcours .position-absolute {
+    position: relative !important;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+  #parcours .rounded-4 {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 768px) {
+  .program-card {
+    padding: 1.5rem !important;
+  }
+  .program-card .d-flex.align-items-start {
+    flex-direction: row !important;
+    align-items: center !important;
+    margin-bottom: 1rem;
+  }
+  .program-card .program-icon {
+    min-width: 50px;
+    margin-right: 1rem;
+    margin-bottom: 0 !important;
+  }
+  .program-card h5, .program-card .h5 {
+    margin-bottom: 0.5rem !important;
+  }
+  .program-card .d-flex.gap-1 {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+    margin-bottom: 1rem;
+  }
+  .program-card .badge.program-badge,
+  .program-card .badge.category-badge {
+    display: inline-block;
+    margin: 0.2rem 0.2rem 0 0;
+  }
+  .program-card .d-flex.justify-content-between {
+    flex-direction: column !important;
+    gap: 1rem;
+  }
+  .program-card .btn-outline-primary {
+    width: 100% !important;
+    margin-top: 1rem !important;
+  }
+}
 .hero-section * {
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -12298,6 +12395,29 @@ footer .btn-outline-light:hover {
   transform: translateY(-3px);
 }
 
+footer {
+  position: relative;
+  z-index: 20;
+  background-color: #FFFFFF;
+}
+
+/* ============================================
+   CORRECTION AOS POUR MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  /* Désactiver les animations AOS sur mobile pour certains éléments */
+  footer[data-aos],
+  .hero-section-sm[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  /* Alternative: forcer l'affichage */
+  [data-aos] {
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+}
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
