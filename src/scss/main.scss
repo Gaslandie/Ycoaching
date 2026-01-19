@@ -346,7 +346,7 @@ html {
         left: 50%;
         width: 100vw;
         height: 56.25vw; // Ratio 16:9 pour desktop
-        min-height: 100vh;
+        min-height: 80vh;
         min-width: 177.77vh; // Pour couvrir en portrait
         transform: translate(-50%, -50%);
         pointer-events: none;
