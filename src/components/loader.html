@@ -1,0 +1,42 @@
+<div id="page-loader" class="page-loader">
+    <div class="loader-content">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="80" height="80" class="loader-icon">
+            <g transform="translate(100, 100)">
+                <path d="M -30 -40 L -10 0" stroke="#007AFF" stroke-width="12" stroke-linecap="round" fill="none" />
+                <path d="M 30 -40 L 10 0" stroke="#007AFF" stroke-width="12" stroke-linecap="round" fill="none" />
+                <path d="M 0 0 L 0 50" stroke="#007AFF" stroke-width="12" stroke-linecap="round" fill="none" />
+                <circle cx="0" cy="0" r="6" fill="#007AFF" />
+            </g>
+        </svg>
+    </div>
+</div>
+
+<style>
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #F8F9FA;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader-icon {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+}
+</style>

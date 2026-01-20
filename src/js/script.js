@@ -1,22 +1,127 @@
 /**
  * Y COACHING - Script Principal
  * Version 2.1 - Corrections complètes
+ * 
+ * 
  */
 
+// Charger le loader
+function loadLoader() {
+    const body = document.body;
+
+    // Insérer le loader au début du body
+    fetch('src/components/loader.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Loader non trouvé');
+            return response.text();
+        })
+        .then(data => {
+            body.insertAdjacentHTML('afterbegin', data);
+
+            // Initialiser le loader
+            initLoader();
+        })
+        .catch(error => {
+            console.warn('Loader non chargé:', error);
+            // Continuer sans loader
+            document.documentElement.classList.add('page-loaded');
+        });
+}
+
+// Initialiser le loader
+function initLoader() {
+    const loader = document.getElementById('page-loader');
+
+    if (!loader) return;
+
+    // Cache TOUTE la page au début
+    document.body.classList.add('page-loading');
+
+    // Quand le loader est prêt, montrer la page progressivement
+    setTimeout(() => {
+        document.body.classList.remove('page-loading');
+        document.body.classList.add('page-loaded');
+    }, 100);
+
+    // Événement quand tout est chargé
+    window.addEventListener('load', () => {
+        hideLoader();
+
+        // Animation finale de la page
+        setTimeout(() => {
+            document.body.classList.add('page-loaded');
+        }, 100);
+    });
+
+    // Fallback
+    setTimeout(() => {
+        if (document.readyState === 'complete') {
+            hideLoader();
+            document.body.classList.add('page-loaded');
+        }
+    }, 3000);
+
+    // NE PAS cacher au clic
+    // document.addEventListener('click', hideLoader, { once: true });
+}
+
+// Cacher le loader
+function hideLoader() {
+    const loader = document.getElementById('page-loader');
+
+    if (loader && !loader.classList.contains('hidden')) {
+        loader.classList.add('hidden');
+
+        setTimeout(() => {
+            if (loader && loader.parentNode) {
+                loader.parentNode.removeChild(loader);
+            }
+
+            // La page est maintenant complètement chargée
+            document.body.classList.add('page-loaded');
+            document.documentElement.classList.add('page-loaded');
+
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }, 600);
+    }
+}
+
+// Fonction pour montrer le loader (utile pour les transitions de page)
+function showLoader() {
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+        loader.classList.remove('hidden');
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    
+
+    loadLoader();
+
     // 1. Chargement des composants (navbar, footer)
     loadComponent("navbar-placeholder", "src/components/navbar.html");
     loadComponent("footer-placeholder", "src/components/footer.html");
 
     // 2. Initialisation d'AOS (animations)
-    AOS.init({
-        duration: 800,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 100,
-        disable: window.innerWidth < 768 // Désactiver sur mobile pour performance
-    });
+    setTimeout(() => {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100,
+            disable: window.innerWidth < 768,
+            startEvent: 'DOMContentLoaded', // S'assurer qu'AOS démarre après
+            initClassName: 'aos-init',
+            animatedClassName: 'aos-animate',
+            useClassNames: false,
+            disableMutationObserver: false,
+            debounceDelay: 50,
+            throttleDelay: 99,
+            delay: 0
+        });
+    }, 100);
 
     // 3. Gestion de la navigation active
     setActiveNavLink();
@@ -35,6 +140,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 8. Gestion du scroll (navbar + bouton retour en haut)
     initScrollHandlers();
+
+    // Gestion des transitions de page
+    // Gestion des transitions de page
+    document.addEventListener('click', function (e) {
+        const link = e.target.closest('a');
+
+        if (link &&
+            link.href &&
+            !link.target &&
+            !link.hasAttribute('download') &&
+            !link.hasAttribute('data-bs-toggle') &&
+            link.href.startsWith(window.location.origin) &&
+            !link.href.includes('#') &&
+            !link.href.includes('mailto:') &&
+            !link.href.includes('tel:')) {
+
+            e.preventDefault();
+
+            // 1. Faire disparaître la page actuelle
+            document.body.classList.add('page-exiting');
+
+            // 2. Montrer le loader
+            showLoader();
+
+            // 3. Changer de page après l'animation
+            setTimeout(() => {
+                window.location.href = link.href;
+            }, 300);
+        }
+    });
 });
 
 /**
@@ -51,7 +186,7 @@ function loadComponent(elementId, filePath) {
             })
             .then(data => {
                 placeholder.innerHTML = data;
-                
+
                 // Re-run AOS après injection de contenu
                 AOS.refresh();
 
@@ -74,23 +209,23 @@ function setActiveNavLink() {
     setTimeout(() => {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         const navLinks = document.querySelectorAll('.nav-link');
-        
+
         navLinks.forEach(link => {
             link.classList.remove('active');
-            
+
             const href = link.getAttribute('href');
-            
+
             // Gestion page d'accueil
-            if ((currentPage === 'index.html' || currentPage === '' || currentPage.includes('index')) && 
+            if ((currentPage === 'index.html' || currentPage === '' || currentPage.includes('index')) &&
                 (href === './' || href === 'index.html' || href === '/' || href === '')) {
                 link.classList.add('active');
-            } 
+            }
             // Gestion autres pages
-            else if (href === currentPage || 
-                     href === `./${currentPage}` ||
-                     (currentPage.includes('programmes') && href === 'programmes.html') ||
-                     (currentPage.includes('contact') && href === 'contact.html') ||
-                     (currentPage.includes('reservation') && href === 'reservation.html')) {
+            else if (href === currentPage ||
+                href === `./${currentPage}` ||
+                (currentPage.includes('programmes') && href === 'programmes.html') ||
+                (currentPage.includes('contact') && href === 'contact.html') ||
+                (currentPage.includes('reservation') && href === 'reservation.html')) {
                 link.classList.add('active');
             }
         });
@@ -102,30 +237,30 @@ function setActiveNavLink() {
  */
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            
+
             if (href === '#' || this.hasAttribute('data-bs-toggle')) return;
-            
+
             // Si le lien contient .html#, c'est une ancre vers une autre page
             // On laisse le navigateur gérer normalement
             if (href.includes('.html#')) {
                 return;
             }
-            
+
             // Si c'est une ancre sur la même page
             e.preventDefault();
-            
+
             const target = document.querySelector(href);
             if (target) {
                 const navbar = document.querySelector('.navbar');
                 const navbarHeight = navbar ? navbar.offsetHeight : 80;
-                
+
                 window.scrollTo({
                     top: target.offsetTop - navbarHeight,
                     behavior: 'smooth'
                 });
-                
+
                 // Mettre à jour l'URL sans recharger la page
                 history.pushState(null, null, href);
             }
@@ -154,19 +289,19 @@ function initArrowAnimation() {
     if (arrow) {
         // Supprimer l'animation par défaut si elle existe
         arrow.style.animation = 'none';
-        
+
         // Forcer un reflow pour réinitialiser l'animation
         void arrow.offsetWidth;
-        
+
         // Appliquer la nouvelle animation
         arrow.style.animation = 'bounce 2s infinite ease-in-out';
-        
+
         // Ajouter un effet au survol
         arrow.addEventListener('mouseenter', () => {
             arrow.style.transform = 'scale(1.2)';
             arrow.style.transition = 'transform 0.3s ease';
         });
-        
+
         arrow.addEventListener('mouseleave', () => {
             arrow.style.transform = 'scale(1)';
         });
@@ -178,7 +313,7 @@ function initArrowAnimation() {
  */
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
-    
+
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -208,7 +343,7 @@ function initScrollHandlers() {
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const navbar = document.querySelector('.navbar');
-        
+
         if (navbar) {
             if (scrollTop > 50) {
                 navbar.classList.add('scrolled');
@@ -216,7 +351,7 @@ function initScrollHandlers() {
                 navbar.classList.remove('scrolled');
             }
         }
-        
+
         // Bouton retour en haut
         if (scrollTop > 300) {
             if (!document.querySelector('.scroll-to-top')) {
@@ -235,11 +370,11 @@ function initScrollHandlers() {
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
-    
+
     const timer = setInterval(() => {
         start += increment;
         element.textContent = Math.floor(start);
-        
+
         if (start >= target) {
             element.textContent = target;
             clearInterval(timer);
@@ -257,13 +392,13 @@ function showToast(message, type = 'success') {
         <i class="bi bi-${type === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
         ${message}
     `;
-    
+
     document.body.appendChild(toast);
-    
+
     setTimeout(() => {
         toast.classList.add('show');
     }, 100);
-    
+
     setTimeout(() => {
         toast.classList.remove('show');
         setTimeout(() => toast.remove(), 300);
